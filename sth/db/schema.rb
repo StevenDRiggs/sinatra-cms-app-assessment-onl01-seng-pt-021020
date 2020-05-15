@@ -11,6 +11,47 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20200515105108) do
+
+  create_table "desire_harvest_sources", force: :cascade do |t|
+    t.integer "desire_id"
+    t.integer "harvest_source_id"
+  end
+
+  create_table "desire_seed_targets", force: :cascade do |t|
+    t.integer "desire_id"
+    t.integer "seed_target_id"
+  end
+
+  create_table "desires", force: :cascade do |t|
+    t.string "name"
+    t.text   "description"
+  end
+
+  create_table "harvest_received_items", force: :cascade do |t|
+    t.integer "harvest_source_id"
+    t.string  "item"
+  end
+
+  create_table "harvest_sources", force: :cascade do |t|
+    t.string  "source"
+    t.decimal "money_received"
+  end
+
+  create_table "seed_sown_items", force: :cascade do |t|
+    t.integer "seed_target_id"
+    t.string  "item"
+  end
+
+  create_table "seed_targets", force: :cascade do |t|
+    t.string  "target"
+    t.decimal "money_sown"
+    t.decimal "money_to_sow"
+  end
+
+  create_table "seed_to_sow_items", force: :cascade do |t|
+    t.integer "seed_target_id"
+    t.string  "item"
+  end
 
 end
