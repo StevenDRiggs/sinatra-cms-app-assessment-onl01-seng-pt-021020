@@ -16,11 +16,11 @@ class Source < ActiveRecord::Base
   end
 
   def add_time_received(timestring)
-    months = string_to_time_unit(string, 'month', 40_320)
-    weeks = string_to_time_unit(string, 'week', 10_080)
-    days = string_to_time_unit(string, 'day', 1440)
-    hours = string_to_time_unit(string, 'hour', 60)
-    minutes = string_to_time_unit(string, 'minute', 1)
+    months = string_to_time_unit(timestring, 'month', 40_320)
+    weeks = string_to_time_unit(timestring, 'week', 10_080)
+    days = string_to_time_unit(timestring, 'day', 1440)
+    hours = string_to_time_unit(timestring, 'hour', 60)
+    minutes = string_to_time_unit(timestring, 'minute', 1)
 
     total_minutes = [months, weeks, days, hours, minutes].sum
 
