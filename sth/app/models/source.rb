@@ -12,7 +12,15 @@ class Source < ActiveRecord::Base
   end
 
   def time_received
-    "#{self.months_received} months, #{self.weeks_received} weeks, #{self.days_received} days, #{self.hours_received} hours, #{self.minutes_received} minutes"
+    months = self.months_received > 0 ? "#{self.months_received} months" : nil
+    weeks = self.weeks_received > 0 ? "#{self.weeks_received} weeks" : nil
+    days = self.days_received > 0 ? "#{self.days_received} days" : nil
+    hours = self.hours_received > 0 ? "#{self.hours_received} hours" : nil
+    minutes = self.minutes_received > 0 ? "#{self.minutes_received} minutes" : nil
+
+    time = [months, weeks, days, hours, minutes].compact
+
+    time ? time.join(', ') : '0'
   end
 
   def add_time_received(timestring)

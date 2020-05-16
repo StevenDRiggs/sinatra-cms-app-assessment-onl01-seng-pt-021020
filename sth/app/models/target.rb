@@ -13,11 +13,27 @@ class Target < ActiveRecord::Base
   end
 
   def time_sown
-    "#{self.months_sown} months, #{self.weeks_sown} weeks, #{self.days_sown} days, #{self.hours_sown} hours, #{self.minutes_sown} minutes"
+    months = self.months_sown > 0 ? "#{self.months_sown} months" : nil
+    weeks = self.weeks_sown > 0 ? "#{self.weeks_sown} weeks" : nil
+    days = self.days_sown > 0 ? "#{self.days_sown} days" : nil
+    hours = self.hours_sown > 0 ? "#{self.hours_sown} hours" : nil
+    minutes = self.minutes_sown > 0 ? "#{self.minutes_sown} minutes" : nil
+
+    time = [months, weeks, days, hours, minutes].compact
+
+    time ? time.join(', ') : '0'
   end
 
   def time_to_sow
-    "#{self.months_to_sow} months, #{self.weeks_to_sow} weeks, #{self.days_to_sow} days, #{self.hours_to_sow} hours, #{self.minutes_to_sow} minutes"
+    months = self.months_to_sow > 0 ? "#{self.months_to_sow} months" : nil
+    weeks = self.weeks_to_sow > 0 ? "#{self.weeks_to_sow} weeks" : nil
+    days = self.days_to_sow > 0 ? "#{self.days_to_sow} days" : nil
+    hours = self.hours_to_sow > 0 ? "#{self.hours_to_sow} hours" : nil
+    minutes = self.minutes_to_sow > 0 ? "#{self.minutes_to_sow} minutes" : nil
+
+    time = [months, weeks, days, hours, minutes].compact
+
+    time ? time.join(', ') : '0'
   end
 
   def add_time_sown(timestring)
