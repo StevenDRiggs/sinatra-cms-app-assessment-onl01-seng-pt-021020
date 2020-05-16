@@ -5,10 +5,7 @@ if ActiveRecord::Migrator.needs_migration?
 end
 
 run ApplicationController
+use HarvestsController
+use SeedsController
 use BibleReferencesController
-use HarvestReceivedItemsController
-use SeedSownItemsController
-use HarvestSourcesController
-use SeedToSowItemsController
-use SeedTargetsController
 use DesiresController
