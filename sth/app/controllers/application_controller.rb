@@ -57,12 +57,40 @@ class ApplicationController < Sinatra::Base
     erb :login
   end
 
+  post '/login' do
+    if params[:username_or_email] != '' && params[:password] != ''
+      user = params[:username_or_email].match?(/.*@.*\.[a-zA-Z]{3,5}/) ? User.find_by(email: params[:username_or_email]) : User.find_by(username: params[:username_or_email])
+      if user && user.authenticate(params[:password])
+        session[:user_id] = user.id
+        redirect '/index'
+      else
+        redirect '/login'
+      end
+    else
+      redirect '/login'
+    end
+  end
+
+  get '/logout' do
+    @username = User.find_by_id(session[:user_id]).username
+
+    erb :logout
+  end
+
+  post '/logout' do
+    session.clear
+
+    redirect '/'
+  end
+
   get '/index' do
     if !logged_in?(session[:user_id])
       redirect '/'
-    end
+    else
+      @desires = Desire.all
 
-    erb :index
+      erb :index
+    end
   end
 
 end

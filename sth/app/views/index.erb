@@ -1,1 +1,73 @@
 <h1>Main Index</h1>
+
+<table id="data">
+  <thead>
+    <tr>
+      <th>Desire</th>
+      <th>Bible References</th>
+      <th>Seeds Sown</th>
+      <th>Seeds Yet to Sow</th>
+      <th>Harvest Received</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for desire in @desires %>
+      <tr>
+        <td><a href="/desires/<%= desire.id %>"><%= desire.name %></a></td>
+        <td>
+          <% for bible_reference in desire.bible_references %>
+            <a href="/bible_references/<%= bible_reference.id %>"><%= bible_reference.reference %></a>
+          <% end %>
+        </td>
+        <td>
+          <% for seed in desire.seeds %>
+            <ul>
+              <% for target in seed.targets %>
+                <li>
+                  <p><b><%= target.name %></b></p>
+                  <p><%= target.time_sown %></p>
+                  <p>$<%= target.money_sown %></p>
+                  <% for sown_item in target.sown_items %>
+                    <p><%= sown_item.item %></p>
+                  <% end %>
+                </li>
+              <% end %>
+            </ul>
+          <% end %>
+        </td>
+        <td>
+          <% for seed in desire.seeds %>
+            <ul>
+              <% for target in seed.targets %>
+                <li>
+                  <p><b><%= target.name %></b></p>
+                  <p><%= target.time_to_sow %></p>
+                  <p>$<%= target.money_to_sow %></p>
+                  <% for to_sow_item in target.to_sow_items %>
+                    <p><%= to_sow_item.item %></p>
+                  <% end %>
+                </li>
+              <% end %>
+            </ul>
+          <% end %>
+        </td>
+        <td>
+          <% for harvest in desire.harvests %>
+            <ul>
+              <% for source in harvest.sources %>
+                <li>
+                  <p><b><%= source.name %></b></p>
+                  <p><%= source.time_received %></p>
+                  <p>$<%= source.money_received %></p>
+                  <% for received_item in source.received_items %>
+                    <p><%= received_item.item %></p>
+                  <% end %>
+                </li>
+              <% end %>
+            </ul>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
