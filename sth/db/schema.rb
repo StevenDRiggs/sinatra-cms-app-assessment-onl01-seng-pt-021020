@@ -11,7 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200515105108) do
+ActiveRecord::Schema.define(version: 20200515223137) do
+
+  create_table "bible_reference_harvest_sources", force: :cascade do |t|
+    t.integer "bible_reference_id"
+    t.integer "harvest_source_id"
+  end
+
+  create_table "bible_reference_seed_targets", force: :cascade do |t|
+    t.integer "bible_reference_id"
+    t.integer "seed_target_id"
+  end
+
+  create_table "bible_references", force: :cascade do |t|
+    t.string   "reference"
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "desire_bible_references", force: :cascade do |t|
+    t.integer "desire_id"
+    t.integer "bible_reference_id"
+  end
 
   create_table "desire_harvest_sources", force: :cascade do |t|
     t.integer "desire_id"
@@ -24,34 +46,48 @@ ActiveRecord::Schema.define(version: 20200515105108) do
   end
 
   create_table "desires", force: :cascade do |t|
-    t.string "name"
-    t.text   "description"
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "harvest_received_items", force: :cascade do |t|
-    t.integer "harvest_source_id"
-    t.string  "item"
+    t.integer  "harvest_source_id"
+    t.string   "item"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "harvest_sources", force: :cascade do |t|
-    t.string  "source"
-    t.decimal "money_received"
+    t.string   "source"
+    t.decimal  "money_received"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "completed"
+    t.datetime "time_to_completion"
   end
 
   create_table "seed_sown_items", force: :cascade do |t|
-    t.integer "seed_target_id"
-    t.string  "item"
+    t.integer  "seed_target_id"
+    t.string   "item"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "seed_targets", force: :cascade do |t|
-    t.string  "target"
-    t.decimal "money_sown"
-    t.decimal "money_to_sow"
+    t.string   "target"
+    t.decimal  "money_sown"
+    t.decimal  "money_to_sow"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "seed_to_sow_items", force: :cascade do |t|
-    t.integer "seed_target_id"
-    t.string  "item"
+    t.integer  "seed_target_id"
+    t.string   "item"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

@@ -4,6 +4,7 @@ class CreateDesires < ActiveRecord::Migration
     create_table :desires do |t|
       t.string :name
       t.text :description
+      t.timestamps
     end
   end
 

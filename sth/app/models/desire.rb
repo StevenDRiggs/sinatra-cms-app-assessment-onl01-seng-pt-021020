@@ -7,4 +7,7 @@ class Desire < ActiveRecord::Base
   has_many :desire_harvest_sources
   has_many :harvest_sources, through: :desire_harvest_sources
   has_many :harvest_received_items, through: :harvest_sources
+
+  has_many :desire_bible_references
+  has_many :bible_references, through: :desire_bible_references
 end
