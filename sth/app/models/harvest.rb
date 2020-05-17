@@ -18,6 +18,30 @@ class Harvest < ActiveRecord::Base
     time ? time.join(', ') : '0'
   end
 
+  def time_to_completion=(timestring)
+    total_minutes = timestring.match?(/\d+\s*minute/) ? timestring.match(/(\d+)\s*minute/)[1].to_i : 0
+    total_minutes += timestring.match?(/\d+\s*hour/) ? timestring.match(/(\d+)\s*hour/)[1].to_i * 60 : 0
+    total_minutes += timestring.match?(/\d+\s*day/) ? timestring.match(/(\d+)\s*day/)[1].to_i * 60 * 24 : 0
+    total_minutes += timestring.match?(/\d+\s*week/) ? timestring.match(/(\d+)\s*week/)[1].to_i * 60 * 24 * 7 : 0
+    total_minutes += timestring.match?(/\d+\s*month/) ? timestring.match(/(\d+)\s*month/)[1].to_i * 60 * 24 * 7 * 4 : 0
+
+    self.months_to_completion = total_minutes / (60 * 24 * 7 * 4)
+    total_minutes %= (60 * 24 * 7 * 4)
+
+    self.weeks_to_completion = total_minutes / (60 * 24 * 7)
+    total_minutes %= (60 * 24 * 7)
+
+    self.days_to_completion = total_minutes / (60 * 24)
+    total_minutes %= (60 * 24)
+
+    self.hours_to_completion = total_minutes / 60
+    total_minutes %= 60
+
+    self.minutes_to_completion = total_minutes
+
+    true
+  end
+
   def total_time_received
     total_minutes = self.sources.collect {|source| source.minutes_received}.sum
     total_minutes += self.sources.collect {|source| source.hours_received}.sum * 60
