@@ -1,1 +1,14 @@
-<h1>This is the Model's index page.</h1>
+<h1>Bible References</h1>
+
+<table>
+  <tr>
+    <th>Reference</th>
+    <th>Passage</th>
+  </tr>
+  <% for bible_reference in @bible_references %>
+    <tr>
+      <td><%= bible_reference.reference %></td>
+      <td><%= bible_reference.content %></td>
+    </tr>
+  <% end %>
+</table>

@@ -2,6 +2,8 @@ class BibleReferencesController < ApplicationController
 
   # GET: /bible_references
   get "/bible_references" do
+    @bible_references = BibleReference.all
+
     erb :"/bible_references/index.html"
   end
 
