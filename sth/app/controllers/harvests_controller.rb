@@ -2,6 +2,8 @@ class HarvestsController < ApplicationController
 
   # GET: /harvests
   get "/harvests" do
+    @harvests = Harvest.all
+
     erb :"/harvests/index.html"
   end
 
