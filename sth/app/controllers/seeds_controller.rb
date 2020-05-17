@@ -17,6 +17,8 @@ class SeedsController < ApplicationController
 
   # GET: /seeds/5
   get "/seeds/:id" do
+    @seed = Seed.find_by_id(params[:id])
+
     erb :"/seeds/show.html"
   end
 

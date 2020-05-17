@@ -1,1 +1,22 @@
-<h1>This is the show page for an individual instance of your model.</h1>
+<div id="seed-<%= @seed.id %>">
+  <%for target in @seed.targets %>
+    <h2><%= target.name %></h2>
+    <h3>Sown<h3>
+    <ul>
+      <li><%= target.time_sown %></li>
+      <li>$<%= "%.2f" % target.money_sown %></li>
+      <% for item in target.sown_items %>
+        <li><%= item.item %></li>
+      <% end %>
+    </ul>
+
+    <h3>Yet to Sow<h3>
+    <ul>
+      <li><%= target.time_to_sow %></li>
+      <li>$<%= "%.2f" % target.money_to_sow %></li>
+      <% for item in target.to_sow_items %>
+        <li><%= item.item %></li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
