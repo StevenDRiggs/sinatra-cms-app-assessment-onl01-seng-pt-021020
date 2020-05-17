@@ -17,6 +17,8 @@ class BibleReferencesController < ApplicationController
 
   # GET: /bible_references/5
   get "/bible_references/:id" do
+    @bible_reference = BibleReference.find_by_id(params[:id])
+
     erb :"/bible_references/show.html"
   end
 

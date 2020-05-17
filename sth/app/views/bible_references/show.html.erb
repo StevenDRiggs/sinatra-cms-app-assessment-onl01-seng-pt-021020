@@ -1,1 +1,35 @@
-<h1>This is the show page for an individual instance of your model.</h1>
+<h1><%= @bible_reference.reference %></h1>
+<caption><%= @bible_reference.content %></caption>
+
+<h2>Desires</h2>
+<ul>
+  <% for desire in @bible_reference.desires %>
+    <li><a href="<%= desire.id %>"><h3><%= desire.name %></h3></a></li>
+  <% end %>
+</ul>
+
+<h2>Seeds</h2>
+<ul>
+  <% for seed in @bible_reference.seeds %>
+    <a href="<%= seed.id %>">
+      <ul>
+        <% for target in seed.targets %>
+          <li><h3><%= target.name %></h3></li>
+        <% end %>
+      </ul>
+    </a>
+  <% end %>
+</ul>
+
+<h2>Harvests</h2>
+<ul>
+  <% for harvest in @bible_reference.harvests %>
+    <a href="<%= harvest.id %>">
+      <ul>
+        <% for source in harvest.sources %>
+          <li><h3><%= source.name %></h3></li>
+        <% end %>
+      </ul>
+    </a>
+  <% end %>
+</ul>
