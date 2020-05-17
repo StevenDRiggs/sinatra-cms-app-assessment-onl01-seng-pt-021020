@@ -17,6 +17,8 @@ class DesiresController < ApplicationController
 
   # GET: /desires/5
   get "/desires/:id" do
+    @desire = Desire.find_by_id(params[:id])
+
     erb :"/desires/show.html"
   end
 
