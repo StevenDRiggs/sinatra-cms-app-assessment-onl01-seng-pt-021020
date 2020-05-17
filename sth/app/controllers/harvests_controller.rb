@@ -17,6 +17,8 @@ class HarvestsController < ApplicationController
 
   # GET: /harvests/5
   get "/harvests/:id" do
+    @harvest = Harvest.find_by_id(params[:id])
+
     erb :"/harvests/show.html"
   end
 
