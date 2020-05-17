@@ -1,1 +1,6 @@
-<h1>This is the Model's index page.</h1>
+<h1>Desires</h1>
+
+<% for desire in @desires %>
+  <h2><%= desire.name %></h2>
+  <p><%= desire.description %></p>
+<% end %>

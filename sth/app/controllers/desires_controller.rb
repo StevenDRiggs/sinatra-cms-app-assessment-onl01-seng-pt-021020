@@ -2,6 +2,8 @@ class DesiresController < ApplicationController
 
   # GET: /desires
   get "/desires" do
+    @desires = Desire.all
+
     erb :"/desires/index.html"
   end
 
