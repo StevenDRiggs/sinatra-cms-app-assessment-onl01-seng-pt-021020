@@ -2,6 +2,8 @@ class SeedsController < ApplicationController
 
   # GET: /seeds
   get "/seeds" do
+    @seeds = Seed.all
+
     erb :"/seeds/index.html"
   end
 
