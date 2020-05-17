@@ -65,6 +65,8 @@
                 </li>
               <% end %>
             </ul>
+            <label for="completed">Completed?</label>
+            <input type="checkbox" id="completed" disabled <%= 'checked' if harvest.completed %>
           <% end %>
         </td>
       </tr>

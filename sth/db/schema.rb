@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200516094428) do
+ActiveRecord::Schema.define(version: 20200517091647) do
 
   create_table "bible_reference_desires", force: :cascade do |t|
     t.integer  "bible_reference_id"
@@ -56,8 +56,14 @@ ActiveRecord::Schema.define(version: 20200516094428) do
   end
 
   create_table "harvests", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.boolean  "completed"
+    t.integer  "months_to_completion"
+    t.integer  "weeks_to_completion"
+    t.integer  "days_to_completion"
+    t.integer  "hours_to_completion"
+    t.integer  "minutes_to_completion"
   end
 
   create_table "received_items", force: :cascade do |t|
