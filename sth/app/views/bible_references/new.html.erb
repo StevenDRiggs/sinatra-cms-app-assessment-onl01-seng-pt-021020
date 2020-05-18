@@ -1,21 +1,37 @@
 <form action="/new" method="POST">
   
+  <h2>Desires</h2>
   <% for desire in @desires %>
     <label for="desire-<%= desire.id %>"><%= desire.name %></label>
     <input type="checkbox" name="desires" id="desire-<%= desire.id %>" value="<%= desire.id %>">
   <% end %>
   <a href="/desires/new"><button>New Desire</button></a>
 
+  <h2>Seeds</h2>
   <% for seed in @seeds %>
     <label for="seed-<%= seed.id %>"><%= seed.first_three %></label>
     <input type="checkbox" name="seeds" id="seed-<%= seed.id %>" value="<% seed.id %>">
   <% end %>
   <a href="/seeds/new"><button>New Seed</button></a>
 
+  <h2>Harvests</h2>
   <% for harvest in @harvests %>
     <label for="harvest-<%= harvest.id %>"><%= harvest.first_three %></label>
     <input type="checkbox" name="harvests" id="harvest-<%= harvest.id %>" value="<% harvest.id %>">
   <% end %>
   <a href="/harvests/new"><button>New Harvest</button></a>
+
+  <h2>Bible References</h2>
+  <% for bible_reference in @bible_references %>
+    <label for="bible_reference-<%= bible_reference.id %>"><%= bible_reference.reference %></label>
+    <input type="checkbox" name="bible_references" id="bible_reference-<%= bible_reference.id %>" value="<%= bible_reference.id %>">
+  <% end %>
+  <h3>New Bible Reference</h3>
+  <label for="new_reference">Reference</label>
+  <input type="text" name="new_reference" id="new_reference">
+  <label for="new_content">Passage</label>
+  <textarea name="new_content" id="new_content"></textarea>
+
+  <button type="submit" id="submit">Save</button>
 
 </form>
