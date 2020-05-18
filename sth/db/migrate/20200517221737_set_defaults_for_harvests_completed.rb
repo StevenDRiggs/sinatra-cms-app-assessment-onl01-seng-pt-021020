@@ -1,5 +1,9 @@
 class SetDefaultsForHarvestsCompleted < ActiveRecord::Migration
-  def change
-    change_column_default :harvests, :completed, from: nil, to: false
+  def up
+    change_column_default :harvests, :completed, false
+  end
+
+  def down
+    change_column_default :harvests, :completed, nil
   end
 end
