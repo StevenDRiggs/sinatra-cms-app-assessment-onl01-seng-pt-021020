@@ -1,13 +1,15 @@
 <div id="harvest-<%= @harvest.id %>">
   <%for source in @harvest.sources %>
-    <h2><%= source.name %></h2>
-    <h3>Received<h3>
-    <ul>
-      <li><%= source.time_received %></li>
-      <li>$<%= "%.2f" % source.money_received %></li>
-      <% for item in source.received_items %>
-        <li><%= item.item %></li>
-      <% end %>
-    </ul>
+    <a href="/sources/<%= source.id %>">
+      <h2><%= source.name %></h2>
+      <h3>Received<h3>
+      <ul>
+        <li><%= source.time_received %></li>
+        <li>$<%= "%.2f" % source.money_received %></li>
+        <% for item in source.received_items %>
+          <li><%= item.item %></li>
+        <% end %>
+      </ul>
+    </a>
   <% end %>
 </div>
