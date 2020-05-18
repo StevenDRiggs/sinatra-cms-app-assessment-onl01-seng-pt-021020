@@ -27,7 +27,7 @@
           <li>
             <ul>
               <% for item, quantity in seed.all_sown_items %>
-                <li><%= item.item %> (x<%= quantity %>)</li>
+                <li><%= item.name %> (x<%= quantity %>)</li>
               <% end %>
             </ul>
           </li>
@@ -39,7 +39,7 @@
           <li>
             <ul>
               <% for item, quantity in seed.all_to_sow_items %>
-                <li><%= item.item %> (x<%= quantity %>)</li>
+                <li><%= item.name %> (x<%= quantity %>)</li>
               <% end %>
             </ul>
           </li>
@@ -67,7 +67,7 @@
           <li>
             <ul>
               <% for item, quantity in harvest.all_received_items %>
-                <li><%= item.item %> (x<%= quantity %>)</li>
+                <li><%= item.name %> (x<%= quantity %>)</li>
               <% end %>
             </ul>
           </li>

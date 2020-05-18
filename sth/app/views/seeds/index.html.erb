@@ -15,7 +15,7 @@
         <li><%= seed.total_time_sown %></li>
         <li>$<%= "%.2f" % seed.total_money_sown %></li>
         <% for item, quantity in seed.all_sown_items %>
-          <li><%= item.item %> (x<%= quantity %>)</li>
+          <li><%= item.name %> (x<%= quantity %>)</li>
         <% end %>
       </ul>
 
@@ -24,7 +24,7 @@
         <li><%= seed.total_time_to_sow %></li>
         <li>$<%= "%.2f" % seed.total_money_to_sow %></li>
         <% for item, quantity in seed.all_to_sow_items %>
-          <li><%= item.item %> (x<%= quantity %>)</li>
+          <li><%= item.name %> (x<%= quantity %>)</li>
         <% end %>
       </ul>
     </ul>

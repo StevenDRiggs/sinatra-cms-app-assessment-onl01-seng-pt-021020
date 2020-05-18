@@ -7,7 +7,7 @@
         <li><%= target.time_sown %></li>
         <li>$<%= "%.2f" % target.money_sown %></li>
         <% for item in target.sown_items %>
-          <li><%= item.item %></li>
+          <li><%= item.name %></li>
         <% end %>
       </ul>
 
@@ -16,7 +16,7 @@
         <li><%= target.time_to_sow %></li>
         <li>$<%= "%.2f" % target.money_to_sow %></li>
         <% for item in target.to_sow_items %>
-          <li><%= item.item %></li>
+          <li><%= item.name %></li>
         <% end %>
       </ul>
     </a>
