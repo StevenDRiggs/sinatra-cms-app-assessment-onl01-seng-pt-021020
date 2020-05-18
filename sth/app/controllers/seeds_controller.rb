@@ -1,15 +1,19 @@
 class SeedsController < ApplicationController
 
-  get "/seeds" do
+  get '/seeds' do
     @seeds = Seed.all
 
-    erb :"/seeds/index.html"
+    erb :'seeds/index.html'
   end
 
-  get "/seeds/:id" do
+  get '/seeds/new' do
+    erb :'seeds/new.html'
+  end
+
+  get '/seeds/:id' do
     @seed = Seed.find_by_id(params[:id])
 
-    erb :"/seeds/show.html"
+    erb :'seeds/show.html'
   end
 
   get '/targets/:id' do
@@ -18,7 +22,7 @@ class SeedsController < ApplicationController
     @desires = @bible_references.collect {|bible_reference| bible_reference.desires}.flatten.uniq
     @sources = @bible_references.collect {|bible_reference| bible_reference.harvests}.flatten.uniq.collect {|harvest| harvest.sources}.flatten.uniq
 
-    erb :"/seeds/targets/show.html"
+    erb :'seeds/targets/show.html'
   end
 
 end
