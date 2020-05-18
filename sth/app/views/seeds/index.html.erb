@@ -1,30 +1,32 @@
 <h1>Seeds</h1>
 
 <% for seed in @seeds %>
-  <ul>
-    <h3>Targets</h3>
+  <a href="/seeds/<%= seed.id %>">
     <ul>
-      <% for target in seed.targets %>
-        <li><a href="/targets/<%= target.id %>"><%= target.name %></a></li>
-      <% end %>
-    </ul>
-    
-    <h3>Total Sown</h3>
-    <ul>
-      <li><%= seed.total_time_sown %></li>
-      <li>$<%= "%.2f" % seed.total_money_sown %></li>
-      <% for item, quantity in seed.all_sown_items %>
-        <li><%= item.item %> (x<%= quantity %>)</li>
-      <% end %>
-    </ul>
+      <h3>Targets</h3>
+      <ul>
+        <% for target in seed.targets %>
+          <li><%= target.name %></li>
+        <% end %>
+      </ul>
+      
+      <h3>Total Sown</h3>
+      <ul>
+        <li><%= seed.total_time_sown %></li>
+        <li>$<%= "%.2f" % seed.total_money_sown %></li>
+        <% for item, quantity in seed.all_sown_items %>
+          <li><%= item.item %> (x<%= quantity %>)</li>
+        <% end %>
+      </ul>
 
-    <h3>Total Yet to Sow</h3>
-    <ul>
-      <li><%= seed.total_time_to_sow %></li>
-      <li>$<%= "%.2f" % seed.total_money_to_sow %></li>
-      <% for item, quantity in seed.all_to_sow_items %>
-        <li><%= item.item %> (x<%= quantity %>)</li>
-      <% end %>
+      <h3>Total Yet to Sow</h3>
+      <ul>
+        <li><%= seed.total_time_to_sow %></li>
+        <li>$<%= "%.2f" % seed.total_money_to_sow %></li>
+        <% for item, quantity in seed.all_to_sow_items %>
+          <li><%= item.item %> (x<%= quantity %>)</li>
+        <% end %>
+      </ul>
     </ul>
-  </ul>
+  </a>
 <% end %>

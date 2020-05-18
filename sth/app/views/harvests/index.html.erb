@@ -1,28 +1,30 @@
 <h1>Harvests</h1>
 
 <% for harvest in @harvests %>
-  <ul>
-    <h3>Sources</h3>
+  <a href="/harvests/<%= harvest.id %>">
     <ul>
-      <% for source in harvest.sources %>
-        <li><a href="/sources/<%= source.id %>"><%= source.name %></a></li>
-      <% end %>
-    </ul>
-    
-    <h3>Total Received</h3>
-    <ul>
-      <li><%= harvest.total_time_received %></li>
-      <li>$<%= "%.2f" % harvest.total_money_received %></li>
-      <% for item, quantity in harvest.all_received_items %>
-        <li><%= item.item %> (x<%= quantity %>)</li>
-      <% end %>
-    </ul>
-
-    <% if harvest.completed %>
-      <h3>Completed</h3>
+      <h3>Sources</h3>
       <ul>
-        <li><%= harvest.time_to_completion %></li>
+        <% for source in harvest.sources %>
+          <li><%= source.name %></li>
+        <% end %>
       </ul>
-    <% end %>
-  </ul>
+      
+      <h3>Total Received</h3>
+      <ul>
+        <li><%= harvest.total_time_received %></li>
+        <li>$<%= "%.2f" % harvest.total_money_received %></li>
+        <% for item, quantity in harvest.all_received_items %>
+          <li><%= item.item %> (x<%= quantity %>)</li>
+        <% end %>
+      </ul>
+
+      <% if harvest.completed %>
+        <h3>Completed</h3>
+        <ul>
+          <li><%= harvest.time_to_completion %></li>
+        </ul>
+      <% end %>
+    </ul>
+  </a>
 <% end %>
