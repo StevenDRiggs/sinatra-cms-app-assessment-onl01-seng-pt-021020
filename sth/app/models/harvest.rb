@@ -88,4 +88,10 @@ class Harvest < ActiveRecord::Base
     return_items
   end
     
+   def first_three
+     source_names = self.sources.collect {|source| source.name}
+
+     source_names.length > 3 ? source_names[0..2] : source_names
+   end
+
 end

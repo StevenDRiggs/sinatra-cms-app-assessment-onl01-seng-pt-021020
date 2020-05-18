@@ -1,4 +1,4 @@
-for j in 1..100
+for j in 1..10
   i = Random.new.rand(100)
 
   desire = Desire.new(name: "desire #{i} name", description: "desire #{i} description")

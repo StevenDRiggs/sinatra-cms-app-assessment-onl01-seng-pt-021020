@@ -98,4 +98,10 @@ class Seed < ActiveRecord::Base
     return_items
   end
 
+   def first_three
+     target_names = self.targets.collect {|target| target.name}
+
+     target_names.length > 3 ? target_names[0..2] : target_names
+   end
+
 end

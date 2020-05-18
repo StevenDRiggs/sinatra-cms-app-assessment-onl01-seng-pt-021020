@@ -1,1 +1,21 @@
-<h1>Insert the form to create a new instance of your model.</h1>
+<form action="/new" method="POST">
+  
+  <% for desire in @desires %>
+    <label for="desire-<%= desire.id %>"><%= desire.name %></label>
+    <input type="checkbox" name="desires" id="desire-<%= desire.id %>" value="<%= desire.id %>">
+  <% end %>
+  <a href="/desires/new"><button>New Desire</button></a>
+
+  <% for seed in @seeds %>
+    <label for="seed-<%= seed.id %>"><%= seed.first_three %></label>
+    <input type="checkbox" name="seeds" id="seed-<%= seed.id %>" value="<% seed.id %>">
+  <% end %>
+  <a href="/seeds/new"><button>New Seed</button></a>
+
+  <% for harvest in @harvests %>
+    <label for="harvest-<%= harvest.id %>"><%= harvest.first_three %></label>
+    <input type="checkbox" name="harvests" id="harvest-<%= harvest.id %>" value="<% harvest.id %>">
+  <% end %>
+  <a href="/harvests/new"><button>New Harvest</button></a>
+
+</form>

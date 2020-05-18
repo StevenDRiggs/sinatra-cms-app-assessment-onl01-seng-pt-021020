@@ -24,7 +24,7 @@ class ApplicationController < Sinatra::Base
       redirect '/index'
     end
 
-    erb :welcome
+    erb :"welcome.html"
   end
 
   get '/signup' do
@@ -32,7 +32,7 @@ class ApplicationController < Sinatra::Base
       redirect '/index'
     end
 
-    erb :signup
+    erb :"signup.html"
   end
 
   post '/signup' do
@@ -54,7 +54,7 @@ class ApplicationController < Sinatra::Base
       redirect '/index'
     end
 
-    erb :login
+    erb :"login.html"
   end
 
   post '/login' do
@@ -74,7 +74,7 @@ class ApplicationController < Sinatra::Base
   get '/logout' do
     @username = User.find_by_id(session[:user_id]).username
 
-    erb :logout
+    erb :"logout.html"
   end
 
   post '/logout' do
@@ -89,7 +89,7 @@ class ApplicationController < Sinatra::Base
     else
       @desires = Desire.all
 
-      erb :index
+      erb :"index.html"
     end
   end
 
