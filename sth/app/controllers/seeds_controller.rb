@@ -12,4 +12,13 @@ class SeedsController < ApplicationController
     erb :"/seeds/show.html"
   end
 
+  get '/targets/:id' do
+    @target = Target.find_by_id(params[:id])
+    @bible_references = @target.seeds.collect {|seed| seed.bible_references}.flatten.uniq
+    @desires = @bible_references.collect {|bible_reference| bible_reference.desires}.flatten.uniq
+    @sources = @bible_references.collect {|bible_reference| bible_reference.harvests}.flatten.uniq.collect {|harvest| harvest.sources}.flatten.uniq
+
+    erb :"/seeds/targets/show.html"
+  end
+
 end

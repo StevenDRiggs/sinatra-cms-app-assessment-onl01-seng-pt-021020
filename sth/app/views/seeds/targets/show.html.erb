@@ -1,0 +1,15 @@
+<h1><%= @target.name %></h1>
+
+<h2>Seeds Into</h2>
+<% for desire in @desires %>
+  <p><%= desire.name %></p>
+<% end %>
+<h3>Via</h3>
+<% for bible_reference in @bible_references %>
+  <p><%= bible_reference.reference %></p>
+<% end %>
+
+<h2>Look for Harvests From</h2>
+<% for source in @sources %>
+  <p><%= source.name %></p>
+<% end %>
