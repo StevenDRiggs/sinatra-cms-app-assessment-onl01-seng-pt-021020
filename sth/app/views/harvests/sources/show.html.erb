@@ -1,0 +1,10 @@
+<h1><%= @source.name %></h1>
+
+<h2>Answers</h2>
+<% for desire in @desires %>
+  <p><%= desire.name %></p>
+<% end %>
+<h3>Via</h3>
+<% for bible_reference in @bible_references %>
+  <p><%= bible_reference.reference %></p>
+<% end %>

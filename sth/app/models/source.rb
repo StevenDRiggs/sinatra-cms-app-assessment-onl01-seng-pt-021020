@@ -1,6 +1,6 @@
 class Source < ActiveRecord::Base
   has_many :harvest_sources
-  has_many :harvests, through: :harvest_seeds
+  has_many :harvests, through: :harvest_sources
 
   has_many :received_items
 

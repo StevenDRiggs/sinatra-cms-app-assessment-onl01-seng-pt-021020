@@ -5,7 +5,7 @@
 <h3>Bible References</h3>
 <ul>
   <% for bible_reference in @desire.bible_references %>
-    <li><%= bible_reference.reference %></li>
+    <a href="/bible_references/<%= bible_reference.id %>"><li><%= bible_reference.reference %></li></a>
   <% end %>
 </ul>
 
