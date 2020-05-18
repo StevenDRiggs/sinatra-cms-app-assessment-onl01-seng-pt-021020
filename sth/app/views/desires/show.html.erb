@@ -1,3 +1,79 @@
 <h1><%= @desire.name %></h1>
 
 <p><%= @desire.description %></p>
+
+<h3>Bible References</h3>
+<ul>
+  <% for bible_reference in @desire.bible_references %>
+    <li><%= bible_reference.reference %></li>
+  <% end %>
+</ul>
+
+<h3>Seeds</h3>
+<ul>
+  <% for seed in @desire.seeds %>
+    <li>
+      <p>Targets<p>
+      <ul>
+        <% for target in seed.targets.uniq %>
+          <li><%= target.name %></li>
+        <% end %>
+      </ul>
+      <p>Sown<p>
+      <ul>
+        <li><%= seed.total_time_sown %></li>
+        <li>$<%= "%.2f" % seed.total_money_sown %></li>
+        <li>
+          <ul>
+            <% for item, quantity in seed.all_sown_items %>
+              <li><%= item.item %> (x<%= quantity %>)</li>
+            <% end %>
+          </ul>
+        </li>
+      </ul>
+      <p>Yet to Sow<p>
+      <ul>
+        <li><%= seed.total_time_to_sow %></li>
+        <li>$<%= "%.2f" % seed.total_money_to_sow %></li>
+        <li>
+          <ul>
+            <% for item, quantity in seed.all_to_sow_items %>
+              <li><%= item.item %> (x<%= quantity %>)</li>
+            <% end %>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  <% end %>
+</ul>
+
+<h3>Harvests</h3>
+<ul>
+  <% for harvest in @desire.harvests %>
+    <li>
+      <p>Sources</p>
+      <ul>
+        <% for source in harvest.sources.uniq %>
+          <li><%= source.name %></li>
+        <% end %>
+      </ul>
+      <p>Received</p>
+      <ul>
+        <li><%= harvest.total_time_received %></li>
+        <li>$<%= "%.2f" % harvest.total_money_received %></li>
+        <li>
+          <ul>
+            <% for item, quantity in harvest.all_received_items %>
+              <li><%= item.item %> (x<%= quantity %>)</li>
+            <% end %>
+          </ul>
+        </li>
+        <li>
+          <% if harvest.completed %>
+            <p>Completed in <%= harvest.time_to_completion %></p>
+          <% end %>
+        </li>
+      </ul>
+    </li>
+  <% end %>
+</ul>
