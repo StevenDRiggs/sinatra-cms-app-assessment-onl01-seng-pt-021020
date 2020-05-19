@@ -2,7 +2,10 @@ class Target < ActiveRecord::Base
   has_many :seed_targets
   has_many :seeds, through: :seed_targets
 
-  has_many :items
+  has_many :item_trackers
+  has_many :items, through: :item_trackers
+
+  accepts_nested_attributes_for :item_trackers
 
 
   def string_to_time_unit(string, word, multiplier)
