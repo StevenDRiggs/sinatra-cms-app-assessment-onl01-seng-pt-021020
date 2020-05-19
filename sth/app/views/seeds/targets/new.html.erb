@@ -22,12 +22,12 @@
   <input type="number" name="minutes_sown" id="minutes_sown">
 
   <label for="money_sown"><h2>Money Sown</h2></label>
-  <input type="text" name="money_sown" id="money_sown">
+  $<input type="text" name="money_sown" id="money_sown">
 
   <h2>Items Sown</h2>
   <% for item in @items %>
     <label for="<%= item.instance_of?(SownItem) ? 'sown' : 'to_sow'  %>_item-<%= item.id %>"><h3><%= item.item %></h3></label>
-    <input type="checkbox" name="sown_items" id="<%= item.instance_of?(SownItem) ? 'sown' : 'to_sow' %>_item-<%= item.id %>" value="<%= item.id %>">
+    <input type="checkbox" name="sown_items[]" id="<%= item.instance_of?(SownItem) ? 'sown' : 'to_sow' %>_item-<%= item.id %>" value="<%= item.instance_of?(SownItem) ? 'sown' : 'to_sow' %>_item-<%= item.id %>">
   <% end %>
 
   <h2>New Sown Item</h2>
@@ -51,12 +51,12 @@
   <input type="number" name="minutes_to_sow" id="minutes_to_sow">
 
   <label for="money_to_sow"><h2>Money Yet to Sow</h2></label>
-  <input type="text" name="money_to_sow" id="money_to_sow">
+  $<input type="text" name="money_to_sow" id="money_to_sow">
 
   <h2>Items Yet to Sow</h2>
   <% for item in @items %>
     <label for="<%= item.instance_of?(SownItem) ? 'sown' : 'to_sow'  %>_item-<%= item.id %>"><h3><%= item.item %></h3></label>
-    <input type="checkbox" name="to_sow_items" id="<%= item.instance_of?(SownItem) ? 'sown' : 'to_sow' %>_item-<%= item.id %>" value="<%= item.id %>">
+    <input type="checkbox" name="to_sow_items[]" id="<%= item.instance_of?(SownItem) ? 'sown' : 'to_sow' %>_item-<%= item.id %>" value="<%= item.instance_of?(SownItem) ? 'sown' : 'to_sow' %>_item-<%= item.id %>">
   <% end %>
 
   <h2>New Item to Sow</h2>
