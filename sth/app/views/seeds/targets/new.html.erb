@@ -1,0 +1,49 @@
+<h1>New Target</h1>
+
+<form action="/targets" method="POST">
+
+  <label for="name"><h2>Name</h2></label>
+  <input type="text" name="name" id="name" required>
+
+  <h2>Time Sown<h2>
+  <label for="months_sown">Months</label>
+  <input type="number" name="months_sown" id="months_sown">
+
+  <label for="weeks_sown">Weeks</label>
+  <input type="number" name="weeks_sown" id="weeks_sown">
+
+  <label for="days_sown">Days</label>
+  <input type="number" name="days_sown" id="days_sown">
+
+  <label for="hours_sown">Hours</label>
+  <input type="number" name="hours_sown" id="hours_sown">
+
+  <label for="minutes_sown">Minutes</label>
+  <input type="number" name="minutes_sown" id="minutes_sown">
+
+  <h2>Time Yet to Sow<h2>
+  <label for="months_to_sow">Months</label>
+  <input type="number" name="months_to_sow" id="months_to_sow">
+
+  <label for="weeks_to_sow">Weeks</label>
+  <input type="number" name="weeks_to_sow" id="weeks_to_sow">
+
+  <label for="days_to_sow">Days</label>
+  <input type="number" name="days_to_sow" id="days_to_sow">
+
+  <label for="hours_to_sow">Hours</label>
+  <input type="number" name="hours_to_sow" id="hours_to_sow">
+
+  <label for="minutes_to_sow">Minutes</label>
+  <input type="number" name="minutes_to_sow" id="minutes_to_sow">
+
+  <label for="money_sown"><h2>Money Sown</h2></label>
+  $<input type="text" name="money_sown" id="money_sown">
+
+  <label for="money_to_sow"><h2>Money Yet to Sow</h2></label>
+  $<input type="text" name="money_to_sow" id="money_to_sow">
+
+  <h2>Items Sown</h2>
+  <%= for item in @items %>
+    <label for="item-<%= item.id %>"><%= item.name %></label>
+    <input type="checkbox"
