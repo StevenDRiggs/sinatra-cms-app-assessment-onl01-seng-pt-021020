@@ -1,1 +1,14 @@
-<h1>Insert the form to create a new instance of your model.</h1>
+<h1>New Harvest</h1>
+
+<form action="/harvests" method="POST">
+
+  <% for source in @sources %>
+    <label for="source-<%= source.id %>"><h2><%= source.name %></h2></label>
+    <input type="checkbox" name="sources[]" id="source-<%= source.id %>" value="<%= source.id %>">
+  <% end %>
+
+  <a href="/sources/new"><button type="button" id="new_source">New Source</button></a>
+
+  <button type="submit" id="submit">Submit</button>
+
+</form>

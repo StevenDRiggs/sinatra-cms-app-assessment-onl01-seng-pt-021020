@@ -27,12 +27,12 @@
   <h2>Items Received</h2>
   <% for received_item in @received_items %>
     <label for="received_item-<%= received_item.id %>"><h3><%= received_item.item %></h3></label>
-    <input type="checkbox" name="received_items" id="received_item-<%= received_item.id %>" value="<%= received_item.id %>">
+    <input type="checkbox" name="received_items[]" id="received_item-<%= received_item.id %>" value="<%= received_item.id %>">
   <% end %>
 
   <h2>New Item</h2>
-  <label for="new_item"><h3>Item</h3></label>
-  <input type="text" name="new_item" id="new_item">
+  <label for="new_received_item"><h3>Item</h3></label>
+  <input type="text" name="new_received_item" id="new_received_item">
   
   <button type="submit" id="submit">Submit</button>
 

@@ -5,6 +5,25 @@ class HarvestsController < ApplicationController
 
     erb :'harvests/index.html'
   end
+  
+  post '/harvests' do
+    harvest = Harvest.new
+    if !params[:sources].nil?
+      for source_id in params[:sources]
+        harvest.sources << Source.find_by_id(source_id.to_i)
+      end
+    else
+      'no source chosen'
+    end
+
+    redirect '/bible_references/new'
+  end
+
+  get '/harvests/new' do
+    @sources = Source.all
+
+    erb :'harvests/new.html'
+  end
 
   get '/harvests/:id' do
     @harvest = Harvest.find_by_id(params[:id])
@@ -16,6 +35,25 @@ class HarvestsController < ApplicationController
     @received_items = ReceivedItem.all
 
     erb :'harvests/sources/new.html'
+  end
+
+  post '/sources' do
+    if params[:name] != ''
+      source = Source.new(name: params[:name])
+      source.time_received = "#{params[:months_received]} months, #{params[:weeks_received]} weeks, #{params[:days_received]} days, #{params[:hours_received]} hours, #{params[:minutes_received]} minutes"
+      source.money_received = params[:money_received].to_f
+      source.received_items << ReceivedItem.create(item: params[:new_received_item]) if params[:new_received_item] != ''
+
+      if !params[:received_items].nil?
+        for received_item_id in params[:received_items]
+          source.received_items << ReceivedItem.find_by_id(received_item_id)
+        end
+      end
+
+      source.save
+
+      redirect '/bible_references/new'
+    end
   end
 
   get '/sources/:id' do
