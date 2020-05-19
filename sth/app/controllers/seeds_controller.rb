@@ -19,9 +19,7 @@ class SeedsController < ApplicationController
   end
 
   get '/targets/new' do
-    @items = Item.all
-
-    erb :'seeds/targets/new.html'
+    'targets/new'
   end
 
   get '/targets/:id' do
