@@ -1,14 +1,1 @@
-<h1>New Seed</h1>
-
-<form action="/seeds" method="POST">
-
-  <h2>Targets</h2>
-  <% for target in @targets %>
-    <label for="target-<%= target.id %>"><%= target.name %></label>
-    <input type="checkbox" name="targets" id="target-<%= target.id %>" value="<%= target.id %>">
-  <% end %>
-  <a href="/targets/new"><button type="button">New Target</button></a>
-
-  <button type="submit"id="submit">Submit</button>
-
-</form>
+<h1>Insert the form to create a new instance of your model.</h1>

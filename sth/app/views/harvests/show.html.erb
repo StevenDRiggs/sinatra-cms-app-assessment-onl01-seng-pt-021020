@@ -7,7 +7,7 @@
         <li><%= source.time_received %></li>
         <li>$<%= "%.2f" % source.money_received %></li>
         <% for item in source.received_items %>
-          <li><%= item.name %></li>
+          <li><%= item.item %></li>
         <% end %>
       </ul>
     </a>

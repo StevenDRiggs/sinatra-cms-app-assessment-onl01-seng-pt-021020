@@ -7,8 +7,6 @@ class SeedsController < ApplicationController
   end
 
   get '/seeds/new' do
-    @targets = Target.all
-
     erb :'seeds/new.html'
   end
 
@@ -16,10 +14,6 @@ class SeedsController < ApplicationController
     @seed = Seed.find_by_id(params[:id])
 
     erb :'seeds/show.html'
-  end
-
-  get '/targets/new' do
-    'targets/new'
   end
 
   get '/targets/:id' do

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200518221814) do
+ActiveRecord::Schema.define(version: 20200517221737) do
 
   create_table "bible_reference_desires", force: :cascade do |t|
     t.integer  "bible_reference_id"
@@ -66,17 +66,9 @@ ActiveRecord::Schema.define(version: 20200518221814) do
     t.integer  "minutes_to_completion"
   end
 
-  create_table "items", force: :cascade do |t|
-    t.integer  "target_id"
-    t.string   "name",                       null: false
-    t.boolean  "sown",       default: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "received_items", force: :cascade do |t|
     t.integer  "source_id"
-    t.string   "name",       null: false
+    t.string   "item",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -105,6 +97,13 @@ ActiveRecord::Schema.define(version: 20200518221814) do
     t.integer  "minutes_received"
   end
 
+  create_table "sown_items", force: :cascade do |t|
+    t.integer  "target_id"
+    t.string   "item",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "targets", force: :cascade do |t|
     t.string   "name"
     t.decimal  "money_sown",     default: 0.0
@@ -121,6 +120,13 @@ ActiveRecord::Schema.define(version: 20200518221814) do
     t.integer  "days_to_sow"
     t.integer  "hours_to_sow"
     t.integer  "minutes_to_sow"
+  end
+
+  create_table "to_sow_items", force: :cascade do |t|
+    t.integer  "target_id"
+    t.string   "item",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

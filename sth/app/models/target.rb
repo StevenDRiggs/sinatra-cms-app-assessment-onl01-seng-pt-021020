@@ -2,7 +2,8 @@ class Target < ActiveRecord::Base
   has_many :seed_targets
   has_many :seeds, through: :seed_targets
 
-  has_many :items
+  has_many :sown_items
+  has_many :to_sow_items
 
 
   def string_to_time_unit(string, word, multiplier)
@@ -103,14 +104,6 @@ class Target < ActiveRecord::Base
     self.minutes_to_sow = 0
 
     add_time_to_sow(timestring)
-  end
-
-  def sown_items
-    self.items.where(sown: true)
-  end
-
-  def to_sow_items
-    self.items.where(sown: false)
   end
     
 end

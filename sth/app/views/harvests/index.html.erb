@@ -15,7 +15,7 @@
         <li><%= harvest.total_time_received %></li>
         <li>$<%= "%.2f" % harvest.total_money_received %></li>
         <% for item, quantity in harvest.all_received_items %>
-          <li><%= item.name %> (x<%= quantity %>)</li>
+          <li><%= item.item %> (x<%= quantity %>)</li>
         <% end %>
       </ul>
 
