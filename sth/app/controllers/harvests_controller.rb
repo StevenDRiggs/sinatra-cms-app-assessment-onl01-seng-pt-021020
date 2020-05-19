@@ -8,6 +8,9 @@ class HarvestsController < ApplicationController
   
   post '/harvests' do
     harvest = Harvest.new
+    harvest.completed = params[:completed] == 'on'
+    harvest.time_to_completion = "#{params[:months_to_completion]} months, #{params[:weeks_to_completion]} weeks, #{params[:days_to_completion]} days, #{params[:hours_to_completion]} hours, #{params[:minutes_to_completion]} minutes"
+
     if !params[:sources].nil?
       for source_id in params[:sources]
         harvest.sources << Source.find_by_id(source_id.to_i)
@@ -15,6 +18,8 @@ class HarvestsController < ApplicationController
     else
       'no source chosen'
     end
+
+    harvest.save
 
     redirect '/bible_references/new'
   end

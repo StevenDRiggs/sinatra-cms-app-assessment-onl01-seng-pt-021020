@@ -18,8 +18,10 @@
 
   <h2>Harvests</h2>
   <% for harvest in @harvests %>
-    <label for="harvest-<%= harvest.id %>"><%= harvest.first_three %></label>
-    <input type="checkbox" name="harvests" id="harvest-<%= harvest.id %>" value="<% harvest.id %>">
+    <div <%= 'class="completed"' if harvest.completed %>>
+      <label for="harvest-<%= harvest.id %>"><%= harvest.first_three %></label>
+      <input type="checkbox" name="harvests" id="harvest-<%= harvest.id %>" value="<% harvest.id %>">
+    </div>
   <% end %>
   <a href="/harvests/new"><button type="button">New Harvest</button></a>
 

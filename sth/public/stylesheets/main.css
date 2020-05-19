@@ -113,3 +113,8 @@
     line-height: 24px;
   }
 }
+
+/* --------------------------------------------- */
+.completed {
+  background-color: green;
+}
