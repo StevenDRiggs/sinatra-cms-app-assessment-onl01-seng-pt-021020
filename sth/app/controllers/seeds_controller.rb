@@ -16,6 +16,12 @@ class SeedsController < ApplicationController
     erb :'seeds/show.html'
   end
 
+  get '/targets/new' do
+    @items = (SownItem.all + ToSowItem.all).uniq
+
+    erb :'seeds/targets/new.html'
+  end
+
   get '/targets/:id' do
     @target = Target.find_by_id(params[:id])
     @bible_references = @target.seeds.collect {|seed| seed.bible_references}.flatten.uniq

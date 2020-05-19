@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200517221737) do
+ActiveRecord::Schema.define(version: 20200519081822) do
 
   create_table "bible_reference_desires", force: :cascade do |t|
     t.integer  "bible_reference_id"
@@ -105,7 +105,7 @@ ActiveRecord::Schema.define(version: 20200517221737) do
   end
 
   create_table "targets", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",                         null: false
     t.decimal  "money_sown",     default: 0.0
     t.decimal  "money_to_sow",   default: 0.0
     t.datetime "created_at",                   null: false
