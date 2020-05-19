@@ -30,6 +30,10 @@
     <input type="checkbox" name="sown_items" id="<%= item.instance_of?(SownItem) ? 'sown' : 'to_sow' %>_item-<%= item.id %>" value="<%= item.id %>">
   <% end %>
 
+  <h2>New Sown Item</h2>
+  <label for="new_sown_item"><h3>Item</h3></label>
+  <input type="text" name="new_sown_item" id="new_sown_item">
+
   <h2>Time Yet to Sow</h2>
   <label for="months_to_sow"><h3>Months</h3></label>
   <input type="number" name="months_to_sow" id="months_to_sow">
@@ -54,6 +58,10 @@
     <label for="<%= item.instance_of?(SownItem) ? 'sown' : 'to_sow'  %>_item-<%= item.id %>"><h3><%= item.item %></h3></label>
     <input type="checkbox" name="to_sow_items" id="<%= item.instance_of?(SownItem) ? 'sown' : 'to_sow' %>_item-<%= item.id %>" value="<%= item.id %>">
   <% end %>
+
+  <h2>New Item to Sow</h2>
+  <label for="new_to_sow_item"><h3>Item</h3></label>
+  <input type="text" name="new_to_sow_item" id="new_to_sow_item">
   
   <button type="submit" id="submit">Submit</button>
 
