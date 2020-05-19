@@ -1,0 +1,35 @@
+<h1>New Source</h1>
+
+<form action="/sources" method="POST">
+
+  <label for="name"><h2>Name</h2></label>
+  <input type="text" name="name" id="name" required>
+
+  <h2>Time Received</h2>
+  <label for="months_received"><h3>Months</h3></label>
+  <input type="number" name="months_received" id="months_received">
+
+  <label for="weeks_received"><h3>Weeks</h3></label>
+  <input type="number" name="weeks_received" id="weeks_received">
+
+  <label for="days_received"><h3>Days</h3></label>
+  <input type="number" name="days_received" id="days_received">
+
+  <label for="hours_received"><h3>Hours</h3></label>
+  <input type="number" name="hours_received" id="hours_received">
+
+  <label for="minutes_received"><h3>Minutes</h3></label>
+  <input type="number" name="minutes_received" id="minutes_received">
+
+  <label for="money_received"><h2>Money Received</h2></label>
+  <input type="text" name="money_received" id="money_received">
+
+  <h2>Items Received</h2>
+  <% for received_item in @received_items %>
+    <label for="received_item-<%= received_item.id %>"><h3><%= received_item.item %></h3></label>
+    <input type="checkbox" name="received_items" id="received_item-<%= received_item.id %>" value="<%= received_item.id %>">
+  <% end %>
+  
+  <button type="submit" id="submit">Submit</button>
+
+</form>
