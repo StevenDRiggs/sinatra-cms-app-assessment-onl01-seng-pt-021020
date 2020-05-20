@@ -1,18 +1,23 @@
 <h1>New Bible Reference<h1>
 
-<form action="/new" method="POST">
+<form action="/bible_references" method="POST">
   
+  <label for="reference">Reference</label>
+  <input type="text" name="reference" id="reference" required>
+  <label for="content">Passage</label>
+  <textarea name="content" id="content"></textarea>
+
   <h2>Desires</h2>
   <% for desire in @desires %>
     <label for="desire-<%= desire.id %>"><%= desire.name %></label>
-    <input type="checkbox" name="desires" id="desire-<%= desire.id %>" value="<%= desire.id %>">
+    <input type="checkbox" name="desires[]" id="desire-<%= desire.id %>" value="<%= desire.id %>">
   <% end %>
   <a href="/desires/new"><button type="button">New Desire</button></a>
 
   <h2>Seeds</h2>
   <% for seed in @seeds %>
     <label for="seed-<%= seed.id %>"><%= seed.first_three %></label>
-    <input type="checkbox" name="seeds" id="seed-<%= seed.id %>" value="<% seed.id %>">
+    <input type="checkbox" name="seeds[]" id="seed-<%= seed.id %>" value="<%= seed.id %>">
   <% end %>
   <a href="/seeds/new"><button type="button">New Seed</button></a>
 
@@ -20,22 +25,11 @@
   <% for harvest in @harvests %>
     <div <%= 'class="completed"' if harvest.completed %>>
       <label for="harvest-<%= harvest.id %>"><%= harvest.first_three %></label>
-      <input type="checkbox" name="harvests" id="harvest-<%= harvest.id %>" value="<% harvest.id %>">
+      <input type="checkbox" name="harvests[]" id="harvest-<%= harvest.id %>" value="<%= harvest.id %>">
     </div>
   <% end %>
   <a href="/harvests/new"><button type="button">New Harvest</button></a>
 
-  <h2>Bible References</h2>
-  <% for bible_reference in @bible_references %>
-    <label for="bible_reference-<%= bible_reference.id %>"><%= bible_reference.reference %></label>
-    <input type="checkbox" name="bible_references" id="bible_reference-<%= bible_reference.id %>" value="<%= bible_reference.id %>">
-  <% end %>
-  <h3>New Bible Reference</h3>
-  <label for="new_reference">Reference</label>
-  <input type="text" name="new_reference" id="new_reference" required>
-  <label for="new_content">Passage</label>
-  <textarea name="new_content" id="new_content"></textarea>
-
-  <button type="submit" id="submit">Save</button>
+  <button type="submit" id="submit">Submit</button>
 
 </form>
