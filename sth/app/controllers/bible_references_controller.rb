@@ -1,12 +1,20 @@
 class BibleReferencesController < ApplicationController
 
   get "/bible_references" do
+    if !logged_in?(session[:rd])
+      redirect '/'
+    end
+
     @bible_references = BibleReference.all
 
     erb :"bible_references/index.html"
   end
 
   get "/bible_references/new" do
+    if !logged_in?(session[:rd])
+      redirect '/'
+    end
+
     @bible_references = BibleReference.all
     @desires = Desire.all
     @seeds = Seed.all
@@ -44,6 +52,10 @@ class BibleReferencesController < ApplicationController
   end
 
   get "/bible_references/:id" do
+    if !logged_in?(session[:rd])
+      redirect '/'
+    end
+
     @bible_reference = BibleReference.find_by_id(params[:id])
 
     erb :"bible_references/show.html"

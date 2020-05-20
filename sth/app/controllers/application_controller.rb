@@ -74,7 +74,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/logout' do
-    @username = User.find_by_id(session[:user_id]).username
+    @username = User.find_by_id(session[:rd]).username
 
     erb :"logout.html"
   end

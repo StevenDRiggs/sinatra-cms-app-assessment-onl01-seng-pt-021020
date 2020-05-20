@@ -1,6 +1,10 @@
 class SeedsController < ApplicationController
 
   get '/seeds' do
+    if !logged_in?(session[:rd])
+      redirect '/'
+    end
+
     @seeds = Seed.all
 
     erb :'seeds/index.html'
@@ -18,18 +22,30 @@ class SeedsController < ApplicationController
   end
 
   get '/seeds/new' do
+    if !logged_in?(session[:rd])
+      redirect '/'
+    end
+
     @targets = Target.all
 
     erb :'seeds/new.html'
   end
 
   get '/seeds/:id' do
+    if !logged_in?(session[:rd])
+      redirect '/'
+    end
+
     @seed = Seed.find_by_id(params[:id])
 
     erb :'seeds/show.html'
   end
 
   get '/targets/new' do
+    if !logged_in?(session[:rd])
+      redirect '/'
+    end
+
     @items = (SownItem.all + ToSowItem.all).uniq
 
     erb :'seeds/targets/new.html'
@@ -74,6 +90,10 @@ class SeedsController < ApplicationController
   end
 
   get '/targets/:id' do
+    if !logged_in?(session[:rd])
+      redirect '/'
+    end
+
     @target = Target.find_by_id(params[:id])
     @bible_references = @target.seeds.collect {|seed| seed.bible_references}.flatten.uniq
     @desires = @bible_references.collect {|bible_reference| bible_reference.desires}.flatten.uniq

@@ -6,11 +6,8 @@ class User < ActiveRecord::Base
 
     self.save
 
-    if bool == false
-      session.clear
-      redirect '/'
-    # else
+    # if bool
       # insert threaded logout timer here
-    end
+    # end
   end
 end

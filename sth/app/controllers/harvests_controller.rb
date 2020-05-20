@@ -1,6 +1,10 @@
 class HarvestsController < ApplicationController
 
   get '/harvests' do
+    if !logged_in?(session[:rd])
+      redirect '/'
+    end
+
     @harvests = Harvest.all
 
     erb :'harvests/index.html'
@@ -25,18 +29,30 @@ class HarvestsController < ApplicationController
   end
 
   get '/harvests/new' do
+    if !logged_in?(session[:rd])
+      redirect '/'
+    end
+
     @sources = Source.all
 
     erb :'harvests/new.html'
   end
 
   get '/harvests/:id' do
+    if !logged_in?(session[:rd])
+      redirect '/'
+    end
+
     @harvest = Harvest.find_by_id(params[:id])
 
     erb :'harvests/show.html'
   end
   
   get '/sources/new' do
+    if !logged_in?(session[:rd])
+      redirect '/'
+    end
+
     @received_items = ReceivedItem.all
 
     erb :'harvests/sources/new.html'
@@ -62,6 +78,10 @@ class HarvestsController < ApplicationController
   end
 
   get '/sources/:id' do
+    if !logged_in?(session[:rd])
+      redirect '/'
+    end
+
     @source = Source.find_by_id(params[:id])
     @bible_references = @source.harvests.collect {|harvest| harvest.bible_references}.flatten.uniq
     @desires = @bible_references.collect {|bible_reference| bible_reference.desires}.flatten.uniq
