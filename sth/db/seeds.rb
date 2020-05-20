@@ -1,3 +1,14 @@
+BibleReference.destroy_all
+Desire.destroy_all
+Seed.destroy_all
+Target.destroy_all
+SownItem.destroy_all
+ToSowItem.destroy_all
+Harvest.destroy_all
+Source.destroy_all
+ReceivedItem.destroy_all
+User.destroy_all
+
 for j in 1..10
   i = Random.new.rand(100)
 
