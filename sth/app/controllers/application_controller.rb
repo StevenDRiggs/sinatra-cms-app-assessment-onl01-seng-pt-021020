@@ -13,14 +13,14 @@ class ApplicationController < Sinatra::Base
   helpers do
 
     def logged_in?(user_id)
-      !session[:user_id].nil?
+      !session[:rd].nil? && User.find_by_id(session[:rd]).logged_in
     end
 
   end
 
 
   get '/' do
-    if logged_in?(session[:user_id])
+    if logged_in?(session[:rd])
       redirect '/index'
     end
 
@@ -28,7 +28,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/signup' do
-    if logged_in?(session[:user_id])
+    if logged_in?(session[:rd])
       redirect '/index'
     end
 
@@ -39,7 +39,8 @@ class ApplicationController < Sinatra::Base
     if params[:username] != '' && params[:email] != '' && params[:password] != ''
       if !User.find_by(username: params[:username]) && !User.find_by(email: params[:email])
         user = User.create(username: params[:username], email: params[:email], password: params[:password])
-        session[:user_id] = user.id
+        user.logged_in = true
+        session[:rd] = user.id
         redirect '/index'
       else
         redirect '/signup'
@@ -50,7 +51,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/login' do
-    if logged_in?(session[:user_id])
+    if logged_in?(session[:rd])
       redirect '/index'
     end
 
@@ -61,7 +62,8 @@ class ApplicationController < Sinatra::Base
     if params[:username_or_email] != '' && params[:password] != ''
       user = params[:username_or_email].match?(/.*@.*\.[a-zA-Z]{3,5}/) ? User.find_by(email: params[:username_or_email]) : User.find_by(username: params[:username_or_email])
       if user && user.authenticate(params[:password])
-        session[:user_id] = user.id
+        user.logged_in = true
+        session[:rd] = user.id
         redirect '/index'
       else
         redirect '/login'
@@ -78,13 +80,14 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/logout' do
+    User.find_by_id(session[:rd]).logged_in = false
     session.clear
 
     redirect '/'
   end
 
   get '/index' do
-    if !logged_in?(session[:user_id])
+    if !logged_in?(session[:rd])
       redirect '/'
     else
       @desires = Desire.all
