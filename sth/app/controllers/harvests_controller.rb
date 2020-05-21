@@ -1,5 +1,6 @@
 class HarvestsController < ApplicationController
 
+  # index
   get '/harvests' do
     if !logged_in?(session[:rd])
       redirect '/'
@@ -8,6 +9,17 @@ class HarvestsController < ApplicationController
     @harvests = Harvest.all
 
     erb :'/harvests/index.html'
+  end
+
+  # new
+  get '/harvests/new' do
+    if !logged_in?(session[:rd])
+      redirect '/'
+    end
+
+    @sources = Source.all
+
+    erb :'/harvests/new.html'
   end
   
   post '/harvests' do
@@ -28,16 +40,7 @@ class HarvestsController < ApplicationController
     redirect '/bible_references/new'
   end
 
-  get '/harvests/new' do
-    if !logged_in?(session[:rd])
-      redirect '/'
-    end
-
-    @sources = Source.all
-
-    erb :'/harvests/new.html'
-  end
-
+  # show
   get '/harvests/:id' do
     if !logged_in?(session[:rd])
       redirect '/'
@@ -47,6 +50,5 @@ class HarvestsController < ApplicationController
 
     erb :'/harvests/show.html'
   end
-  
 
 end

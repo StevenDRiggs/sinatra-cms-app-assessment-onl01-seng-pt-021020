@@ -1,5 +1,6 @@
 class SeedsController < ApplicationController
 
+  # index
   get '/seeds' do
     if !logged_in?(session[:rd])
       redirect '/'
@@ -10,6 +11,7 @@ class SeedsController < ApplicationController
     erb :'/seeds/index.html'
   end
 
+  # new
   get '/seeds/new' do
     if !logged_in?(session[:rd])
       redirect '/'
@@ -31,6 +33,7 @@ class SeedsController < ApplicationController
     redirect '/bible_references/new'
   end
 
+  # show
   get '/seeds/:id' do
     if !logged_in?(session[:rd])
       redirect '/'
@@ -41,6 +44,7 @@ class SeedsController < ApplicationController
     erb :'/seeds/show.html'
   end
 
+  # delete
   get '/seeds/:id/delete' do
     if !logged_in?(session[:rd])
       redirect '/'

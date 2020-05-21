@@ -1,1 +1,36 @@
-<h1>Insert the form to edit an instance of your model here.</h1>
+<h1>Edit Bible Reference</h1>
+
+<form action="/bible_references/<%= @bible_reference.id %>" method="POST">
+  <input type="hidden" name="_method" id="hidden" value="PATCH">
+  
+  <label for="reference">Reference</label>
+  <input type="text" name="reference" id="reference" value="<%= @bible_reference.reference %>" required>
+  <label for="content">Passage</label>
+  <textarea name="content" id="content"><%= @bible_reference.content %></textarea>
+
+  <h2>Desires</h2>
+  <% for desire in @desires %>
+    <label for="desire-<%= desire.id %>"><%= desire.name %></label>
+    <input type="checkbox" name="desires[]" id="desire-<%= desire.id %>" value="<%= desire.id %>" <%= 'checked' if @bible_reference.desires.collect{|desire| desire.id}.include?(desire.id) %>>
+  <% end %>
+  <a href="/desires/new"><button type="button">New Desire</button></a>
+
+  <h2>Seeds</h2>
+  <% for seed in @seeds %>
+    <label for="seed-<%= seed.id %>"><%= seed.first_three %></label>
+    <input type="checkbox" name="seeds[]" id="seed-<%= seed.id %>" value="<%= seed.id %>" <%= 'checked' if @bible_reference.seeds.collect {|seed| seed.id}.include?(seed.id) %>>
+  <% end %>
+  <a href="/seeds/new"><button type="button">New Seed</button></a>
+
+  <h2>Harvests</h2>
+  <% for harvest in @harvests %>
+    <div <%= 'class="completed"' if harvest.completed %>>
+      <label for="harvest-<%= harvest.id %>"><%= harvest.first_three %></label>
+      <input type="checkbox" name="harvests[]" id="harvest-<%= harvest.id %>" value="<%= harvest.id %>" <%= 'checked' if @bible_reference.harvests.collect {|harvest| harvest.id}.include?(harvest.id) %>>
+    </div>
+  <% end %>
+  <a href="/harvests/new"><button type="button">New Harvest</button></a>
+
+  <button type="submit" id="submit">Submit</button>
+
+</form>

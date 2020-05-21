@@ -1,5 +1,6 @@
 class SourcesController < ApplicationController
 
+  # new
   get '/sources/new' do
     if !logged_in?(session[:rd])
       redirect '/'
@@ -29,6 +30,7 @@ class SourcesController < ApplicationController
     end
   end
 
+  # show
   get '/sources/:id' do
     if !logged_in?(session[:rd])
       redirect '/'

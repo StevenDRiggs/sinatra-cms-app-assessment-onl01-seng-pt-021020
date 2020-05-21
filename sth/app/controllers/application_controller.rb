@@ -19,6 +19,7 @@ class ApplicationController < Sinatra::Base
   end
 
 
+  # welcome
   get '/' do
     if logged_in?(session[:rd])
       redirect '/index'
@@ -27,6 +28,7 @@ class ApplicationController < Sinatra::Base
     erb :'/welcome.html'
   end
 
+  # signup
   get '/signup' do
     if logged_in?(session[:rd])
       redirect '/index'
@@ -50,6 +52,7 @@ class ApplicationController < Sinatra::Base
     end
   end
 
+  # login
   get '/login' do
     if logged_in?(session[:rd])
       redirect '/index'
@@ -73,6 +76,7 @@ class ApplicationController < Sinatra::Base
     end
   end
 
+  # logout
   get '/logout' do
     @username = User.find_by_id(session[:rd]).username
 
@@ -86,6 +90,7 @@ class ApplicationController < Sinatra::Base
     redirect '/'
   end
 
+  # index (logged in)
   get '/index' do
     if !logged_in?(session[:rd])
       redirect '/'

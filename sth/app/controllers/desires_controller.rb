@@ -1,5 +1,6 @@
 class DesiresController < ApplicationController
 
+  # index
   get '/desires' do
     if !logged_in?(session[:rd])
       redirect '/'
@@ -10,6 +11,7 @@ class DesiresController < ApplicationController
     erb :'/desires/index.html'
   end
 
+  # new
   get '/desires/new' do
     if !logged_in?(session[:rd])
       redirect '/'
@@ -26,6 +28,7 @@ class DesiresController < ApplicationController
     redirect '/bible_references/new'
   end
 
+  # show
   get '/desires/:id' do
     if !logged_in?(session[:rd])
       redirect '/'
@@ -36,6 +39,7 @@ class DesiresController < ApplicationController
     erb :'/desires/show.html'
   end
 
+  # delete
   get '/desires/:id/delete' do
     if !logged_in?(session[:rd])
       redirect '/'

@@ -1,5 +1,6 @@
 class TargetsController < ApplicationController
 
+  # new
   get '/targets/new' do
     if !logged_in?(session[:rd])
       redirect '/'
@@ -48,6 +49,7 @@ class TargetsController < ApplicationController
     end
   end
 
+  # show
   get '/targets/:id' do
     if !logged_in?(session[:rd])
       redirect '/'
@@ -61,6 +63,7 @@ class TargetsController < ApplicationController
     erb :'/targets/show.html'
   end
 
+  # delete
   get '/targets/:id/delete' do
     @target = Target.find_by_id(params[:id])
 
