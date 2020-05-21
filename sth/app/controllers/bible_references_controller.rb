@@ -1,16 +1,16 @@
 class BibleReferencesController < ApplicationController
 
-  get "/bible_references" do
+  get '/bible_references' do
     if !logged_in?(session[:rd])
       redirect '/'
     end
 
     @bible_references = BibleReference.all
 
-    erb :"bible_references/index.html"
+    erb :'/bible_references/index.html'
   end
 
-  get "/bible_references/new" do
+  get '/bible_references/new' do
     if !logged_in?(session[:rd])
       redirect '/'
     end
@@ -20,7 +20,7 @@ class BibleReferencesController < ApplicationController
     @seeds = Seed.all
     @harvests = Harvest.all
 
-    erb :"bible_references/new.html"
+    erb :'/bible_references/new.html'
   end
 
   post '/bible_references' do
@@ -51,14 +51,14 @@ class BibleReferencesController < ApplicationController
     redirect '/bible_references'
   end
 
-  get "/bible_references/:id" do
+  get '/bible_references/:id' do
     if !logged_in?(session[:rd])
       redirect '/'
     end
 
     @bible_reference = BibleReference.find_by_id(params[:id])
 
-    erb :"bible_references/show.html"
+    erb :'/bible_references/show.html'
   end
 
   get '/bible_references/:id/delete' do
@@ -68,7 +68,7 @@ class BibleReferencesController < ApplicationController
 
     @bible_reference = BibleReference.find_by_id(params[:id])
 
-    erb :'bible_references/delete.html'
+    erb :'/bible_references/delete.html'
   end
 
   delete '/bible_references/:id' do

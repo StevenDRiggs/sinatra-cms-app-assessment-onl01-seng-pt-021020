@@ -15,7 +15,7 @@ class DesiresController < ApplicationController
       redirect '/'
     end
 
-    erb :'desires/new.html'
+    erb :'/desires/new.html'
   end
 
   post '/desires' do
@@ -43,7 +43,7 @@ class DesiresController < ApplicationController
 
     @desire = Desire.find_by_id(params[:id])
 
-    erb :'desires/delete.html'
+    erb :'/desires/delete.html'
   end
 
   delete '/desires/:id' do
