@@ -1,1 +1,35 @@
-<h1>Insert the form to edit an instance of your model here.</h1>
+<h1>Edit Harvest</h1>
+
+<form action="/harvests/<%= @harvest.id %>" method="POST">
+  <input type="hidden" name="_method" id="hidden" value="PATCH">
+
+  <h2>Sources</h2>
+  <% for source in @sources %>
+    <label for="source-<%= source.id %>"><h3><%= source.name %></h3></label>
+    <input type="checkbox" name="sources[]" id="source-<%= source.id %>" value="<%= source.id %>" <%= 'checked' if @harvest.sources.include?(source) %>>
+  <% end %>
+
+  <a href="/sources/new"><button type="button" id="new_source">New Source</button></a>
+
+  <label for="completed"><h2>Completed?</h2></label>
+  <input type="checkbox" name="completed" id="completed" <%= 'checked' if @harvest.completed %>>
+
+  <h2>Time to Completion</h2>
+  <label for="months_to_completion"><h3>Months</h3></label>
+  <input type="number" name="months_to_completion" id="months_to_completion" value="<%= @harvest.months_to_completion %>">
+
+  <label for="weeks_to_completion"><h3>Weeks</h3></label>
+  <input type="number" name="weeks_to_completion" id="weeks_to_completion" value="<%= @harvest.weeks_to_completion %>">
+
+  <label for="days_to_completion"><h3>Days</h3></label>
+  <input type="number" name="days_to_completion" id="days_to_completion" value="<%= @harvest.days_to_completion %>">
+
+  <label for="hours_to_completion"><h3>Hours</h3></label>
+  <input type="number" name="hours_to_completion" id="hours_to_completion" value="<%= @harvest.hours_to_completion %>">
+
+  <label for="minutes_to_completion"><h3>Minutes</h3></label>
+  <input type="number" name="minutes_to_completion" id="minutes_to_completion" value="<%= @harvest.minutes_to_completion %>">
+
+  <button type="submit" id="submit">Submit</button>
+
+</form>

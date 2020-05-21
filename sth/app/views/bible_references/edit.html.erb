@@ -11,14 +11,14 @@
   <h2>Desires</h2>
   <% for desire in @desires %>
     <label for="desire-<%= desire.id %>"><%= desire.name %></label>
-    <input type="checkbox" name="desires[]" id="desire-<%= desire.id %>" value="<%= desire.id %>" <%= 'checked' if @bible_reference.desires.collect{|desire| desire.id}.include?(desire.id) %>>
+    <input type="checkbox" name="desires[]" id="desire-<%= desire.id %>" value="<%= desire.id %>" <%= 'checked' if @bible_reference.desires.include?(desire) %>>
   <% end %>
   <a href="/desires/new"><button type="button">New Desire</button></a>
 
   <h2>Seeds</h2>
   <% for seed in @seeds %>
     <label for="seed-<%= seed.id %>"><%= seed.first_three %></label>
-    <input type="checkbox" name="seeds[]" id="seed-<%= seed.id %>" value="<%= seed.id %>" <%= 'checked' if @bible_reference.seeds.collect {|seed| seed.id}.include?(seed.id) %>>
+    <input type="checkbox" name="seeds[]" id="seed-<%= seed.id %>" value="<%= seed.id %>" <%= 'checked' if @bible_reference.seeds.include?(seed) %>>
   <% end %>
   <a href="/seeds/new"><button type="button">New Seed</button></a>
 
@@ -26,7 +26,7 @@
   <% for harvest in @harvests %>
     <div <%= 'class="completed"' if harvest.completed %>>
       <label for="harvest-<%= harvest.id %>"><%= harvest.first_three %></label>
-      <input type="checkbox" name="harvests[]" id="harvest-<%= harvest.id %>" value="<%= harvest.id %>" <%= 'checked' if @bible_reference.harvests.collect {|harvest| harvest.id}.include?(harvest.id) %>>
+      <input type="checkbox" name="harvests[]" id="harvest-<%= harvest.id %>" value="<%= harvest.id %>" <%= 'checked' if @bible_reference.harvests.include?(harvest) %>>
     </div>
   <% end %>
   <a href="/harvests/new"><button type="button">New Harvest</button></a>

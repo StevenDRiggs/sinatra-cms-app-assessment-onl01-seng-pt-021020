@@ -51,4 +51,21 @@ class HarvestsController < ApplicationController
     erb :'/harvests/show.html'
   end
 
+  # edit
+  get '/harvests/:id/edit' do
+    if !logged_in?(session[:rd])
+      redirect '/'
+    end
+
+    @harvest = Harvest.find_by_id(params[:id])
+    @sources = Source.all
+
+    erb :'/harvests/edit.html'
+  end
+
+  patch '/harvests/:id' do
+    harvest = Harvest.find_by_id(params[:id])
+    
+  end
+
 end
