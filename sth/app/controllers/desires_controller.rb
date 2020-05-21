@@ -39,6 +39,24 @@ class DesiresController < ApplicationController
     erb :'/desires/show.html'
   end
 
+  # edit
+  get '/desires/:id/edit' do
+    if !logged_in?(session[:rd])
+      redirect '/'
+    end
+
+    @desire = Desire.find_by_id(params[:id])
+
+    erb :'/desires/edit.html'
+  end
+
+  patch '/desires/:id' do
+    desire = Desire.find_by_id(params[:id])
+    desire.update(name: params[:name], description: params[:description])
+
+    redirect "/desires/#{params[:id]}"
+  end
+
   # delete
   get '/desires/:id/delete' do
     if !logged_in?(session[:rd])
