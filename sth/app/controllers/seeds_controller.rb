@@ -118,4 +118,16 @@ class SeedsController < ApplicationController
     erb :'seeds/targets/show.html'
   end
 
+  get '/targets/:id/delete' do
+    @target = Target.find_by_id(params[:id])
+
+    erb :'seeds/targets/delete.html'
+  end
+
+  delete '/targets/:id' do
+    Target.find_by_id(params[:id]).delete
+
+    redirect :'/seeds'
+  end
+
 end
