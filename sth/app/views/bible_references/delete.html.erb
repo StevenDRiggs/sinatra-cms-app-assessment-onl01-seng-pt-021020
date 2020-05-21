@@ -1,0 +1,13 @@
+<h3>Are you sure you want to delete this Bible reference?</h3>
+
+<h2><%= @bible_reference.reference %></h2>
+<p><%= @bible_reference.content %>
+
+<form action="/bible_references/<%= @bible_reference.id %>" method="POST">
+  <input type="hidden" name="_method" id="hidden" value="DELETE">
+
+  <button type="submit" id="submit">Delete</button>
+
+  <a href="/bible_references/<%= @bible_reference.id %>"><button type="button">Cancel</button></a>
+
+</form>

@@ -13,7 +13,7 @@ class ApplicationController < Sinatra::Base
   helpers do
 
     def logged_in?(user_id)
-      !session[:rd].nil? && User.find_by_id(session[:rd]).logged_in
+      !session[:rd].nil? && User.find_by_id(session[:rd]) && User.find_by_id(session[:rd]).logged_in
     end
 
   end

@@ -61,4 +61,20 @@ class BibleReferencesController < ApplicationController
     erb :"bible_references/show.html"
   end
 
+  get '/bible_references/:id/delete' do
+    if !logged_in?(session[:rd])
+      redirect '/'
+    end
+
+    @bible_reference = BibleReference.find_by_id(params[:id])
+
+    erb :'bible_references/delete.html'
+  end
+
+  delete '/bible_references/:id' do
+    BibleReference.find_by_id(params[:id]).delete
+
+    redirect '/bible_references'
+  end
+
 end
