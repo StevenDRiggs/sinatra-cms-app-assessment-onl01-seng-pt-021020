@@ -1,0 +1,13 @@
+<h3>Are you sure you want to delete this desire?</h3>
+
+<h2><%= @desire.name %></h2>
+<p><%= @desire.description %>
+
+<form action="/desires/<%= @desire.id %>" method="POST">
+  <input type="hidden" name="_method" id="hidden" value="DELETE">
+
+  <button type="submit" id="submit">Delete</button>
+
+  <a href="/desires/<%= @desire.id %>"><button type="button">Cancel</button></a>
+
+</form>

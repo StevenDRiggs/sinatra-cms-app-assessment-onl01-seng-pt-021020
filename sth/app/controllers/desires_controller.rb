@@ -1,13 +1,21 @@
 class DesiresController < ApplicationController
 
-  get "/desires" do
+  get '/desires' do
     if !logged_in?(session[:rd])
       redirect '/'
     end
 
     @desires = Desire.all
 
-    erb :"/desires/index.html"
+    erb :'/desires/index.html'
+  end
+
+  get '/desires/new' do
+    if !logged_in?(session[:rd])
+      redirect '/'
+    end
+
+    erb :'desires/new.html'
   end
 
   post '/desires' do
@@ -18,22 +26,30 @@ class DesiresController < ApplicationController
     redirect '/bible_references/new'
   end
 
-  get "/desires/new" do
-    if !logged_in?(session[:rd])
-      redirect '/'
-    end
-
-    erb :"desires/new.html"
-  end
-
-  get "/desires/:id" do
+  get '/desires/:id' do
     if !logged_in?(session[:rd])
       redirect '/'
     end
 
     @desire = Desire.find_by_id(params[:id])
 
-    erb :"/desires/show.html"
+    erb :'/desires/show.html'
+  end
+
+  get '/desires/:id/delete' do
+    if !logged_in?(session[:rd])
+      redirect '/'
+    end
+
+    @desire = Desire.find_by_id(params[:id])
+
+    erb :'desires/delete.html'
+  end
+
+  delete '/desires/:id' do
+    Desire.find_by_id(params[:id]).delete
+
+    redirect '/desires'
   end
 
 end
