@@ -10,6 +10,16 @@ class SeedsController < ApplicationController
     erb :'seeds/index.html'
   end
 
+  get '/seeds/new' do
+    if !logged_in?(session[:rd])
+      redirect '/'
+    end
+
+    @targets = Target.all
+
+    erb :'seeds/new.html'
+  end
+
   post '/seeds' do
     seed = Seed.new
     for target_id in params[:targets]
@@ -21,16 +31,6 @@ class SeedsController < ApplicationController
     redirect '/bible_references/new'
   end
 
-  get '/seeds/new' do
-    if !logged_in?(session[:rd])
-      redirect '/'
-    end
-
-    @targets = Target.all
-
-    erb :'seeds/new.html'
-  end
-
   get '/seeds/:id' do
     if !logged_in?(session[:rd])
       redirect '/'
@@ -39,6 +39,22 @@ class SeedsController < ApplicationController
     @seed = Seed.find_by_id(params[:id])
 
     erb :'seeds/show.html'
+  end
+
+  get '/seeds/:id/delete' do
+    if !logged_in?(session[:rd])
+      redirect '/'
+    end
+
+    @seed = Seed.find_by_id(params[:id])
+
+    erb :'seeds/delete.html'
+  end
+
+  delete '/seeds/:id' do
+    Seed.find_by_id(params[:id]).delete
+
+    redirect '/seeds'
   end
 
   get '/targets/new' do
