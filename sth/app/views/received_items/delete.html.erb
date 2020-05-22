@@ -1,0 +1,13 @@
+<h3>Are you sure you want to delete this received item?</h3>
+
+<h2><%= @received_item.item %></h2>
+<h3>Source: <%= @received_item.source.name %></h3>
+
+<form action="/received_items/<%= @received_item.id %>" method="POST">
+  <input type="hidden" name="_method" id="hidden" value="DELETE">
+
+  <button type="submit" id="submit">Delete</button>
+
+  <a href="/received_items/<%= @received_item.id %>"><button type="button">Cancel</button></a>
+
+</form>

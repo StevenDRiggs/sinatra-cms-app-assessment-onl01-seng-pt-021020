@@ -41,4 +41,17 @@ class ReceivedItemsController < ApplicationController
     redirect "/received_items/#{received_item.id}"
   end
 
+  # delete
+  get '/received_items/:id/delete' do
+    @received_item = ReceivedItem.find_by_id(params[:id])
+
+    erb :'received_items/delete.html'
+  end
+
+  delete '/received_items/:id' do
+    ReceivedItem.find_by_id(params[:id]).delete
+
+    redirect '/received_items'
+  end
+
 end
