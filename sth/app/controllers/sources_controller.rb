@@ -26,8 +26,10 @@ class SourcesController < ApplicationController
 
       source.save
 
-      redirect '/bible_references/new'
+      redirect "/sources/#{source.id}"
     end
+
+    redirect '/sources/new'
   end
 
   # show

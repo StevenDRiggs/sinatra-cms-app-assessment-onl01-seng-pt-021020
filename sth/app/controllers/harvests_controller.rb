@@ -37,7 +37,7 @@ class HarvestsController < ApplicationController
 
     harvest.save
 
-    redirect '/bible_references/new'
+    redirect "/harvests/#{harvest.id}"
   end
 
   # show
@@ -78,7 +78,7 @@ class HarvestsController < ApplicationController
 
     harvest.save
 
-    redirect "/harvests/#{params[:id]}"
+    redirect "/harvests/#{harvest.id}"
   end
 
 end

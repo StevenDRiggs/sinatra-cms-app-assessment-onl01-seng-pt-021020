@@ -50,7 +50,7 @@ class BibleReferencesController < ApplicationController
       bible_reference.save
     end
 
-    redirect '/bible_references'
+    redirect "/bible_references/#{bible_reference.id}"
   end
 
   # show
@@ -113,7 +113,7 @@ class BibleReferencesController < ApplicationController
         bible_reference.save
       end
 
-      redirect :"/bible_references/#{params[:id]}"
+      redirect :"/bible_references/#{bible_reference.id}"
     end
 
     redirect '/bible_references/new'

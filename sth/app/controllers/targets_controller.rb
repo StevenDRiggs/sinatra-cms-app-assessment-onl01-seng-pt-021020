@@ -45,8 +45,10 @@ class TargetsController < ApplicationController
 
       target.save
 
-      redirect '/bible_references/new'
+      redirect "/targets/#{target.id}"
     end
+
+    redirect '/targets/new'
   end
 
   # show

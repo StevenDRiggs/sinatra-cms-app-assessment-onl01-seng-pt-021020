@@ -22,10 +22,12 @@ class DesiresController < ApplicationController
 
   post '/desires' do
     if params[:name] != ''
-      Desire.create(name: params[:name], description: params[:description])
+      desire = Desire.create(name: params[:name], description: params[:description])
+
+      redirect "/desires/#{desire.id}"
     end
 
-    redirect '/bible_references/new'
+    redirect '/desires/new'
   end
 
   # show
@@ -52,9 +54,13 @@ class DesiresController < ApplicationController
 
   patch '/desires/:id' do
     desire = Desire.find_by_id(params[:id])
-    desire.update(name: params[:name], description: params[:description])
+    if desire
+      desire.update(name: params[:name], description: params[:description])
 
-    redirect "/desires/#{params[:id]}"
+      redirect "/desires/#{desire.id}"
+    end
+
+    redirect '/desires/new'
   end
 
   # delete

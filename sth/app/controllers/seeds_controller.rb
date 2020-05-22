@@ -30,7 +30,7 @@ class SeedsController < ApplicationController
 
     seed.save
 
-    redirect '/bible_references/new'
+    redirect "/seeds/#{seed.id}"
   end
 
   # show
