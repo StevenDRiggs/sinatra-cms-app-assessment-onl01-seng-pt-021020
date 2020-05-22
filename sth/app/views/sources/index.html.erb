@@ -2,5 +2,5 @@
 <% for source in @sources %>
   <h2><%= source.name %></h2>
   <h3>Time Received: <%= source.time_received %></h3>
-  <h3>Money Received: $<%= source.money_received %></h3>
+  <h3>Money Received: $<%= "%.2f" % source.money_received %></h3>
 <% end %>

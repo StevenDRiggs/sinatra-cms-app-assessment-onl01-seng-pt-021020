@@ -84,4 +84,17 @@ class SourcesController < ApplicationController
     redirect "/sources/#{source.id}"
   end
 
+  # delete
+  get '/sources/:id/delete' do
+    @source = Source.find_by_id(params[:id])
+
+    erb :'/sources/delete.html'
+  end
+
+  delete '/sources/:id' do
+    Source.find_by_id(params[:id]).delete
+
+    redirect '/sources'
+  end
+
 end
