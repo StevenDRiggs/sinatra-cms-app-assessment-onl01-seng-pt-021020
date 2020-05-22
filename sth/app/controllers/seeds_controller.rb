@@ -44,6 +44,30 @@ class SeedsController < ApplicationController
     erb :'/seeds/show.html'
   end
 
+  # edit
+  get '/seeds/:id/edit' do
+    @seed = Seed.find_by_id(params[:id])
+    @targets = Target.all
+
+    erb :'/seeds/edit.html'
+  end
+
+  patch '/seeds/:id' do
+    seed = Seed.find_by_id(params[:id])
+
+    seed.targets =[]
+    if !(params[:targets].nil? || (params[:targets].length == 1 && params[:targets][0] == ''))
+      for target_id in params[:targets]
+        target = Target.find_by_id(target_id)
+        seed.targets << target if target
+      end
+    end
+
+    seed.save
+
+    redirect "/seeds/#{seed.id}"
+  end
+
   # delete
   get '/seeds/:id/delete' do
     if !logged_in?(session[:rd])
