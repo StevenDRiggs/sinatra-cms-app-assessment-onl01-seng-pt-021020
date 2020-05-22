@@ -53,4 +53,11 @@ class SourcesController < ApplicationController
     erb :'/sources/show.html'
   end
 
+  get '/sources/:id/edit' do
+    @source = Source.find_by_id(params[:id])
+    @received_items = ReceivedItem.all
+
+    erb :'/sources/edit.html'
+  end
+
 end
