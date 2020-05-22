@@ -3,13 +3,14 @@
 <form action="/received_items" method="POST">
 
   <label for="item"><h2>Item</h2></label>
-  <input type="text" name=item" id="item" required>
+  <input type="text" name="item" id="item" required>
 
   <h3>Received from:</h3>
   <% for source in @sources %>
     <label for="source"><%= source.name %></label>
     <input type="radio" name="source" id="source" value="<%= source.id %>" required>
   <% end %>
+  <a href="/sources/new"><button type="button">New Source</button></a>
 
   <button type="submit" id="submit">Submit</button>
 

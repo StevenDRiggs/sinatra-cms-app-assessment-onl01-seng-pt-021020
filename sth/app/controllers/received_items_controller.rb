@@ -21,6 +21,10 @@ class ReceivedItemsController < ApplicationController
   end
 
   # show
-  get '/received
+  get '/received_items/:id' do
+    @received_item = ReceivedItem.find_by_id(params[:id])
+
+    erb :'/received_items/show.html'
+  end
 
 end
