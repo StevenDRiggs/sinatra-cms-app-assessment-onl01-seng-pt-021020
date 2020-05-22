@@ -1,1 +1,6 @@
-<h1>This is the Model's index page.</h1>
+<h1>Sources</h1>
+<% for source in @sources %>
+  <h2><%= source.name %></h2>
+  <h3>Time Received: <%= source.time_received %></h3>
+  <h3>Money Received: $<%= source.money_received %></h3>
+<% end %>

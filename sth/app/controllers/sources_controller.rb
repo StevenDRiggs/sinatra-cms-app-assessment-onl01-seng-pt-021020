@@ -1,5 +1,12 @@
 class SourcesController < ApplicationController
 
+  # index
+  get '/sources' do
+    @sources = Source.all
+
+    erb :'/sources/index.html'
+  end
+
   # new
   get '/sources/new' do
     if !logged_in?(session[:rd])
