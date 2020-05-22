@@ -81,4 +81,21 @@ class HarvestsController < ApplicationController
     redirect "/harvests/#{harvest.id}"
   end
 
+  # delete
+  get '/harvests/:id/delete' do
+    if !logged_in?(session[:rd])
+      redirect '/'
+    end
+
+    @harvest = Harvest.find_by_id(params[:id])
+
+    erb :'/harvests/delete.html'
+  end
+
+  delete '/harvests/:id' do
+    Harvest.find_by_id(params[:id]).delete
+
+    redirect '/harvests'
+  end
+
 end
