@@ -1,1 +1,17 @@
-<h1>Insert the form to create a new instance of your model.</h1>
+<h1>New Sown Item</h1>
+
+<form action="/sown_items" method="POST">
+
+  <label for="item"><h2>Item</h2></label>
+  <input type="text" name="item" id="item" required>
+
+  <h3>Sown to:</h3>
+  <% for target in @targets %>
+    <label for="target"><%= target.name %></label>
+    <input type="radio" name="target" id="target" value="<%= target.id %>" required>
+  <% end %>
+  <a href="/targets/new"><button type="button">New Target</button></a>
+
+  <button type="submit" id="submit">Submit</button>
+
+</form>
