@@ -17,18 +17,18 @@
   <input type="number" name="days_received" id="days_received" value="<%= @source.days_received %>">
 
   <label for="hours_received"><h3>Hours</h3></label>
-  <input type="number" name="hours_received" id="hours_received">
+  <input type="number" name="hours_received" id="hours_received" value="<%= @source.hours_received %>">
 
   <label for="minutes_received"><h3>Minutes</h3></label>
-  <input type="number" name="minutes_received" id="minutes_received">
+  <input type="number" name="minutes_received" id="minutes_received" value="<%= @source.minutes_received %>">
 
   <label for="money_received"><h2>Money Received</h2></label>
-  <input type="text" name="money_received" id="money_received">
+  $<input type="text" name="money_received" id="money_received" value="<%= "%.2f" % @source.money_received %>">
 
   <h2>Items Received</h2>
   <% for received_item in @received_items %>
     <label for="received_item-<%= received_item.id %>"><h3><%= received_item.item %></h3></label>
-    <input type="checkbox" name="received_items[]" id="received_item-<%= received_item.id %>" value="<%= received_item.id %>">
+    <input type="checkbox" name="received_items[]" id="received_item-<%= received_item.id %>" value="<%= received_item.id %>" <%= 'checked' if @source.received_items.include?(received_item) %>>
   <% end %>
 
   <h2>New Item</h2>
