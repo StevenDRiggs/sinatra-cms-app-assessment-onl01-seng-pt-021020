@@ -11,7 +11,7 @@
     <label for="target"><%= target.name %></label>
     <input type="radio" name="target" id="target" value="<%= target.id %>" <%= 'checked' if @sown_item.target == target %> required>
   <% end %>
-  <a href="/targets/new"><button type="button">New Source</button></a>
+  <a href="/targets/new"><button type="button">New Target</button></a>
 
   <button type="submit" id="submit">Submit</button>
 
