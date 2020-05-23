@@ -99,7 +99,7 @@ class ApplicationController < Sinatra::Base
     if !logged_in?(session[:rd])
       redirect '/'
     else
-      @desires = Desire.all
+      @desires = User.find_by_id(session[:rd].desires
 
       erb :'/index.html'
     end

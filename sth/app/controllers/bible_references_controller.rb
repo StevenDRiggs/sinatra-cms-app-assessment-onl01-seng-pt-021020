@@ -6,7 +6,7 @@ class BibleReferencesController < ApplicationController
       redirect '/'
     end
 
-    @bible_references = BibleReference.all
+    @bible_references = User.find_by_id(session[:rd]).bible_references
 
     erb :'/bible_references/index.html'
   end
@@ -17,10 +17,11 @@ class BibleReferencesController < ApplicationController
       redirect '/'
     end
 
-    @bible_references = BibleReference.all
-    @desires = Desire.all
-    @seeds = Seed.all
-    @harvests = Harvest.all
+    user = User.find_by_id(session[:rd])
+    @bible_references = user.bible_references
+    @desires = user.desires
+    @seeds = user.seeds
+    @harvests = user.harvests
 
     erb :'/bible_references/new.html'
   end
@@ -70,26 +71,28 @@ class BibleReferencesController < ApplicationController
       redirect '/'
     end
 
-    @bible_reference = BibleReference.find_by_id(params[:id])
-    @desires = Desire.all
-    @seeds = Seed.all
-    @harvests = Harvest.all
+    user = User.find_by_id(session[:rd])
+
+    @bible_reference = BibleReference.where(user_id: session[:rd])
+    @desires = Desire.where(user_id: session[:rd])
+    @seeds = Seed.where(user_id: session[:rd])
+    @harvests = Harvest.where(user_id: session[:rd])
 
     erb :'/bible_references/edit.html'
   end
 
   patch '/bible_references/:id' do
-    @bible_reference = BibleReference.find_by_id(params[:id])
+    @bible_reference = BibleReference.find_by(id: params[:id], user_id: session[:rd])
 
     if params[:reference] != ''
-      bible_reference = BibleReference.find_by_id(params[:id])
+      bible_reference = BibleReference.find_by(id: params[:id], user_id: session[:rd])
       if bible_reference
         bible_reference.update(reference: params[:reference], content: params[:content])
 
         bible_reference.desires = []
         if !(params[:desires].nil? || (params[:desires].length == 1 && params[:desires][0] == ''))
           for desire_id in params[:desires]
-            desire = Desire.find_by_id(desire_id)
+            desire = Desire.find_by(id: desire_id, user_id: session[:rd])
             bible_reference.desires << desire if !bible_reference.desires.include?(desire)
           end
         end
@@ -97,7 +100,7 @@ class BibleReferencesController < ApplicationController
         bible_reference.seeds = []
         if !(params[:seeds].nil? || (params[:seeds].length == 1 && params[:seeds][0] == ''))
           for seed_id in params[:seeds]
-            seed = Seed.find_by_id(seed_id)
+            seed = Seed.find_by(id: seed_id, user_id: session[:rd])
             bible_reference.seeds << seed if !bible_reference.seeds.include?(seed)
           end
         end
@@ -105,7 +108,7 @@ class BibleReferencesController < ApplicationController
         bible_reference.harvests = []
         if !(params[:harvests].nil? || (params[:harvests].length == 1 && params[:harvests][0] == ''))
           for harvest_id in params[:harvests]
-            harvest = Harvest.find_by_id(harvest_id)
+            harvest = Harvest.find_by(id: harvest_id, user_id: session[:rd])
             bible_reference.harvests << harvest if !bible_reference.harvests.include?(harvest)
           end
         end
@@ -125,13 +128,13 @@ class BibleReferencesController < ApplicationController
       redirect '/'
     end
 
-    @bible_reference = BibleReference.find_by_id(params[:id])
+    @bible_reference = BibleReference.find_by(id: params[:id], user_id: session[:rd])
 
     erb :'/bible_references/delete.html'
   end
 
   delete '/bible_references/:id' do
-    BibleReference.find_by_id(params[:id]).delete
+    BibleReference.find_by(id: params[:id], user_id: session[:rd]).delete
 
     redirect '/bible_references'
   end
