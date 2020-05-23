@@ -1,4 +1,6 @@
 class Source < ActiveRecord::Base
+  belongs_to :user
+
   has_many :harvest_sources
   has_many :harvests, through: :harvest_sources
 

@@ -1,4 +1,6 @@
 class Seed < ActiveRecord::Base
+  belongs_to :user
+
   has_many :bible_reference_seeds
   has_many :bible_references, through: :bible_reference_seeds
 

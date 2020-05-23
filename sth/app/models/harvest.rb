@@ -1,4 +1,6 @@
 class Harvest < ActiveRecord::Base
+  belongs_to :user
+
   has_many :bible_reference_harvests
   has_many :bible_references, through: :bible_reference_harvests
 

@@ -11,48 +11,54 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200520004615) do
+ActiveRecord::Schema.define(version: 20200523104919) do
 
   create_table "bible_reference_desires", force: :cascade do |t|
     t.integer  "bible_reference_id"
     t.integer  "desire_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.integer  "user_id",            default: -1, null: false
   end
 
   create_table "bible_reference_harvests", force: :cascade do |t|
     t.integer  "bible_reference_id"
     t.integer  "harvest_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.integer  "user_id",            default: -1, null: false
   end
 
   create_table "bible_reference_seeds", force: :cascade do |t|
     t.integer  "bible_reference_id"
     t.integer  "seed_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.integer  "user_id",            default: -1, null: false
   end
 
   create_table "bible_references", force: :cascade do |t|
-    t.string   "reference",  null: false
+    t.string   "reference",               null: false
     t.text     "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "user_id",    default: -1, null: false
   end
 
   create_table "desires", force: :cascade do |t|
-    t.string   "name",        null: false
+    t.string   "name",                     null: false
     t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.integer  "user_id",     default: -1, null: false
   end
 
   create_table "harvest_sources", force: :cascade do |t|
     t.integer  "harvest_id"
     t.integer  "source_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "user_id",    default: -1, null: false
   end
 
   create_table "harvests", force: :cascade do |t|
@@ -64,25 +70,29 @@ ActiveRecord::Schema.define(version: 20200520004615) do
     t.integer  "days_to_completion"
     t.integer  "hours_to_completion"
     t.integer  "minutes_to_completion"
+    t.integer  "user_id",               default: -1,    null: false
   end
 
   create_table "received_items", force: :cascade do |t|
     t.integer  "source_id"
-    t.string   "item",       null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "item",                    null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "user_id",    default: -1, null: false
   end
 
   create_table "seed_targets", force: :cascade do |t|
     t.integer  "seed_id"
     t.integer  "target_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "user_id",    default: -1, null: false
   end
 
   create_table "seeds", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "user_id",    default: -1, null: false
   end
 
   create_table "sources", force: :cascade do |t|
@@ -95,13 +105,15 @@ ActiveRecord::Schema.define(version: 20200520004615) do
     t.integer  "days_received"
     t.integer  "hours_received"
     t.integer  "minutes_received"
+    t.integer  "user_id",          default: -1,  null: false
   end
 
   create_table "sown_items", force: :cascade do |t|
     t.integer  "target_id"
-    t.string   "item",       null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "item",                    null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "user_id",    default: -1, null: false
   end
 
   create_table "targets", force: :cascade do |t|
@@ -120,13 +132,15 @@ ActiveRecord::Schema.define(version: 20200520004615) do
     t.integer  "days_to_sow"
     t.integer  "hours_to_sow"
     t.integer  "minutes_to_sow"
+    t.integer  "user_id",        default: -1,  null: false
   end
 
   create_table "to_sow_items", force: :cascade do |t|
     t.integer  "target_id"
-    t.string   "item",       null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "item",                    null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "user_id",    default: -1, null: false
   end
 
   create_table "users", force: :cascade do |t|

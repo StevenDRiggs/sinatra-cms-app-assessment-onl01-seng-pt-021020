@@ -1,4 +1,6 @@
 class BibleReference < ActiveRecord::Base
+  belongs_to :user
+
   has_many :bible_reference_desires
   has_many :desires, through: :bible_reference_desires
 

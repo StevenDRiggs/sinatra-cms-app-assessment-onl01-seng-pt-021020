@@ -1,4 +1,6 @@
 class Target < ActiveRecord::Base
+  belongs_to :user
+
   has_many :seed_targets
   has_many :seeds, through: :seed_targets
 
