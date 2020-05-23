@@ -1,0 +1,13 @@
+<h3>Are you sure you want to delete this sown item?</h3>
+
+<h2><%= @sown_item.item %></h2>
+<h3>Source: <%= @sown_item.target.name %></h3>
+
+<form action="/sown_items/<%= @sown_item.id %>" method="POST">
+  <input type="hidden" name="_method" id="hidden" value="DELETE">
+
+  <button type="submit" id="submit">Delete</button>
+
+  <a href="/sown_items/<%= @sown_item.id %>"><button type="button">Cancel</button></a>
+
+</form>

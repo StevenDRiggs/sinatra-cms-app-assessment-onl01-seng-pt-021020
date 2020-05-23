@@ -36,7 +36,7 @@ class SownItemsController < ApplicationController
   end
 
   patch '/sown_items/:id' do
-    sown_item =SownItem.find_by_id(params[:id])
+    sown_item = SownItem.find_by_id(params[:id])
     if sown_item
       sown_item.item = params[:item]
       sown_item.target = Target.find_by_id(params[:target])
@@ -47,6 +47,19 @@ class SownItemsController < ApplicationController
     end
 
     redirect '/sown_items/new'
+  end
+
+  # delete
+  get '/sown_items/:id/delete' do
+    @sown_item = SownItem.find_by_id(params[:id])
+
+    erb :'/sown_items/delete.html'
+  end
+
+  delete '/sown_items/:id' do
+    SownItem.find_by_id(params[:id]).delete
+
+    redirect '/sown_items'
   end
 
 end
