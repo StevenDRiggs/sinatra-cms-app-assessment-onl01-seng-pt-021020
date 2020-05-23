@@ -1,5 +1,12 @@
 class TargetsController < ApplicationController
 
+  # index
+  get '/targets' do
+    @targets = Target.all
+
+    erb :'/targets/index.html'
+  end
+
   # new
   get '/targets/new' do
     if !logged_in?(session[:rd])
