@@ -1,1 +1,69 @@
-<h1>Insert the form to edit an instance of your model here.</h1>
+<h1>Edit Target</h1>
+
+<form action="/targets/<%= @target.id %>" method="POST">
+  <input type="hidden" name="_method" id="hidden" value="PATCH">
+
+  <label for="name"><h2>Name</h2></label>
+  <input type="text" name="name" id="name" value="<%= @target.name %>"  required>
+
+  <h2>Time Sown</h2>
+  <label for="months_sown"><h3>Months</h3></label>
+  <input type="number" name="months_sown" id="months_sown" value="<%= @target.months_sown %>">
+
+  <label for="weeks_sown"><h3>Weeks</h3></label>
+  <input type="number" name="weeks_sown" id="weeks_sown" value="<%= @target.weeks_sown %>">
+
+  <label for="days_sown"><h3>Days</h3></label>
+  <input type="number" name="days_sown" id="days_sown" value="<%= @target.days_sown %>">
+
+  <label for="hours_sown"><h3>Hours</h3></label>
+  <input type="number" name="hours_sown" id="hours_sown" value="<%= @target.hours_sown %>">
+
+  <label for="minutes_sown"><h3>Minutes</h3></label>
+  <input type="number" name="minutes_sown" id="minutes_sown" value="<%= @target.minutes_sown %>">
+
+  <label for="money_sown"><h2>Money Sown</h2></label>
+  $<input type="text" name="money_sown" id="money_sown" value="<%= "%.2f" % @target.money_sown %>">
+
+  <h2>Items Sown</h2>
+  <% for item in @items %>
+    <label for="<%= item.instance_of?(SownItem) ? 'sown' : 'to_sow'  %>_item-<%= item.id %>"><h3><%= item.item %></h3></label>
+    <input type="checkbox" name="sown_items[]" id="<%= item.instance_of?(SownItem) ? 'sown' : 'to_sow' %>_item-<%= item.id %>" value="<%= item.instance_of?(SownItem) ? 'sown' : 'to_sow' %>_item-<%= item.id %>" <%= 'checked' if @target.sown_items.include?(item) %>>
+  <% end %>
+
+  <h2>New Sown Item</h2>
+  <label for="new_sown_item"><h3>Item</h3></label>
+  <input type="text" name="new_sown_item" id="new_sown_item">
+
+  <h2>Time Yet to Sow</h2>
+  <label for="months_to_sow"><h3>Months</h3></label>
+  <input type="number" name="months_to_sow" id="months_to_sow" value="<%= @target.months_to_sow %>">
+
+  <label for="weeks_to_sow"><h3>Weeks</h3></label>
+  <input type="number" name="weeks_to_sow" id="weeks_to_sow" value="<%= @target.weeks_to_sow %>">
+
+  <label for="days_to_sow"><h3>Days</h3></label>
+  <input type="number" name="days_to_sow" id="days_to_sow" value="<%= @target.days_to_sow %>">
+
+  <label for="hours_to_sow"><h3>Hours</h3></label>
+  <input type="number" name="hours_to_sow" id="hours_to_sow" value="<%= @target.hours_to_sow %>">
+
+  <label for="minutes_to_sow"><h3>Minutes</h3></label>
+  <input type="number" name="minutes_to_sow" id="minutes_to_sow" value="<%= @target.minutes_to_sow %>">
+
+  <label for="money_to_sow"><h2>Money Yet to Sow</h2></label>
+  $<input type="text" name="money_to_sow" id="money_to_sow" value="<%= @target.money_to_sow %>">
+
+  <h2>Items Yet to Sow</h2>
+  <% for item in @items %>
+    <label for="<%= item.instance_of?(SownItem) ? 'sown' : 'to_sow'  %>_item-<%= item.id %>"><h3><%= item.item %></h3></label>
+    <input type="checkbox" name="to_sow_items[]" id="<%= item.instance_of?(SownItem) ? 'sown' : 'to_sow' %>_item-<%= item.id %>" value="<%= item.instance_of?(SownItem) ? 'sown' : 'to_sow' %>_item-<%= item.id %>" <%= 'checked' if @target.to_sow_items.include?(item) %>>
+  <% end %>
+
+  <h2>New Item to Sow</h2>
+  <label for="new_to_sow_item"><h3>Item</h3></label>
+  <input type="text" name="new_to_sow_item" id="new_to_sow_item">
+  
+  <button type="submit" id="submit">Submit</button>
+
+</form>
