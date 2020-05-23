@@ -2,6 +2,10 @@ class SourcesController < ApplicationController
 
   # index
   get '/sources' do
+    if !logged_in?(session[:rd])
+      redirect '/'
+    end
+
     @sources = Source.all
 
     erb :'/sources/index.html'
@@ -55,6 +59,10 @@ class SourcesController < ApplicationController
 
   # edit
   get '/sources/:id/edit' do
+    if !logged_in?(session[:rd])
+      redirect '/'
+    end
+
     @source = Source.find_by_id(params[:id])
     @received_items = ReceivedItem.all
 
@@ -86,6 +94,10 @@ class SourcesController < ApplicationController
 
   # delete
   get '/sources/:id/delete' do
+    if !logged_in?(session[:rd])
+      redirect '/'
+    end
+
     @source = Source.find_by_id(params[:id])
 
     erb :'/sources/delete.html'

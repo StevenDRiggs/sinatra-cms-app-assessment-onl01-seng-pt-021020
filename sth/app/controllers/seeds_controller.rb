@@ -46,6 +46,10 @@ class SeedsController < ApplicationController
 
   # edit
   get '/seeds/:id/edit' do
+    if !logged_in?(session[:rd])
+      redirect '/'
+    end
+
     @seed = Seed.find_by_id(params[:id])
     @targets = Target.all
 

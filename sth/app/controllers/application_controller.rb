@@ -78,6 +78,10 @@ class ApplicationController < Sinatra::Base
 
   # logout
   get '/logout' do
+    if !logged_in?(session[:rd])
+      redirect '/'
+    end
+
     @username = User.find_by_id(session[:rd]).username
 
     erb :'/logout.html'

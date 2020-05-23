@@ -2,6 +2,10 @@ class SownItemsController < ApplicationController
 
   # index
   get '/sown_items' do
+    if !logged_in?(session[:rd])
+      redirect '/'
+    end
+
     @sown_items = SownItem.all
 
     erb :'/sown_items/index.html'
@@ -9,6 +13,10 @@ class SownItemsController < ApplicationController
 
   # new
   get '/sown_items/new' do
+    if !logged_in?(session[:rd])
+      redirect '/'
+    end
+
     @targets = Target.all
 
     erb :'/sown_items/new.html'
@@ -22,6 +30,10 @@ class SownItemsController < ApplicationController
 
   # show
   get '/sown_items/:id' do
+    if !logged_in?(session[:rd])
+      redirect '/'
+    end
+
     @sown_item = SownItem.find_by_id(params[:id])
 
     erb :'/sown_items/show.html'
@@ -29,6 +41,10 @@ class SownItemsController < ApplicationController
 
   # edit
   get '/sown_items/:id/edit' do
+    if !logged_in?(session[:rd])
+      redirect '/'
+    end
+
     @sown_item = SownItem.find_by_id(params[:id])
     @targets = Target.all
 
@@ -51,6 +67,10 @@ class SownItemsController < ApplicationController
 
   # delete
   get '/sown_items/:id/delete' do
+    if !logged_in?(session[:rd])
+      redirect '/'
+    end
+
     @sown_item = SownItem.find_by_id(params[:id])
 
     erb :'/sown_items/delete.html'

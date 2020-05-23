@@ -2,6 +2,10 @@ class TargetsController < ApplicationController
 
   # index
   get '/targets' do
+    if !logged_in?(session[:rd])
+      redirect '/'
+    end
+
     @targets = Target.all
 
     erb :'/targets/index.html'
@@ -74,6 +78,10 @@ class TargetsController < ApplicationController
 
   # edit
   get '/targets/:id/edit' do
+    if !logged_in?(session[:rd])
+      redirect '/'
+    end
+
     @target = Target.find_by_id(params[:id])
     @items = (SownItem.all + ToSowItem.all).uniq
 
@@ -129,6 +137,10 @@ class TargetsController < ApplicationController
 
   # delete
   get '/targets/:id/delete' do
+    if !logged_in?(session[:rd])
+      redirect '/'
+    end
+
     @target = Target.find_by_id(params[:id])
 
     erb :'/targets/delete.html'

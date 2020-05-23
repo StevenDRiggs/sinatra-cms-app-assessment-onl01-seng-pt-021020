@@ -2,6 +2,10 @@ class ReceivedItemsController < ApplicationController
 
   # index
   get '/received_items' do
+    if !logged_in?(session[:rd])
+      redirect '/'
+    end
+
     @received_items = ReceivedItem.all
 
     erb :'/received_items/index.html'
@@ -9,6 +13,10 @@ class ReceivedItemsController < ApplicationController
 
   # new
   get '/received_items/new' do
+    if !logged_in?(session[:rd])
+      redirect '/'
+    end
+
     @sources = Source.all
 
     erb :'/received_items/new.html'
@@ -22,6 +30,10 @@ class ReceivedItemsController < ApplicationController
 
   # show
   get '/received_items/:id' do
+    if !logged_in?(session[:rd])
+      redirect '/'
+    end
+
     @received_item = ReceivedItem.find_by_id(params[:id])
 
     erb :'/received_items/show.html'
@@ -29,6 +41,10 @@ class ReceivedItemsController < ApplicationController
 
   # edit
   get '/received_items/:id/edit' do
+    if !logged_in?(session[:rd])
+      redirect '/'
+    end
+
     @received_item = ReceivedItem.find_by_id(params[:id])
 
     erb :'/received_items/edit.html'
@@ -43,6 +59,10 @@ class ReceivedItemsController < ApplicationController
 
   # delete
   get '/received_items/:id/delete' do
+    if !logged_in?(session[:rd])
+      redirect '/'
+    end
+
     @received_item = ReceivedItem.find_by_id(params[:id])
 
     erb :'received_items/delete.html'
