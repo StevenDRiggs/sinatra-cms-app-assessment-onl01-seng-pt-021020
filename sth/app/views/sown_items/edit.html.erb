@@ -1,1 +1,18 @@
-<h1>Insert the form to edit an instance of your model here.</h1>
+<h1>Edit Sown Item</h1>
+
+<form action="/sown_items/<%= @sown_item.id %>" method="POST">
+  <input type="hidden" name="_method" id="hidden" value="PATCH">
+
+  <label for="item"><h2>Item</h2></label>
+  <input type="text" name="item" id="item" value="<%= @sown_item.item %>" required>
+
+  <h3>Received from:</h3>
+  <% for target in @targets %>
+    <label for="target"><%= target.name %></label>
+    <input type="radio" name="target" id="target" value="<%= target.id %>" <%= 'checked' if @sown_item.target == target %> required>
+  <% end %>
+  <a href="/targets/new"><button type="button">New Source</button></a>
+
+  <button type="submit" id="submit">Submit</button>
+
+</form>

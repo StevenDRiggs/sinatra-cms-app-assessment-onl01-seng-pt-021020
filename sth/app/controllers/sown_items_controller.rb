@@ -27,4 +27,26 @@ class SownItemsController < ApplicationController
     erb :'/sown_items/show.html'
   end
 
+  # edit
+  get '/sown_items/:id/edit' do
+    @sown_item = SownItem.find_by_id(params[:id])
+    @targets = Target.all
+
+    erb :'/sown_items/edit.html'
+  end
+
+  patch '/sown_items/:id' do
+    sown_item =SownItem.find_by_id(params[:id])
+    if sown_item
+      sown_item.item = params[:item]
+      sown_item.target = Target.find_by_id(params[:target])
+
+      sown_item.save
+
+      redirect "/sown_items/#{sown_item.id}"
+    end
+
+    redirect '/sown_items/new'
+  end
+
 end
