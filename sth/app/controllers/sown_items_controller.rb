@@ -17,7 +17,14 @@ class SownItemsController < ApplicationController
   post '/sown_items' do
     sown_item = SownItem.create(item: params[:item], target: Target.find_by_id(params[:target]))
 
-    redirect "/sown_items"
+    redirect "/sown_items/#{sown_item.id}"
+  end
+
+  # show
+  get '/sown_items/:id' do
+    @sown_item = SownItem.find_by_id(params[:id])
+
+    erb :'/sown_items/show.html'
   end
 
 end
