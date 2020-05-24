@@ -47,14 +47,16 @@ class ReceivedItemsController < ApplicationController
       redirect '/'
     end
 
-    @received_item = ReceivedItem.find_by_id(params[:id])
+    @user = User.find_by_id(session[:rd])
+    @received_item = ReceivedItem.find_by(user_id: @user.id, id: params[:id])
 
     erb :'/received_items/edit.html'
   end
 
   patch '/received_items/:id' do
-    received_item = ReceivedItem.find_by_id(params[id])
-    received_item.update(item: params[:item], source: Source.find_by_id(params[:source]))
+    user = User.find_by_id(session[:rd])
+    received_item = ReceivedItem.find_by(user_id: user.id, id: params[:id])
+    received_item.update(item: params[:item], source: Source.find_by(user_id: user.id, id: params[:source]))
 
     redirect "/received_items/#{received_item.id}"
   end
