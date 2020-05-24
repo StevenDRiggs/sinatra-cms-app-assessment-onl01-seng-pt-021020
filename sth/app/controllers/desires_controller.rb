@@ -49,7 +49,7 @@ class DesiresController < ApplicationController
       redirect '/'
     end
 
-    @user = User.find_by_id(session[:rd])
+    user = User.find_by_id(session[:rd])
     @desire = Desire.find_by(user_id: user.id, id: params[:id])
 
     erb :'/desires/edit.html'
