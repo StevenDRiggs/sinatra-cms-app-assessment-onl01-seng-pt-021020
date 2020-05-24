@@ -48,10 +48,10 @@ class SourcesController < ApplicationController
       redirect '/'
     end
 
-    @source = Source.find_by_id(params[:id])
-    @bible_references = @source.harvests.collect {|harvest| harvest.bible_references}.flatten.uniq
-    @desires = @bible_references.collect {|bible_reference| bible_reference.desires}.flatten.uniq
-    @targets = @bible_references.collect {|bible_reference| bible_reference.seeds}.flatten.uniq.collect {|seed| seed.targets}.flatten.uniq
+    user = User.find_by_id(session[:rd])
+    @source = Source.find_by(user_id: user.id, id: params[:id])
+    @bible_references = @source.harvests.uniq.select {|harvest| harvest.user_id == user.id}.collect {|harvest| harvest.bible_references}.flatten.select {|bible_reference| bible_reference.user_id == user.id}.flatten.uniq
+    @desires = @bible_references.collect {|bible_reference| bible_reference.desires}.select {|desire| desire.user_id == user.id}.uniq
 
     erb :'/sources/show.html'
   end
