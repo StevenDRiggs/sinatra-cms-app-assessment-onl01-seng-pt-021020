@@ -98,13 +98,15 @@ class SourcesController < ApplicationController
       redirect '/'
     end
 
-    @source = Source.find_by_id(params[:id])
+    user = User.find_by_id(session[:rd])
+    @source = Source.find_by(user_id: user.id, id: params[:id])
 
     erb :'/sources/delete.html'
   end
 
   delete '/sources/:id' do
-    Source.find_by_id(params[:id]).delete
+    user = User.find_by_id(session[:rd])
+    Source.find_by(user_id: user.id, id: params[:id]).delete
 
     redirect '/sources'
   end
