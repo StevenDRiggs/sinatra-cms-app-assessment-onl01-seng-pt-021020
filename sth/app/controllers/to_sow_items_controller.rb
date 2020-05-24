@@ -6,7 +6,7 @@ class ToSowItemsController < ApplicationController
       redirect '/'
     end
 
-    @to_sow_items = ToSowItem.all
+    @user = User.find_by_id(session[:rd])
 
     erb :'/to_sow_items/index.html'
   end
