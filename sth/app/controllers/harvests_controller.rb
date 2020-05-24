@@ -96,7 +96,8 @@ class HarvestsController < ApplicationController
   end
 
   delete '/harvests/:id' do
-    Harvest.find_by_id(params[:id]).delete
+    user = User.find_by_id(session[:rd])
+    Harvest.find_by(user_id: user.id, id:params[:id]).delete
 
     redirect '/harvests'
   end
