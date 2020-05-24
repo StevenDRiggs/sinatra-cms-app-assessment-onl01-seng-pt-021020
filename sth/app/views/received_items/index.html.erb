@@ -1,6 +1,6 @@
 <h1>Received Items</h1>
 
-<% for received_item in @received_items %>
+<% for received_item in @user.received_items %>
   <h2><%= received_item.item %></h2>
   <h3>Received from: <%= received_item.source.name %></h3>
 <% end %>

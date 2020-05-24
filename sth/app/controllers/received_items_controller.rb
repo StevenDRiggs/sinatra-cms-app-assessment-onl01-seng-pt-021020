@@ -6,7 +6,7 @@ class ReceivedItemsController < ApplicationController
       redirect '/'
     end
 
-    @received_items = ReceivedItem.all
+    @user = User.find_by_id(session[:rd])
 
     erb :'/received_items/index.html'
   end
