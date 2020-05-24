@@ -6,7 +6,7 @@ class DesiresController < ApplicationController
       redirect '/'
     end
 
-    @desires = Desire.all
+    @user = User.find_by_id(session[:rd])
 
     erb :'/desires/index.html'
   end
@@ -17,12 +17,15 @@ class DesiresController < ApplicationController
       redirect '/'
     end
 
+    @user = User.find_by_id(session[:rd])
+
     erb :'/desires/new.html'
   end
 
   post '/desires' do
     if params[:name] != ''
-      desire = Desire.create(name: params[:name], description: params[:description])
+      user = User.find_by_id(session[:rd])
+      desire = Desire.create(user_id: user.id, name: params[:name], description: params[:description])
 
       redirect "/desires/#{desire.id}"
     end
@@ -36,7 +39,8 @@ class DesiresController < ApplicationController
       redirect '/'
     end
 
-    @desire = Desire.find_by_id(params[:id])
+    @user  =User.find_by_id(session[:rd])
+    @desire = Desire.find_by(user_id: user.id, id: params[:id])
 
     erb :'/desires/show.html'
   end
@@ -47,13 +51,16 @@ class DesiresController < ApplicationController
       redirect '/'
     end
 
-    @desire = Desire.find_by_id(params[:id])
+    @user = User.find_by_id(session[:rd])
+    @desire = Desire.find_by(user_id: user.id, id: params[:id])
 
     erb :'/desires/edit.html'
   end
 
   patch '/desires/:id' do
-    desire = Desire.find_by_id(params[:id])
+    user = User.find_by_id(session[:rd])
+    desire = Desire.find_by(user_id: user.id, id: params[:id])
+
     if desire
       desire.update(name: params[:name], description: params[:description])
 
@@ -69,13 +76,13 @@ class DesiresController < ApplicationController
       redirect '/'
     end
 
-    @desire = Desire.find_by_id(params[:id])
+    @desire = Desire.find_by(user_id: session[:rd], id: params[:id])
 
     erb :'/desires/delete.html'
   end
 
   delete '/desires/:id' do
-    Desire.find_by_id(params[:id]).delete
+    Desire.find_by(user_id: session[:rd], id: params[:id]).delete
 
     redirect '/desires'
   end
