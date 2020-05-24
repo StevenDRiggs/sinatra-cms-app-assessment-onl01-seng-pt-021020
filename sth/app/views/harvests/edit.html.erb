@@ -4,7 +4,7 @@
   <input type="hidden" name="_method" id="hidden" value="PATCH">
 
   <h2>Sources</h2>
-  <% for source in @sources %>
+  <% for source in @user.sources %>
     <label for="source-<%= source.id %>"><h3><%= source.name %></h3></label>
     <input type="checkbox" name="sources[]" id="source-<%= source.id %>" value="<%= source.id %>" <%= 'checked' if @harvest.sources.include?(source) %>>
   <% end %>
