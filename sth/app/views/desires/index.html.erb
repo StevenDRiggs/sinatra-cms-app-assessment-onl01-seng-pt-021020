@@ -1,6 +1,6 @@
 <h1>Desires</h1>
 
-<% for desire in @desires %>
+<% for desire in @user.desires %>
   <a href="/desires/<%= desire.id %>">
     <h2><%= desire.name %></h2>
     <p><%= desire.description %></p>
