@@ -6,7 +6,7 @@ class SeedsController < ApplicationController
       redirect '/'
     end
 
-    @seeds = Seed.all
+    @user = User.find_by_id(session[:rd])
 
     erb :'/seeds/index.html'
   end
