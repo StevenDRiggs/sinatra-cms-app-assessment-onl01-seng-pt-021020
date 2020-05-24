@@ -17,19 +17,20 @@ class HarvestsController < ApplicationController
       redirect '/'
     end
 
-    @sources = Source.all
+    @user = User.find_by_id(session[:rd])
 
     erb :'/harvests/new.html'
   end
   
   post '/harvests' do
-    harvest = Harvest.new
+    user = User.find_by_id(session[:rd])
+    harvest = user.harvests.build
     harvest.completed = params[:completed] == 'on'
     harvest.time_to_completion = "#{params[:months_to_completion]} months, #{params[:weeks_to_completion]} weeks, #{params[:days_to_completion]} days, #{params[:hours_to_completion]} hours, #{params[:minutes_to_completion]} minutes"
 
-    if !params[:sources].nil?
+    if !(params[:sources].nil? || (params[:sources].length == 1 && params[:sources] == ''))
       for source_id in params[:sources]
-        harvest.sources << Source.find_by_id(source_id.to_i)
+        harvest.sources << Source.find_by(user_id: user.id, id: source_id)
       end
     else
       'no source chosen'

@@ -3,7 +3,7 @@
 <form action="/harvests" method="POST">
 
   <h2>Sources</h2>
-  <% for source in @sources %>
+  <% for source in @user.sources %>
     <label for="source-<%= source.id %>"><h3><%= source.name %></h3></label>
     <input type="checkbox" name="sources[]" id="source-<%= source.id %>" value="<%= source.id %>">
   <% end %>
