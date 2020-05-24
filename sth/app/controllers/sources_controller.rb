@@ -6,7 +6,7 @@ class SourcesController < ApplicationController
       redirect '/'
     end
 
-    @sources = Source.all
+    @user = User.find_by_id(session[:rd])
 
     erb :'/sources/index.html'
   end
