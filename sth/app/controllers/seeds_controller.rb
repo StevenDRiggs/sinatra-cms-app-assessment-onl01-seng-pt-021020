@@ -40,7 +40,8 @@ class SeedsController < ApplicationController
       redirect '/'
     end
 
-    @seed = Seed.find_by_id(params[:id])
+    user = User.find_by_id(session[:rd])
+    @seed = Seed.find_by(user_id: user.id, id: params[:id])
 
     erb :'/seeds/show.html'
   end
