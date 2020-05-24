@@ -17,15 +17,16 @@ class SeedsController < ApplicationController
       redirect '/'
     end
 
-    @targets = Target.all
+    @user = User.find_by_id(session[:rd])
 
     erb :'/seeds/new.html'
   end
 
   post '/seeds' do
-    seed = Seed.new
+    user = User.find_by_id(session[:rd])
+    seed = user.seeds.build
     for target_id in params[:targets]
-      seed.targets << Target.find_by_id(target_id)
+      seed.targets << Target.find_by(user_id: user.id, id: target_id)
     end
 
     seed.save

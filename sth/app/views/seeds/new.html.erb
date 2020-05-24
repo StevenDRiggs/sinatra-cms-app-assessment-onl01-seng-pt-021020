@@ -2,7 +2,7 @@
 
 <form action="/seeds" method="POST">
 
-  <% for target in @targets %>
+  <% for target in @user.targets %>
     <label for="target-<%= target.id %>"><h2><%= target.name %></h2></label>
     <input type="checkbox" name="targets[]" id="target-<%= target.id %>" value="<%= target.id %>">
   <% end %>
