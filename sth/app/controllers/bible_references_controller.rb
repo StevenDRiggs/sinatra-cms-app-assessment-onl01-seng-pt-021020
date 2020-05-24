@@ -55,7 +55,7 @@ class BibleReferencesController < ApplicationController
       redirect '/'
     end
 
-    @user = User.find_by_id(session[:rd])
+    user = User.find_by_id(session[:rd])
     @bible_reference = BibleReference.find_by(user_id: user.id, id: params[:id])
 
     erb :'/bible_references/show.html'
