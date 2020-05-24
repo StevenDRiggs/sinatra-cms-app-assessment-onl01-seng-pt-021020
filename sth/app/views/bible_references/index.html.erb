@@ -5,7 +5,7 @@
     <th>Reference</th>
     <th>Passage</th>
   </tr>
-  <% for bible_reference in @bible_references %>
+  <% for bible_reference in @user.bible_references %>
     <tr>
       <td><%= bible_reference.reference %></td>
       <td><%= bible_reference.content %></td>
