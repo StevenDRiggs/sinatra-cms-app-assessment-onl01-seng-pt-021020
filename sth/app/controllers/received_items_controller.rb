@@ -35,7 +35,8 @@ class ReceivedItemsController < ApplicationController
       redirect '/'
     end
 
-    @received_item = ReceivedItem.find_by_id(params[:id])
+    user = User.find_by_id(session[:rd])
+    @received_item = ReceivedItem.find_by(user_id: user.id, id: params[:id])
 
     erb :'/received_items/show.html'
   end
