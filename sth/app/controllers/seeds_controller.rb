@@ -81,13 +81,15 @@ class SeedsController < ApplicationController
       redirect '/'
     end
 
-    @seed = Seed.find_by_id(params[:id])
+    user = User.find_by_id(session[:rd])
+    @seed = Seed.find_by(user_id: user.id, id:params[:id])
 
     erb :'/seeds/delete.html'
   end
 
   delete '/seeds/:id' do
-    Seed.find_by_id(params[:id]).delete
+    user = User.find_by_id(session[:rd])
+    Seed.find_by(user_id: user.id, id: params[:id]).delete
 
     redirect '/seeds'
   end
