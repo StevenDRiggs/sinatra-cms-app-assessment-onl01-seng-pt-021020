@@ -6,7 +6,7 @@ class SownItemsController < ApplicationController
       redirect '/'
     end
 
-    @sown_items = SownItem.all
+    @user = User.find_by_id(session[:rd])
 
     erb :'/sown_items/index.html'
   end

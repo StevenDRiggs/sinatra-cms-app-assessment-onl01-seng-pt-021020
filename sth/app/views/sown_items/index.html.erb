@@ -1,6 +1,6 @@
 <h1>Sown Items</h1>
 
-<% for sown_item in @sown_items %>
+<% for sown_item in @user.sown_items %>
   <h2><%= sown_item.item %></h2>
   <h3>Sown to: <%= sown_item.target.name %></h3>
 <% end %>
