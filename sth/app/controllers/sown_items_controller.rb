@@ -17,13 +17,16 @@ class SownItemsController < ApplicationController
       redirect '/'
     end
 
-    @targets = Target.all
+    @user = User.find_by_id(session[:rd])
 
     erb :'/sown_items/new.html'
   end
 
   post '/sown_items' do
-    sown_item = SownItem.create(item: params[:item], target: Target.find_by_id(params[:target]))
+    user = User.find_by_id(session[:rd])
+    sown_item = user.sown_items.build(item: params[:item], target: Target.find_by_id(params[:target]))
+
+    sown_item.save
 
     redirect "/sown_items/#{sown_item.id}"
   end
