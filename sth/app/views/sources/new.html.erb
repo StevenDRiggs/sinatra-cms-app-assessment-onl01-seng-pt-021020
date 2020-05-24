@@ -25,7 +25,7 @@
   <input type="text" name="money_received" id="money_received">
 
   <h2>Items Received</h2>
-  <% for received_item in @received_items %>
+  <% for received_item in @user.received_items %>
     <label for="received_item-<%= received_item.id %>"><h3><%= received_item.item %></h3></label>
     <input type="checkbox" name="received_items[]" id="received_item-<%= received_item.id %>" value="<%= received_item.id %>">
   <% end %>

@@ -17,28 +17,27 @@ class SourcesController < ApplicationController
       redirect '/'
     end
 
-    @received_items = ReceivedItem.all
+    @user = User.find_by_id(session[:rd])
 
     erb :'/sources/new.html'
   end
 
   post '/sources' do
-    if params[:name] != ''
-      source = Source.new(name: params[:name])
-      source.time_received = "#{params[:months_received]} months, #{params[:weeks_received]} weeks, #{params[:days_received]} days, #{params[:hours_received]} hours, #{params[:minutes_received]} minutes"
-      source.money_received = params[:money_received].to_f
-      source.received_items << ReceivedItem.create(item: params[:new_received_item]) if params[:new_received_item] != ''
+    user = User.find_by_id(session[:rd])
+    source = user.sources.build(name: params[:name])
+    source.time_received = "#{params[:months_received]} months, #{params[:weeks_received]} weeks, #{params[:days_received]} days, #{params[:hours_received]} hours, #{params[:minutes_received]} minutes"
+    source.money_received = params[:money_received].to_f
+    source.received_items << user.received_items.build(item: params[:new_received_item]) if !(params[:new_received_item].nil? || params[:new_received_item] == '')
 
-      if !params[:received_items].nil?
-        for received_item_id in params[:received_items]
-          source.received_items << ReceivedItem.find_by_id(received_item_id)
-        end
+    if !(params[:received_items].nil? || (params[:received_items].length == 1 && params[:received_items][0] == ''))
+      for received_item_id in params[:received_items]
+        source.received_items << ReceivedItem.find_by(user_id: user.id, id: received_item_id)
       end
-
-      source.save
-
-      redirect "/sources/#{source.id}"
     end
+
+    source.save
+
+    redirect "/sources/#{source.id}"
 
     redirect '/sources/new'
   end
