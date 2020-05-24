@@ -23,31 +23,28 @@ class BibleReferencesController < ApplicationController
   end
 
   post '/bible_references' do
-    if params[:reference] != ''
+    user = User.find_by_id(session[:rd])
+    bible_reference = user.bible_references.build(reference: params[:reference], content: params[:content])
 
-      user = User.find_by_id(session[:rd])
-      bible_reference = user.bible_references.build(reference: params[:reference], content: params[:content])
-
-      if !(params[:desires].length == 1 && params[:desires][0] == '')
-        for desire_id in params[:desires]
-          bible_reference.desires << Desire.find_by(user_id: user.id, id: desire_id)
-        end
+    if !(params[:desires].nil? || (params[:desires].length == 1 && params[:desires][0] == ''))
+      for desire_id in params[:desires]
+        bible_reference.desires << Desire.find_by(user_id: user.id, id: desire_id)
       end
-
-      if !(params[:seeds].length == 1 && params[:seeds][0] == '')
-        for seed_id in params[:seeds]
-          bible_reference.seeds << Seed.find_by(user_id: user.id, id: seed_id)
-        end
-      end
-
-      if !(params[:harvests].length == 1 && params[:harvests][0] == '')
-        for harvest_id in params[:harvests]
-          bible_reference.harvests << Harvest.find_by(user_id: user.id, id: harvest_id)
-        end
-      end
-
-      bible_reference.save
     end
+
+    if !(params[:seeds].nil? || (params[:seeds].length == 1 && params[:seeds][0] == ''))
+      for seed_id in params[:seeds]
+        bible_reference.seeds << Seed.find_by(user_id: user.id, id: seed_id)
+      end
+    end
+
+    if !(params[:harvests].nil? || (params[:harvests].length == 1 && params[:harvests][0] == ''))
+      for harvest_id in params[:harvests]
+        bible_reference.harvests << Harvest.find_by(user_id: user.id, id: harvest_id)
+      end
+    end
+
+    bible_reference.save
 
     redirect "/bible_references/#{bible_reference.id}"
   end

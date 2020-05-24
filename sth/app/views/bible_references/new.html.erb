@@ -8,21 +8,21 @@
   <textarea name="content" id="content"></textarea>
 
   <h2>Desires</h2>
-  <% for desire in @desires %>
+  <% for desire in @user.desires %>
     <label for="desire-<%= desire.id %>"><%= desire.name %></label>
     <input type="checkbox" name="desires[]" id="desire-<%= desire.id %>" value="<%= desire.id %>">
   <% end %>
   <a href="/desires/new"><button type="button">New Desire</button></a>
 
   <h2>Seeds</h2>
-  <% for seed in @seeds %>
+  <% for seed in @user.seeds %>
     <label for="seed-<%= seed.id %>"><%= seed.first_three %></label>
     <input type="checkbox" name="seeds[]" id="seed-<%= seed.id %>" value="<%= seed.id %>">
   <% end %>
   <a href="/seeds/new"><button type="button">New Seed</button></a>
 
   <h2>Harvests</h2>
-  <% for harvest in @harvests %>
+  <% for harvest in @user.harvests %>
     <div <%= 'class="completed"' if harvest.completed %>>
       <label for="harvest-<%= harvest.id %>"><%= harvest.first_three %></label>
       <input type="checkbox" name="harvests[]" id="harvest-<%= harvest.id %>" value="<%= harvest.id %>">
