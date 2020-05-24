@@ -140,13 +140,15 @@ class TargetsController < ApplicationController
       redirect '/'
     end
 
-    @target = Target.find_by_id(params[:id])
+    user = User.find_by_id(session[:rd])
+    @target = Target.find_by(user_id: user.id, id: params[:id])
 
     erb :'/targets/delete.html'
   end
 
   delete '/targets/:id' do
-    Target.find_by_id(params[:id]).delete
+    user = User.find_by_id(session[:rd])
+    Target.find_by(user_id: user.id, id: params[:id]).delete
 
     redirect :'/targets'
   end
