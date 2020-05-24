@@ -66,10 +66,11 @@ class TargetsController < ApplicationController
       redirect '/'
     end
 
-    @target = Target.find_by_id(params[:id])
-    @bible_references = @target.seeds.collect {|seed| seed.bible_references}.flatten.uniq
-    @desires = @bible_references.collect {|bible_reference| bible_reference.desires}.flatten.uniq
-    @sources = @bible_references.collect {|bible_reference| bible_reference.harvests}.flatten.uniq.collect {|harvest| harvest.sources}.flatten.uniq
+    user = User.find_by_id(session[:rd])
+    @target = Target.find_by(user_id: user.id, id: params[:id])
+    @bible_references = @target.seeds.select {|seed| seed.user_id == user.id}.collect {|seed| seed.bible_references}.flatten.select {|bible_reference| bible_reference.user_id == user.id}.uniq
+    @desires = @bible_references.collect {|bible_reference| bible_reference.desires}.flatten.select {|desire| desire.user_id == user.id}.uniq
+    @sources = @bible_references.collect {|bible_reference| bible_reference.harvests}.flatten.uniq.select {|harvest| harvest.user_id == user.id}.collect {|harvest| harvest.sources}.flatten.uniq.select {|source| source.user_id == user.id}
 
     erb :'/targets/show.html'
   end
