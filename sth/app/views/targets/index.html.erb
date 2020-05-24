@@ -1,5 +1,5 @@
 <h1>Targets</h1>
-<% for target in @targets %>
+<% for target in @user.targets %>
   <h2><%= target.name %></h2>
   <h3>Time Sown: <%= target.time_sown %></h3>
   <h3>Money Sown: $<%= "%.2f" % target.money_sown %></h3>

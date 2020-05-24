@@ -6,7 +6,7 @@ class TargetsController < ApplicationController
       redirect '/'
     end
 
-    @targets = Target.all
+    @user = User.find_by_id(session[:rd])
 
     erb :'/targets/index.html'
   end
