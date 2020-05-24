@@ -49,14 +49,15 @@ class SownItemsController < ApplicationController
       redirect '/'
     end
 
-    @sown_item = SownItem.find_by_id(params[:id])
-    @targets = Target.all
+    @user = User.find_by_id(session[:rd])
+    @sown_item = SownItem.find_by(user_id: @user.id, id: params[:id])
 
     erb :'/sown_items/edit.html'
   end
 
   patch '/sown_items/:id' do
-    sown_item = SownItem.find_by_id(params[:id])
+    user = User.find_by_id(session[:rd])
+    sown_item = SownItem.find_by(user_id: user.id, id: params[:id])
     if sown_item
       sown_item.item = params[:item]
       sown_item.target = Target.find_by_id(params[:target])

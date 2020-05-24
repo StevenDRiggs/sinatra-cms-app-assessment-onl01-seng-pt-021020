@@ -7,7 +7,7 @@
   <input type="text" name="item" id="item" value="<%= @sown_item.item %>" required>
 
   <h3>Received from:</h3>
-  <% for target in @targets %>
+  <% for target in @user.targets %>
     <label for="target"><%= target.name %></label>
     <input type="radio" name="target" id="target" value="<%= target.id %>" <%= 'checked' if @sown_item.target == target %> required>
   <% end %>
