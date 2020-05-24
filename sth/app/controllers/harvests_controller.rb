@@ -6,7 +6,7 @@ class HarvestsController < ApplicationController
       redirect '/'
     end
 
-    @harvests = Harvest.all
+    @user = User.find_by_id(session[:rd])
 
     erb :'/harvests/index.html'
   end
