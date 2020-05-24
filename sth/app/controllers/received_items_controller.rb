@@ -17,13 +17,14 @@ class ReceivedItemsController < ApplicationController
       redirect '/'
     end
 
-    @sources = Source.all
+    @user = User.find_by_id(session[:rd])
 
     erb :'/received_items/new.html'
   end
 
   post '/received_items' do
-    received_item = ReceivedItem.create(item: params[:item], source: Source.find_by_id(params[:source]))
+    user = User.find_by_id(session[:rd])
+    received_item = ReceivedItem.create(user_id: user.id, item: params[:item], source: Source.find_by(user_id: user.id, id: params[:source]))
 
     redirect "/received_items/#{received_item.id}"
   end

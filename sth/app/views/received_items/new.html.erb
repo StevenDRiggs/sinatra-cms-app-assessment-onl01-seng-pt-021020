@@ -6,7 +6,7 @@
   <input type="text" name="item" id="item" required>
 
   <h3>Received from:</h3>
-  <% for source in @sources %>
+  <% for source in @user.sources %>
     <label for="source"><%= source.name %></label>
     <input type="radio" name="source" id="source" value="<%= source.id %>" required>
   <% end %>
