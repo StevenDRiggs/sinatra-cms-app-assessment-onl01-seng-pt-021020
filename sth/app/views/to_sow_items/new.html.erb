@@ -6,7 +6,7 @@
   <input type="text" name="item" id="item" required>
 
   <h3>Sow to:</h3>
-  <% for target in @targets %>
+  <% for target in @user.targets %>
     <label for="target"><%= target.name %></label>
     <input type="radio" name="target" id="target" value="<%= target.id %>" required>
   <% end %>

@@ -17,13 +17,16 @@ class ToSowItemsController < ApplicationController
       redirect '/'
     end
 
-    @targets = Target.all
+    @user = User.find_by_id(session[:rd])
 
     erb :'/to_sow_items/new.html'
   end
 
   post '/to_sow_items' do
-    to_sow_item = ToSowItem.create(item: params[:item], target: Target.find_by_id(params[:target]))
+    user = User.find_by_id(session[:rd])
+    to_sow_item = user.to_sow_items.build(item: params[:item], target: Target.find_by_id(params[:target]))
+
+    to_sow_item.save
 
     redirect "/to_sow_items/#{to_sow_item.id}"
   end
