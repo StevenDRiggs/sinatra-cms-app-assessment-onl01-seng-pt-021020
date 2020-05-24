@@ -52,19 +52,20 @@ class SeedsController < ApplicationController
       redirect '/'
     end
 
-    @seed = Seed.find_by_id(params[:id])
-    @targets = Target.all
+    @user = User.find_by_id(session[:rd])
+    @seed = Seed.find_by(user_id: @user.id, id: params[:id])
 
     erb :'/seeds/edit.html'
   end
 
   patch '/seeds/:id' do
-    seed = Seed.find_by_id(params[:id])
+    user = User.find_by_id(session[:rd])
+    seed = Seed.find_by(user_id: user.id, id: params[:id])
 
     seed.targets =[]
     if !(params[:targets].nil? || (params[:targets].length == 1 && params[:targets][0] == ''))
       for target_id in params[:targets]
-        target = Target.find_by_id(target_id)
+        target = Target.find_by(user_id: user.id, id: target_id)
         seed.targets << target if target
       end
     end

@@ -4,7 +4,7 @@
   <input type="hidden" name="_method" id="hidden" value="PATCH">
 
   <h2>Targets</h2>
-  <% for target in @targets %>
+  <% for target in @user.targets %>
     <label for="target-<%= target.id %>"><h3><%= target.name %></h3></label>
     <input type="checkbox" name="targets[]" id="target-<%= target.id %>" value="<%= target.id %>" <%= 'checked' if @seed.targets.include?(target) %>>
   <% end %>
