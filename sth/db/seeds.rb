@@ -43,7 +43,7 @@ User.all.each.with_index do |user, i|
   sown_items = []
   for j in 1..(Random.rand * 10).to_i
     item = user.sown_items.build(
-      item: "sown item #{j}"
+      item: "sown item #{i}/#{j}"
     )
     sown_items << item
   end
@@ -51,7 +51,7 @@ User.all.each.with_index do |user, i|
   to_sow_items = []
   for j in 1..(Random.rand * 10).to_i
     item = user.to_sow_items.build(
-      item: "to sow item #{j}"
+      item: "to sow item #{i}/#{j}"
     )
     to_sow_items << item
   end
@@ -72,7 +72,7 @@ User.all.each.with_index do |user, i|
   received_items = []
   for j in 1..(Random.rand * 10).to_i
     item = user.received_items.build(
-      item: "received item #{j}"
+      item: "received item #{i}/#{j}"
     )
     received_items << item
   end
