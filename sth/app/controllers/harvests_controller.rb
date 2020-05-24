@@ -47,7 +47,8 @@ class HarvestsController < ApplicationController
       redirect '/'
     end
 
-    @harvest = Harvest.find_by_id(params[:id])
+    user = User.find_by_id(session[:rd])
+    @harvest = Harvest.find_by(user_id: user.id, id: params[:id])
 
     erb :'/harvests/show.html'
   end
