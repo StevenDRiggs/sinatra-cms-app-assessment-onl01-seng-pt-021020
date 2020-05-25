@@ -1,14 +1,28 @@
-<h1>Log In</h1>
+<h1 id="main-heading">Log In</h1>
 
 <form action="login" method="post">
 
-  <label for="username_or_email">Username or Email</label>
-  <input type="text" name="username_or_email" id="username_or_email">
+  <div class="form-labels">
+    <label for="username_or_email">Username or Email</label>
 
-  <label for="password">Password</label>
-  <input type="password" name="password" id="password">
+    <br><br>
 
-  <button type="submit" id="login">Log In</button>
+    <label for="password">Password</label>
+  </div>
+
+  <div class="form-fields">
+    <input type="text" name="username_or_email" id="username_or_email">
+
+    <br><br>
+
+    <input type="password" name="password" id="password">
+  </div>
+
+  <div class="clearfix"></div>
+
+  <div class="button">
+    <button type="submit" id="login">Log In</button>
+  </div>
 
   <caption>Need an account? <a href="/signup">Sign Up</a> today!</caption>
 
