@@ -18,6 +18,14 @@ div.error {
   background-color: red;
 }
 
+a:hover {
+  color: #74a102
+}
+
+.clearfix {
+  clear: both;
+}
+
 div.wrapper {
   position: absolute;
   top: 50%;
@@ -34,6 +42,16 @@ h2.subheading {
   margin: 25px auto;
 }
 
+div.form-labels {
+  width: 50%;
+  float: left;
+}
+
+div.form-fields {
+  width: 50%;
+  float: right;
+}
+
 div#signup a:link {
   color: #06401a;
 }
@@ -46,8 +64,8 @@ div#signup a:visited, div#login a:visited {
   color: #0c6bb3;
 }
 
-div#signup a:hover, div#login a:hover {
-  color: #74a102
+div.button {
+  margin: 25px auto;
 }
 
 footer.branding {
