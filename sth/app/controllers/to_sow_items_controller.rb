@@ -49,17 +49,18 @@ class ToSowItemsController < ApplicationController
       redirect '/'
     end
 
-    @to_sow_item = ToSowItem.find_by_id(params[:id])
-    @targets = Target.all
+    @user = User.find_by_id(session[:rd])
+    @to_sow_item = ToSowItem.find_by(user_id: @user.id, id: params[:id])
 
     erb :'/to_sow_items/edit.html'
   end
 
   patch '/to_sow_items/:id' do
-    to_sow_item = ToSowItem.find_by_id(params[:id])
+    user = User.find_by_id(session[:rd])
+    to_sow_item = ToSowItem.find_by(user_id: user.id, id: params[:id])
     if to_sow_item
       to_sow_item.item = params[:item]
-      to_sow_item.target = Target.find_by_id(params[:target])
+      to_sow_item.target = Target.find_by(user_id: user.id, id: params[:target])
 
       to_sow_item.save
 
