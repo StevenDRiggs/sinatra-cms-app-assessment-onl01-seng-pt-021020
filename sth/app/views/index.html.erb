@@ -1,14 +1,14 @@
-<h1>Main Index</h1>
-<caption><%= @user.username %></caption>
+<h1 id="main-heading">Main Index</h1>
+<h2 class="subheading"><%= @user.username %></h2>
 
 <table id="data">
   <thead>
     <tr>
-      <th>Desire</th>
-      <th>Bible References</th>
-      <th>Seeds Sown</th>
-      <th>Seeds Yet to Sow</th>
-      <th>Harvest Received</th>
+      <th><a href="/desires">Desires</a></th>
+      <th><a href="/bible_references">Bible References</a></th>
+      <th><a href="/seeds">Seeds Sown</a></th>
+      <th><a href="/seeds">Seeds Yet to Sow</a></th>
+      <th><a href="/harvests">Harvest Received</a></th>
     </tr>
   </thead>
   <tbody>
@@ -71,8 +71,7 @@
                   </li>
                 <% end %>
               </ul>
-              <label for="completed">Completed?</label>
-              <input type="checkbox" id="completed" disabled <%= 'checked' if harvest.completed %>>
+              <%= '<p>Completed</p>' if harvest.completed %>
           </a>
           <% end %>
         </td>
