@@ -3,6 +3,7 @@ class BibleReferencesController < ApplicationController
   # index
   get '/bible_references' do
     if !logged_in?(session[:rd])
+      flash[:warning] = "You must be logged in to view stored data."
       redirect '/'
     end
 
@@ -14,6 +15,7 @@ class BibleReferencesController < ApplicationController
   # new
   get '/bible_references/new' do
     if !logged_in?(session[:rd])
+      flash[:warning] = "You must be logged in to create data."
       redirect '/'
     end
 
@@ -52,6 +54,7 @@ class BibleReferencesController < ApplicationController
   # show
   get '/bible_references/:id' do
     if !logged_in?(session[:rd])
+      flash[:warning] = "You must be logged in to view stored data."
       redirect '/'
     end
 
@@ -64,6 +67,7 @@ class BibleReferencesController < ApplicationController
   # edit
   get '/bible_references/:id/edit' do
     if !logged_in?(session[:rd])
+      flash[:warning] = "You must be logged in to edit stored data."
       redirect '/'
     end
 
@@ -115,6 +119,7 @@ class BibleReferencesController < ApplicationController
   # delete
   get '/bible_references/:id/delete' do
     if !logged_in?(session[:rd])
+      flash[:warning] = "You must be logged in to delete stored data."
       redirect '/'
     end
 

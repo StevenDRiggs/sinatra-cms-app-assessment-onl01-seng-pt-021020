@@ -3,6 +3,7 @@ class ReceivedItemsController < ApplicationController
   # index
   get '/received_items' do
     if !logged_in?(session[:rd])
+      flash[:warning] = "You must be logged in to view stored data."
       redirect '/'
     end
 
@@ -14,6 +15,7 @@ class ReceivedItemsController < ApplicationController
   # new
   get '/received_items/new' do
     if !logged_in?(session[:rd])
+      flash[:warning] = "You must be logged in to create data."
       redirect '/'
     end
 
@@ -32,6 +34,7 @@ class ReceivedItemsController < ApplicationController
   # show
   get '/received_items/:id' do
     if !logged_in?(session[:rd])
+      flash[:warning] = "You must be logged in to view stored data."
       redirect '/'
     end
 
@@ -44,6 +47,7 @@ class ReceivedItemsController < ApplicationController
   # edit
   get '/received_items/:id/edit' do
     if !logged_in?(session[:rd])
+      flash[:warning] = "You must be logged in to edit stored data."
       redirect '/'
     end
 
@@ -64,6 +68,7 @@ class ReceivedItemsController < ApplicationController
   # delete
   get '/received_items/:id/delete' do
     if !logged_in?(session[:rd])
+      flash[:warning] = "You must be logged in to delete stored data."
       redirect '/'
     end
 

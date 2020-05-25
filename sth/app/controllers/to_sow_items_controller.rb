@@ -3,6 +3,7 @@ class ToSowItemsController < ApplicationController
   # index
   get '/to_sow_items' do
     if !logged_in?(session[:rd])
+      flash[:warning] = "You must be logged in to view stored data."
       redirect '/'
     end
 
@@ -14,6 +15,7 @@ class ToSowItemsController < ApplicationController
   # new
   get '/to_sow_items/new' do
     if !logged_in?(session[:rd])
+      flash[:warning] = "You must be logged in to create data."
       redirect '/'
     end
 
@@ -34,6 +36,7 @@ class ToSowItemsController < ApplicationController
   # show
   get '/to_sow_items/:id' do
     if !logged_in?(session[:rd])
+      flash[:warning] = "You must be logged in to view stored data."
       redirect '/'
     end
 
@@ -46,6 +49,7 @@ class ToSowItemsController < ApplicationController
   # edit
   get '/to_sow_items/:id/edit' do
     if !logged_in?(session[:rd])
+      flash[:warning] = "You must be logged in to edit stored data."
       redirect '/'
     end
 
@@ -73,6 +77,7 @@ class ToSowItemsController < ApplicationController
   # delete
   get '/to_sow_items/:id/delete' do
     if !logged_in?(session[:rd])
+      flash[:warning] = "You must be logged in to delete stored data."
       redirect '/'
     end
 

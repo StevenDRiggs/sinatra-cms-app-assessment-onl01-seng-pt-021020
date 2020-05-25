@@ -3,6 +3,7 @@ class TargetsController < ApplicationController
   # index
   get '/targets' do
     if !logged_in?(session[:rd])
+      flash[:warning] = "You must be logged in to view stored data."
       redirect '/'
     end
 
@@ -14,6 +15,7 @@ class TargetsController < ApplicationController
   # new
   get '/targets/new' do
     if !logged_in?(session[:rd])
+      flash[:warning] = "You must be logged in to create data."
       redirect '/'
     end
 
@@ -63,6 +65,7 @@ class TargetsController < ApplicationController
   # show
   get '/targets/:id' do
     if !logged_in?(session[:rd])
+      flash[:warning] = "You must be logged in to view stored data."
       redirect '/'
     end
 
@@ -78,6 +81,7 @@ class TargetsController < ApplicationController
   # edit
   get '/targets/:id/edit' do
     if !logged_in?(session[:rd])
+      flash[:warning] = "You must be logged in to edit stored data."
       redirect '/'
     end
 
@@ -137,6 +141,7 @@ class TargetsController < ApplicationController
   # delete
   get '/targets/:id/delete' do
     if !logged_in?(session[:rd])
+      flash[:warning] = "You must be logged in to delete stored data."
       redirect '/'
     end
 

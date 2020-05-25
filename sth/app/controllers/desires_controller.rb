@@ -3,6 +3,7 @@ class DesiresController < ApplicationController
   # index
   get '/desires' do
     if !logged_in?(session[:rd])
+      flash[:warning] = "You must be logged in to view stored data."
       redirect '/'
     end
 
@@ -14,6 +15,7 @@ class DesiresController < ApplicationController
   # new
   get '/desires/new' do
     if !logged_in?(session[:rd])
+      flash[:warning] = "You must be logged in to create data."
       redirect '/'
     end
 
@@ -34,6 +36,7 @@ class DesiresController < ApplicationController
   # show
   get '/desires/:id' do
     if !logged_in?(session[:rd])
+      flash[:warning] = "You must be logged in to view stored data."
       redirect '/'
     end
 
@@ -46,6 +49,7 @@ class DesiresController < ApplicationController
   # edit
   get '/desires/:id/edit' do
     if !logged_in?(session[:rd])
+      flash[:warning] = "You must be logged in to edit stored data."
       redirect '/'
     end
 
@@ -71,6 +75,7 @@ class DesiresController < ApplicationController
   # delete
   get '/desires/:id/delete' do
     if !logged_in?(session[:rd])
+      flash[:warning] = "You must be logged in to delete stored data."
       redirect '/'
     end
 

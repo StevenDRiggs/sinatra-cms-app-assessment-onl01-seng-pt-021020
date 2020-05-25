@@ -3,6 +3,7 @@ class SeedsController < ApplicationController
   # index
   get '/seeds' do
     if !logged_in?(session[:rd])
+      flash[:warning] = "You must be logged in to view stored data."
       redirect '/'
     end
 
@@ -14,6 +15,7 @@ class SeedsController < ApplicationController
   # new
   get '/seeds/new' do
     if !logged_in?(session[:rd])
+      flash[:warning] = "You must be logged in to create data."
       redirect '/'
     end
 
@@ -37,6 +39,7 @@ class SeedsController < ApplicationController
   # show
   get '/seeds/:id' do
     if !logged_in?(session[:rd])
+      flash[:warning] = "You must be logged in to view stored data."
       redirect '/'
     end
 
@@ -49,6 +52,7 @@ class SeedsController < ApplicationController
   # edit
   get '/seeds/:id/edit' do
     if !logged_in?(session[:rd])
+      flash[:warning] = "You must be logged in to edit stored data."
       redirect '/'
     end
 
@@ -78,6 +82,7 @@ class SeedsController < ApplicationController
   # delete
   get '/seeds/:id/delete' do
     if !logged_in?(session[:rd])
+      flash[:warning] = "You must be logged in to delete stored data."
       redirect '/'
     end
 

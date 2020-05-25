@@ -3,6 +3,7 @@ class SourcesController < ApplicationController
   # index
   get '/sources' do
     if !logged_in?(session[:rd])
+      flash[:warning] = "You must be logged in to view stored data."
       redirect '/'
     end
 
@@ -14,6 +15,7 @@ class SourcesController < ApplicationController
   # new
   get '/sources/new' do
     if !logged_in?(session[:rd])
+      flash[:warning] = "You must be logged in to create data."
       redirect '/'
     end
 
@@ -45,6 +47,7 @@ class SourcesController < ApplicationController
   # show
   get '/sources/:id' do
     if !logged_in?(session[:rd])
+      flash[:warning] = "You must be logged in to view stored data."
       redirect '/'
     end
 
@@ -59,6 +62,7 @@ class SourcesController < ApplicationController
   # edit
   get '/sources/:id/edit' do
     if !logged_in?(session[:rd])
+      flash[:warning] = "You must be logged in to edit stored data."
       redirect '/'
     end
 
@@ -95,6 +99,7 @@ class SourcesController < ApplicationController
   # delete
   get '/sources/:id/delete' do
     if !logged_in?(session[:rd])
+      flash[:warning] = "You must be logged in to delete stored data."
       redirect '/'
     end
 
