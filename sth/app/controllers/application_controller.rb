@@ -7,6 +7,7 @@ class ApplicationController < Sinatra::Base
     set :views, 'app/views'
     enable :sessions
     set :session_secret, 'my_secret'
+    register Sinatra::Flash
   end
 
 
@@ -97,6 +98,7 @@ class ApplicationController < Sinatra::Base
   # index (logged in)
   get '/index' do
     if !logged_in?(session[:rd])
+      flash[:warning] = "You must be logged in to view stored data."
       redirect '/'
     else
       @user = User.find_by_id(session[:rd])

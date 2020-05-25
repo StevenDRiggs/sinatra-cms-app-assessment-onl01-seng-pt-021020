@@ -10,6 +10,10 @@ body {
   color: #382111;
 }
 
+div.warning {
+  background-color: #fc7f03;
+}
+
 div.wrapper {
   position: absolute;
   top: 50%;

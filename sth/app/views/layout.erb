@@ -15,6 +15,16 @@
   </head>
   <body>
     <header>
+      <% if flash[:warning] %>
+        <div class="flash warning">
+          <h2><%= flash[:warning] %></h2>
+        </div>
+      <% elsif flash[:error] %>
+        <div class="flash error">
+          <%= flash[:error] %>
+        </div>
+      <% end %>
+
       <form action="/logout" method="GET">
 
         <button type="submit" id="logout">Log Out</button>
