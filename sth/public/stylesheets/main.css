@@ -14,6 +14,10 @@ div.warning {
   background-color: #fc7f03;
 }
 
+div.error {
+  background-color: red;
+}
+
 div.wrapper {
   position: absolute;
   top: 50%;
@@ -22,7 +26,7 @@ div.wrapper {
   transform: translate(-50%, -50%);
 }
 
-h1.main-heading {
+h1#main-heading {
   margin: 15px auto;
 }
 
