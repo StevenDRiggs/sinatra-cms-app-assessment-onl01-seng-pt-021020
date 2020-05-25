@@ -25,9 +25,15 @@
         </div>
       <% end %>
 
-      <form action="/logout" method="GET" class="logout">
+      <form action="/logout" method="GET">
 
         <button type="submit" id="logout">Log Out</button>
+
+      </form>
+
+      <form action="/index" method="GET">
+
+        <button type="submit" id="main">Main</button>
 
       </form>
     </header>
@@ -46,5 +52,6 @@
       <script>window.attachEvent("onload",function(){CFInstall.check({mode:"overlay"})})</script>
     <![endif]-->
     <script src="javascripts/hide_logout.js"></script>
+    <script src="javascripts/hide_main.js"></script>
   </body>
 </html>
