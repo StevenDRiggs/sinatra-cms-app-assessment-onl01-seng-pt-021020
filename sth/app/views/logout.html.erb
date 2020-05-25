@@ -1,8 +1,11 @@
 <form action="/logout" method="POST">
 
   <label for="logout">Log Out <%= @username %>?</label>
-  <button type="submit" id="logout">Log Out</button>
 
-  <a href="/index">Cancel</a>
+  <div class="button">
+    <button type="submit" id="logout">Log Out</button>
+  </div>
+
+  <p><a href="/index">Cancel</a><p>
 
 </form>
