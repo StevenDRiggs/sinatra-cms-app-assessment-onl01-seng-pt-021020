@@ -76,7 +76,8 @@ class ToSowItemsController < ApplicationController
       redirect '/'
     end
 
-    @to_sow_item = ToSowItem.find_by_id(params[:id])
+    user = User.find_by_id(session[:rd])
+    @to_sow_item = ToSowItem.find_by(user_id: user.id, id: params[:id])
 
     erb :'/to_sow_items/delete.html'
   end
