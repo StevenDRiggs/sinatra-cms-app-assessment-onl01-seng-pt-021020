@@ -39,16 +39,13 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/signup' do
-    if params[:username] != '' && params[:email] != '' && params[:password] != ''
-      if !User.find_by(username: params[:username]) && !User.find_by(email: params[:email])
-        user = User.create(username: params[:username], email: params[:email], password: params[:password])
-        user.logged_in = true
-        session[:rd] = user.id
-        redirect '/index'
-      else
-        redirect '/signup'
-      end
+    if !User.find_by(username: params[:username]) && !User.find_by(email: params[:email])
+      user = User.create(username: params[:username], email: params[:email], password: params[:password])
+      user.logged_in = true
+      session[:rd] = user.id
+      redirect '/index'
     else
+      flash[:error] = "Username or Email already exists."
       redirect '/signup'
     end
   end
@@ -63,16 +60,13 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/login' do
-    if params[:username_or_email] != '' && params[:password] != ''
-      user = params[:username_or_email].match?(/.*@.*\.[a-zA-Z]{3,5}/) ? User.find_by(email: params[:username_or_email]) : User.find_by(username: params[:username_or_email])
-      if user && user.authenticate(params[:password])
-        user.logged_in = true
-        session[:rd] = user.id
-        redirect '/index'
-      else
-        redirect '/login'
-      end
+    user = params[:username_or_email].match?(/.*@.*\.[a-zA-Z]{3,5}/) ? User.find_by(email: params[:username_or_email]) : User.find_by(username: params[:username_or_email])
+    if user && user.authenticate(params[:password])
+      user.logged_in = true
+      session[:rd] = user.id
+      redirect '/index'
     else
+      flash[:error] = "Username/Email and Password combination incorrect."
       redirect '/login'
     end
   end
