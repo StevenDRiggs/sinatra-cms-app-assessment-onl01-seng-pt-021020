@@ -3,83 +3,86 @@
 
   <p class="subheading caption"><%= @desire.description %></p>
 
-  <h3 class="subheading">Bible References</h3>
+  <h2 class="subheading">Bible References</h2>
   <ul>
     <% for bible_reference in @desire.bible_references %>
       <a href="/bible_references/<%= bible_reference.id %>"><li><%= bible_reference.reference %></li></a>
     <% end %>
   </ul>
 
-  <h3 class="subheading">Seeds</h3>
+  <h2 class="subheading">Seeds</h2>
   <ul>
     <% for seed in @desire.seeds %>
-      <a href="/seeds/<%= seed.id %>">
-        <li>
-          <p>Targets<p>
-          <ul>
-            <% for target in seed.targets.uniq %>
-              <li><%= target.name %></li>
-            <% end %>
-          </ul>
-          <p>Sown<p>
-          <ul>
-            <li><%= seed.total_time_sown %></li>
-            <li>$<%= "%.2f" % seed.total_money_sown %></li>
-            <li>
-              <ul>
-                <% for item, quantity in seed.all_sown_items %>
-                  <li><%= item.item %> (x<%= quantity %>)</li>
-                <% end %>
-              </ul>
-            </li>
-          </ul>
-          <p>Yet to Sow<p>
-          <ul>
-            <li><%= seed.total_time_to_sow %></li>
-            <li>$<%= "%.2f" % seed.total_money_to_sow %></li>
-            <li>
-              <ul>
-                <% for item, quantity in seed.all_to_sow_items %>
-                  <li><%= item.item %> (x<%= quantity %>)</li>
-                <% end %>
-              </ul>
-            </li>
-          </ul>
-        </li>
-      </a>
+      <li>
+        <h3 class="subheading">Targets</h3>
+        <ul>
+          <% for target in seed.targets.uniq %>
+            <li><a href="/targets/<%= target.id %>"><%= target.name %></a></li>
+          <% end %>
+        </ul>
+        <h3 class="subheading">Sown</h3>
+        <ul>
+          <li><%= seed.total_time_sown %></li>
+          <br>
+          <li>$<%= "%.2f" % seed.total_money_sown %></li>
+          <br>
+          <li>
+            <ul>
+              <% for item, quantity in seed.all_sown_items %>
+                <li><a href="/sown_items/<%= item.id %>"><%= item.item %> (x<%= quantity %>)</a></li>
+              <% end %>
+            </ul>
+          </li>
+        </ul>
+        <h3 class="subheading">Yet to Sow</h3>
+        <ul>
+          <li><%= seed.total_time_to_sow %></li>
+          <br>
+          <li>$<%= "%.2f" % seed.total_money_to_sow %></li>
+          <br>
+          <li>
+            <ul>
+              <% for item, quantity in seed.all_to_sow_items %>
+                <li><a href="/to_sow_items/<%= item.id %>"><%= item.item %> (x<%= quantity %>)</a></li>
+              <% end %>
+            </ul>
+          </li>
+        </ul>
+      </li>
     <% end %>
   </ul>
 
-  <h3 class="subheading">Harvests</h3>
+  <h2 class="subheading">Harvests</h2>
   <ul>
     <% for harvest in @desire.harvests %>
-      <a href="/harvests/<%= harvest.id %>">
-        <li>
-          <p>Sources</p>
-          <ul>
-            <% for source in harvest.sources.uniq %>
-              <li><%= source.name %></li>
-            <% end %>
-          </ul>
-          <p>Received</p>
-          <ul>
-            <li><%= harvest.total_time_received %></li>
-            <li>$<%= "%.2f" % harvest.total_money_received %></li>
-            <li>
-              <ul>
-                <% for item, quantity in harvest.all_received_items %>
-                  <li><%= item.item %> (x<%= quantity %>)</li>
-                <% end %>
-              </ul>
-            </li>
-            <li>
-              <% if harvest.completed %>
-                <p>Completed in <%= harvest.time_to_completion %></p>
+      <li>
+        <h3 class="subheading">Sources</h3>
+        <ul>
+          <% for source in harvest.sources.uniq %>
+            <li><%= source.name %></li>
+          <% end %>
+        </ul>
+        <h3 class="subheading">Received</h3>
+        <ul>
+          <li><%= harvest.total_time_received %></li>
+          <br>
+          <li>$<%= "%.2f" % harvest.total_money_received %></li>
+          <br>
+          <li>
+            <ul>
+              <% for item, quantity in harvest.all_received_items %>
+                <li><a href="/received_items/<%= item.id %>"><%= item.item %> (x<%= quantity %>)</a></li>
               <% end %>
-            </li>
-          </ul>
-        </li>
-      </a>
+            </ul>
+          </li>
+          <% if harvest.completed %>
+            <br>
+              <li>
+                Completed in <%= harvest.time_to_completion %>
+              </li>
+          <% end %>
+        </ul>
+      </li>
     <% end %>
   </ul>
 

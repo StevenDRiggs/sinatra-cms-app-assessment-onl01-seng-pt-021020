@@ -47,8 +47,9 @@ div.wrapper {
 }
 
 div.too-large-fix {
+  margin-top: 0;
   position: relative;
-  top: 125px;
+  top: 300px;
 }
 
 .subheading {
