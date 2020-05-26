@@ -1,16 +1,24 @@
-<h1>Edit Seed</h1>
+<h1 id="main-heading">Edit Seed</h1>
 
 <form action="/seeds/<%= @seed.id %>" method="POST">
   <input type="hidden" name="_method" id="hidden" value="PATCH">
 
-  <h2>Targets</h2>
+  <h2 class="subheading">Targets</h2>
   <% for target in @user.targets %>
-    <label for="target-<%= target.id %>"><h3><%= target.name %></h3></label>
-    <input type="checkbox" name="targets[]" id="target-<%= target.id %>" value="<%= target.id %>" <%= 'checked' if @seed.targets.include?(target) %>>
+    <div>
+      <label for="target-<%= target.id %>"><h3><%= target.name %></h3></label>
+    </div>
+    <div>
+      <input type="checkbox" name="targets[]" id="target-<%= target.id %>" value="<%= target.id %>" <%= 'checked' if @seed.targets.include?(target) %>>
+    </div>
   <% end %>
 
-  <a href="/targets/new"><button type="button" id="new_target">New Target</button></a>
+  <div class="button">
+    <a href="/targets/new"><button type="button" id="new_target">New Target</button></a>
+  </div>
 
-  <button type="submit" id="submit">Submit</button>
+  <div class="button">
+    <button type="submit" id="submit">Submit</button>
+  </div>
 
 </form>
