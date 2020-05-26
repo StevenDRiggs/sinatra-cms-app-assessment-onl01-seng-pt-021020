@@ -42,7 +42,7 @@ div.wrapper {
   transform: translate(-50%, -50%);
 }
 
-h1#main-heading {
+#main-heading {
   margin: 15px auto;
 }
 
