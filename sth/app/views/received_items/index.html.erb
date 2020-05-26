@@ -4,3 +4,7 @@
   <h2 class="subheading"><a href="/received_items/<%= received_item.id %>"><%= received_item.item %></a></h2>
   <h3 class="caption">Received from: <%= received_item.source.name %></h3>
 <% end %>
+
+<div class="button">
+  <a href="/received_items/new"><button type="button">New Received Item</button></a>
+</div>
