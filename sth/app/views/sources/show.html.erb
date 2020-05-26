@@ -8,3 +8,11 @@
 <% for bible_reference in @bible_references %>
   <h3><a href="/bible_references/<%= bible_reference.id %>"><%= bible_reference.reference %></a></h3>
 <% end %>
+
+<div class="button">
+  <a href="/sources/<%= @source.id %>/edit"><button type="button">Edit Source</button></a>
+</div>
+
+<div class="button">
+  <a href="/sources/<%= @source.id %>/delete"><button type="button">Delete Source</button></a>
+</div>
