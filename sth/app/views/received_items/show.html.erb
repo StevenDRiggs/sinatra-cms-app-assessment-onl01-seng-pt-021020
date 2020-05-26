@@ -1,4 +1,12 @@
-<h1><%= @received_item.item %></h1>
+<h1 id="main-heading"><%= @received_item.item %></h1>
 
-<h2>Received from:</h2>
-<h3><%= @received_item.source.name %></h3>
+<h2 class="subheading">Received from:</h2>
+<h3 class="caption"><a href="/sources/<%= @received_item.source.id %>"><%= @received_item.source.name %></a></h3>
+
+<div class="button">
+  <a href="/received_items/<%= @received_item.id %>/edit"><button type="button">Edit Received Item</button></a>
+</div>
+
+<div class="button">
+  <a href="/received_items/<%= @received_item.id %>/delete"><button type="button">Delete Received Item</button></a>
+</div>
