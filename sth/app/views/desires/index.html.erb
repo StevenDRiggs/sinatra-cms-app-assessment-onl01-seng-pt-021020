@@ -1,8 +1,8 @@
-<h1>Desires</h1>
+<h1 id="main-heading">Desires</h1>
 
 <% for desire in @user.desires %>
   <a href="/desires/<%= desire.id %>">
-    <h2><%= desire.name %></h2>
-    <p><%= desire.description %></p>
+    <h2 class="subheading"><%= desire.name %></h2>
+    <p class="caption"><%= desire.description %></p>
   </a>
 <% end %>
