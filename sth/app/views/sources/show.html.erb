@@ -1,10 +1,10 @@
-<h1><%= @source.name %></h1>
+<h1 id="main-heading"><%= @source.name %></h1>
 
-<h2>Answers</h2>
+<h2 class="subheading">Answers</h2>
 <% for desire in @desires %>
-  <p><%= desire.name %></p>
+  <h3><a href="/desires/<%= desire.id %>"><%= desire.name %></a></h3>
 <% end %>
-<h3>Via</h3>
+<h2 class="subheading">Via</h2>
 <% for bible_reference in @bible_references %>
-  <p><%= bible_reference.reference %></p>
+  <h3><a href="/bible_references/<%= bible_reference.id %>"><%= bible_reference.reference %></a></h3>
 <% end %>

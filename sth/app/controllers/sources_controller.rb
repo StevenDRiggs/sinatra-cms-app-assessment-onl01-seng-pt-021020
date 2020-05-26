@@ -54,7 +54,7 @@ class SourcesController < ApplicationController
     user = User.find_by_id(session[:rd])
     @source = Source.find_by(user_id: user.id, id: params[:id])
     @bible_references = @source.harvests.uniq.select {|harvest| harvest.user_id == user.id}.collect {|harvest| harvest.bible_references}.flatten.select {|bible_reference| bible_reference.user_id == user.id}.flatten.uniq
-    @desires = @bible_references.collect {|bible_reference| bible_reference.desires}.select {|desire| desire.user_id == user.id}.uniq
+    @desires = @bible_references.collect {|bible_reference| bible_reference.desires}.flatten.uniq.select {|desire| desire.user_id == user.id}.uniq
 
     erb :'/sources/show.html'
   end
