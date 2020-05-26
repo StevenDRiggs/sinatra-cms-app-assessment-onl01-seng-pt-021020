@@ -1,6 +1,10 @@
-<h1>Sown Items</h1>
+<h1 id="main-heading">Sown Items</h1>
 
 <% for sown_item in @user.sown_items %>
-  <h2><%= sown_item.item %></h2>
-  <h3>Sown to: <%= sown_item.target.name %></h3>
+  <h2 class="subheading"><a href="/sown_items/<%= sown_item.id %>"><%= sown_item.item %></a></h2>
+  <h3 class="caption">Sown to: <a href="/targets/<%= sown_item.target.id %>"><%= sown_item.target.name %></a></h3>
 <% end %>
+
+<div class="button">
+  <a href="/sown_items/new"><button type="button">New Sown Item</button></a>
+</div>
