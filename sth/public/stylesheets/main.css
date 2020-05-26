@@ -18,6 +18,14 @@ div.error {
   background-color: red;
 }
 
+a:link {
+  color: white;
+}
+
+a:visited {
+  color: #fc7f03;
+}
+
 a:hover {
   color: #74a102;
 }
@@ -38,8 +46,12 @@ h1#main-heading {
   margin: 15px auto;
 }
 
-h2.subheading {
+.subheading {
   margin: 25px auto;
+}
+
+.caption {
+  margin-top: 10px;
 }
 
 div.form-labels {

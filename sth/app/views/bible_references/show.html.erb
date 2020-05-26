@@ -1,14 +1,14 @@
-<h1><%= @bible_reference.reference %></h1>
-<caption><%= @bible_reference.content %></caption>
+<h1 id="main-heading"><%= @bible_reference.reference %></h1>
+<p class="subheading caption"><%= @bible_reference.content %></p>
 
-<h2>Desires</h2>
+<h2 class="subheading">Desires</h2>
 <ul>
   <% for desire in @bible_reference.desires %>
     <li><a href="/desires/<%= desire.id %>"><h3><%= desire.name %></h3></a></li>
   <% end %>
 </ul>
 
-<h2>Seeds</h2>
+<h2 class="subheading">Seeds</h2>
 <ul>
   <% for seed in @bible_reference.seeds %>
     <a href="/seeds/<%= seed.id %>">
@@ -21,7 +21,7 @@
   <% end %>
 </ul>
 
-<h2>Harvests</h2>
+<h2 class="subheading">Harvests</h2>
 <ul>
   <% for harvest in @bible_reference.harvests %>
     <a href="/harvests/<%= harvest.id %>">
