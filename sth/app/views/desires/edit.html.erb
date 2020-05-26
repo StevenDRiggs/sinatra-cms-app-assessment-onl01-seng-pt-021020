@@ -1,14 +1,26 @@
-<h1>Edit Desire</h1>
+<h1 id="main-heading">Edit Desire</h1>
 
 <form action="/desires/<%= @desire.id %>" method="POST">
   <input type="hidden" name="_method" id="hidden" value="PATCH">
 
-  <label for="name">Name</label>
-  <input type="text" name="name" id="name" value="<%= @desire.name %>" required>
+  <div class="form-labels">
+    <label for="name"><h3>Name</h3></label>
 
-  <label for="description">Description</label>
-  <textarea name="description" id="description"><%= @desire.description %></textarea>
+    <br>
 
-  <button type="submit" id="submit">Submit</button>
+    <label for="description"><h3>Description</h3></label>
+  </div>
+
+  <div class="form-fields">
+    <input type="text" name="name" id="name" value="<%= @desire.name %>" required>
+
+    <br><br>
+
+    <textarea name="description" id="description"><%= @desire.description %></textarea>
+  </div>
+
+  <div class="button">
+    <button type="submit" id="submit">Submit</button>
+  </div>
 
 </form>
