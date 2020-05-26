@@ -1,13 +1,25 @@
-<h1>New Desire</h1>
+<h1 id="main-heading">New Desire</h1>
 
 <form action="/desires" method="POST">
 
-  <label for="name">Name</label>
-  <input type="text" name="name" id="name" required>
+  <div class="form-labels">
+    <label for="name"><h3>Name</h3></label>
 
-  <label for="description">Description</label>
-  <textarea name="description" id="description"></textarea>
+    <br>
 
-  <button type="submit" id="submit">Submit</button>
+    <label for="description"><h3>Description</h3></label>
+  </div>
+
+  <div class="form-fields">
+    <input type="text" name="name" id="name" required>
+
+    <br><br>
+
+    <textarea name="description" id="description"></textarea>
+  </div>
+
+  <div class="button">
+    <button type="submit" id="submit">Submit</button>
+  </div>
 
 </form>
