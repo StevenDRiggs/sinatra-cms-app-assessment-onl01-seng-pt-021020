@@ -17,3 +17,11 @@
   <h2 class="subheading">Completed In</h2>
   <p class="caption"><%= @harvest.time_to_completion %></p>
 <% end %>
+
+<div class="button">
+  <a href="/harvests/<%= @harvest.id %>/edit"><button type="button">Edit Harvest</button></a>
+</div>
+
+<div class="button">
+  <a href="/harvests/<%= @harvest.id %>/delete"><button type="button">Delete Harvest</button></a>
+</div>
