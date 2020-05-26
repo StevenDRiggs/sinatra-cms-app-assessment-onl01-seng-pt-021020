@@ -1,35 +1,78 @@
-<h1>Edit Harvest</h1>
+<h1 id="main-heading">Edit Harvest</h1>
 
 <form action="/harvests/<%= @harvest.id %>" method="POST">
   <input type="hidden" name="_method" id="hidden" value="PATCH">
 
-  <h2>Sources</h2>
+  <h2 class="subheading">Sources</h2>
   <% for source in @user.sources %>
+  <div class="form-labels">
     <label for="source-<%= source.id %>"><h3><%= source.name %></h3></label>
+  </div>
+  <div class="form-fields">
     <input type="checkbox" name="sources[]" id="source-<%= source.id %>" value="<%= source.id %>" <%= 'checked' if @harvest.sources.include?(source) %>>
+  </div>
   <% end %>
 
+  <div class="clearfix"></div>
+
+<div class="button">
   <a href="/sources/new"><button type="button" id="new_source">New Source</button></a>
+</div>
 
-  <label for="completed"><h2>Completed?</h2></label>
-  <input type="checkbox" name="completed" id="completed" <%= 'checked' if @harvest.completed %>>
+  <div class="form-labels">
+    <label for="completed"><h3>Completed?</h3></label>
+  </div>
+  <div class="form-fields">
+    <input type="checkbox" name="completed" id="completed" <%= 'checked' if @harvest.completed %>>
+  </div>
 
-  <h2>Time to Completion</h2>
-  <label for="months_to_completion"><h3>Months</h3></label>
-  <input type="number" name="months_to_completion" id="months_to_completion" value="<%= @harvest.months_to_completion %>">
+  <div class="clearfix"></div>
 
-  <label for="weeks_to_completion"><h3>Weeks</h3></label>
-  <input type="number" name="weeks_to_completion" id="weeks_to_completion" value="<%= @harvest.weeks_to_completion %>">
+  <h2 class="subheading">Time to Completion</h2>
+  <div class="form-labels">
+    <label for="months_to_completion"><h3>Months</h3></label>
 
-  <label for="days_to_completion"><h3>Days</h3></label>
-  <input type="number" name="days_to_completion" id="days_to_completion" value="<%= @harvest.days_to_completion %>">
+    <br><br>
 
-  <label for="hours_to_completion"><h3>Hours</h3></label>
-  <input type="number" name="hours_to_completion" id="hours_to_completion" value="<%= @harvest.hours_to_completion %>">
+    <label for="weeks_to_completion"><h3>Weeks</h3></label>
 
-  <label for="minutes_to_completion"><h3>Minutes</h3></label>
-  <input type="number" name="minutes_to_completion" id="minutes_to_completion" value="<%= @harvest.minutes_to_completion %>">
+    <br><br>
 
-  <button type="submit" id="submit">Submit</button>
+    <label for="days_to_completion"><h3>Days</h3></label>
+
+    <br><br>
+
+    <label for="hours_to_completion"><h3>Hours</h3></label>
+
+    <br><br>
+
+    <label for="minutes_to_completion"><h3>Minutes</h3></label>
+  </div>
+
+  <div class="form-fields">
+    <input type="number" name="months_to_completion" id="months_to_completion" value="<%= @harvest.months_to_completion %>">
+
+    <br><br><br>
+
+    <input type="number" name="weeks_to_completion" id="weeks_to_completion" value="<%= @harvest.weeks_to_completion %>">
+
+    <br><br><br>
+
+    <input type="number" name="days_to_completion" id="days_to_completion" value="<%= @harvest.days_to_completion %>">
+
+    <br><br><br><br>
+
+    <input type="number" name="hours_to_completion" id="hours_to_completion" value="<%= @harvest.hours_to_completion %>">
+
+    <br><br><br>
+
+    <input type="number" name="minutes_to_completion" id="minutes_to_completion" value="<%= @harvest.minutes_to_completion %>">
+  </div>
+
+  <div class="clearfix"></div>
+
+  <div class="button">
+    <button type="submit" id="submit">Submit</button>
+  </div>
 
 </form>
