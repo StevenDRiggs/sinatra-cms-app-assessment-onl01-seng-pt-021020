@@ -67,7 +67,7 @@ class SourcesController < ApplicationController
     end
 
     @user = User.find_by_id(session[:rd])
-    @source = Source.find_by(user_id: user.id, id: params[:id])
+    @source = Source.find_by(user_id: @user.id, id: params[:id])
 
     erb :'/sources/edit.html'
   end

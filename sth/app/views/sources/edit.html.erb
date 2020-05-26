@@ -1,40 +1,92 @@
-<h1>Edit Source</h1>
+<div class="too-large-fix">
+  <h1 id="main-heading">Edit Source</h1>
 
-<form action="/sources/<%= @source.id %>" method="POST">
-  <input type="hidden" name="_method" id="hidden" value="PATCH">
+  <form action="/sources/<%= @source.id %>" method="POST">
+    <input type="hidden" name="_method" id="hidden" value="PATCH">
 
-  <label for="name"><h2>Name</h2></label>
-  <input type="text" name="name" id="name" value="<%= @source.name %>" required>
+    <div class="form-labels">
+      <label for="name"><h2>Name</h2></label>
+    </div>
 
-  <h2>Time Received</h2>
-  <label for="months_received"><h3>Months</h3></label>
-  <input type="number" name="months_received" id="months_received" value="<%= @source.months_received %>">
+    <div class="form-fields">
+      <input type="text" name="name" id="name" value="<%= @source.name %>" required>
+    </div>
 
-  <label for="weeks_received"><h3>Weeks</h3></label>
-  <input type="number" name="weeks_received" id="weeks_received" value="<%= @source.weeks_received %>">
+    <div class="clearfix"></div>
 
-  <label for="days_received"><h3>Days</h3></label>
-  <input type="number" name="days_received" id="days_received" value="<%= @source.days_received %>">
+    <h2 class="subheading">Time Received</h2>
 
-  <label for="hours_received"><h3>Hours</h3></label>
-  <input type="number" name="hours_received" id="hours_received" value="<%= @source.hours_received %>">
+    <div class="form-labels">
+      <label for="months_received"><h3>Months</h3></label>
 
-  <label for="minutes_received"><h3>Minutes</h3></label>
-  <input type="number" name="minutes_received" id="minutes_received" value="<%= @source.minutes_received %>">
+      <br><br>
 
-  <label for="money_received"><h2>Money Received</h2></label>
-  $<input type="text" name="money_received" id="money_received" value="<%= "%.2f" % @source.money_received %>">
+      <label for="weeks_received"><h3>Weeks</h3></label>
 
-  <h2>Items Received</h2>
-  <% for received_item in @user.received_items %>
-    <label for="received_item-<%= received_item.id %>"><h3><%= received_item.item %></h3></label>
-    <input type="checkbox" name="received_items[]" id="received_item-<%= received_item.id %>" value="<%= received_item.id %>" <%= 'checked' if @source.received_items.include?(received_item) %>>
-  <% end %>
+      <br><br>
 
-  <h2>New Item</h2>
-  <label for="new_received_item"><h3>Item</h3></label>
-  <input type="text" name="new_received_item" id="new_received_item">
-  
-  <button type="submit" id="submit">Submit</button>
+      <label for="days_received"><h3>Days</h3></label>
 
-</form>
+      <br><br>
+
+      <label for="hours_received"><h3>Hours</h3></label>
+
+      <br><br>
+
+      <label for="minutes_received"><h3>Minutes</h3></label>
+    </div>
+      
+    <div class="form-fields">
+      <input type="number" name="months_received" id="months_received" value="<%= @source.months_received %>">
+
+      <br><br><br>
+
+      <input type="number" name="weeks_received" id="weeks_received" value="<%= @source.weeks_received %>">
+
+      <br><br><br>
+
+      <input type="number" name="days_received" id="days_received" value="<%= @source.days_received %>">
+
+      <br><br><br><br>
+
+      <input type="number" name="hours_received" id="hours_received" value="<%= @source.hours_received %>">
+
+      <br><br><br>
+
+      <input type="number" name="minutes_received" id="minutes_received" value="<%= @source.minutes_received %>">
+    </div>
+
+    <div class="clearfix"></div>
+
+    <label for="money_received"><h2 class="subheading">Money Received</h2></label>
+    <div>
+      $<input type="text" name="money_received" id="money_received" value="<%= "%.2f" % @source.money_received %>">
+    </div>
+
+    <h2 class="subheading">Items Received</h2>
+    <% for received_item in @user.received_items %>
+      <div>
+        <label for="received_item-<%= received_item.id %>"><h3><%= received_item.item %></h3></label>
+      </div>
+      <div>
+        <input type="checkbox" name="received_items[]" id="received_item-<%= received_item.id %>" value="<%= received_item.id %>" <%= 'checked' if @source.received_items.include?(received_item) %>>
+      </div>
+    <% end %>
+
+    <h2 class="subheading">New Item</h2>
+    <div class="form-labels">
+      <label for="new_received_item"><h3>Item</h3></label>
+    </div>
+
+    <div class="form-fields">
+      <input type="text" name="new_received_item" id="new_received_item">
+    </div>
+
+    <div class="clearfix"></div>
+    
+    <div class="button">
+      <button type="submit" id="submit">Submit</button>
+    </div>
+
+  </form>
+</div>
