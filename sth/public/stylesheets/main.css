@@ -46,6 +46,11 @@ div.wrapper {
   margin: 15px auto;
 }
 
+div.too-large-fix {
+  position: relative;
+  top: 125px;
+}
+
 .subheading {
   margin: 25px auto;
 }
