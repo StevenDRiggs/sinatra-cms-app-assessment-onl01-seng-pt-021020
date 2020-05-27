@@ -1,6 +1,12 @@
-<h1>Items to Sow</h1>
+<div class="too-large-fix">
+  <h1 id="main-heading">Items to Sow</h1>
 
-<% for to_sow_item in @user.to_sow_items %>
-  <h2><%= to_sow_item.item %></h2>
-  <h3>Sow to: <%= to_sow_item.target.name %></h3>
-<% end %>
+  <% for to_sow_item in @user.to_sow_items %>
+    <h2 class="subheading"><a href="/to_sow_items/<%= to_sow_item.id %>"><%= to_sow_item.item %></a></h2>
+    <h3 class="caption">Sow to: <a href="/targets/<%= to_sow_item.target.id %>"><%= to_sow_item.target.name %></a></h3>
+  <% end %>
+
+  <div class="button">
+    <a href="/to_sow_items/new"><button>New Item to Sow</button></a>
+  </div>
+</div>
