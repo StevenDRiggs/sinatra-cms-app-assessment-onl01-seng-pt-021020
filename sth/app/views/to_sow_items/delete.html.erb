@@ -1,13 +1,17 @@
-<h3>Are you sure you want to delete this item to sow?</h3>
+<h3 id="main-heading">Are you sure you want to delete this item to sow?</h3>
 
-<h2><%= @to_sow_item.item %></h2>
-<h3>Target: <%= @to_sow_item.target.name %></h3>
+<h2 class="subheading"><%= @to_sow_item.item %></h2>
+<h3 class="caption">Target: <%= @to_sow_item.target.name %></h3>
 
 <form action="/to_sow_items/<%= @to_sow_item.id %>" method="POST">
   <input type="hidden" name="_method" id="hidden" value="DELETE">
 
-  <button type="submit" id="submit">Delete</button>
+  <div class="button">
+    <button type="submit" id="submit">Delete</button>
+  </div>
 
-  <a href="/to_sow_items/<%= @to_sow_item.id %>"><button type="button">Cancel</button></a>
+  <div class="button">
+    <a href="/to_sow_items/<%= @to_sow_item.id %>"><button type="button">Cancel</button></a>
+  </div>
 
 </form>
