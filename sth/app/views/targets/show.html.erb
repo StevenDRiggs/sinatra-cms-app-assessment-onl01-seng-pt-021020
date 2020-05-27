@@ -1,15 +1,23 @@
-<h1><%= @target.name %></h1>
+<h1 id="main-heading"><%= @target.name %></h1>
 
-<h2>Seeds Into</h2>
+<h2 class="subheading">Seeds Into</h2>
 <% for desire in @desires %>
-  <p><%= desire.name %></p>
+  <h3><a href="/desires/<%= desire.id %>"><%= desire.name %></a></h3>
 <% end %>
-<h3>Via</h3>
+<h2 class="subheading">Via</h2>
 <% for bible_reference in @bible_references %>
-  <p><%= bible_reference.reference %></p>
+  <h3><a href="/bible_references/<%= bible_reference.id %>"><%= bible_reference.reference %></a></h3>
 <% end %>
 
-<h2>Look for Harvests From</h2>
+<h2 class="subheading">Look for Harvests From</h2>
 <% for source in @sources %>
-  <p><%= source.name %></p>
+  <h3><a href="/<%= source.id %>"><%= source.name %></a></h3>
 <% end %>
+
+<div class="button">
+  <a href="/targets/<%= @target.id %>/edit"><button type="button">Edit Target</button></a>
+</div>
+
+<div class="button">
+  <a href="/targets/<%= @target.id %>/delete"><button type="button">Delete Target</button></a>
+</div>
