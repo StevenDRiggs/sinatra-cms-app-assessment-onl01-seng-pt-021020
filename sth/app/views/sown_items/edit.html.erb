@@ -1,18 +1,33 @@
-<h1>Edit Sown Item</h1>
+<h1 id="main-heading">Edit Sown Item</h1>
 
 <form action="/sown_items/<%= @sown_item.id %>" method="POST">
   <input type="hidden" name="_method" id="hidden" value="PATCH">
 
-  <label for="item"><h2>Item</h2></label>
-  <input type="text" name="item" id="item" value="<%= @sown_item.item %>" required>
+  <div class="form-labels">
+    <label for="item"><h2>Item</h2></label>
+  </div>
 
-  <h3>Received from:</h3>
+  <div class="form-fields">
+    <input type="text" name="item" id="item" value="<%= @sown_item.item %>" required>
+  </div>
+
+  <div class="clearfix"></div>
+
+  <h3 class="subheading">Sown to:</h3>
   <% for target in @user.targets %>
-    <label for="target"><%= target.name %></label>
-    <input type="radio" name="target" id="target" value="<%= target.id %>" <%= 'checked' if @sown_item.target == target %> required>
+    <div>
+      <label for="target"><%= target.name %></label>
+    </div>
+    <div>
+      <input type="radio" name="target" id="target" value="<%= target.id %>" <%= 'checked' if @sown_item.target == target %> required>
+    </div>
   <% end %>
-  <a href="/targets/new"><button type="button">New Target</button></a>
+  <div class="button">
+    <a href="/targets/new"><button type="button">New Target</button></a>
+  </div>
 
-  <button type="submit" id="submit">Submit</button>
+  <div class="button">
+    <button type="submit" id="submit">Submit</button>
+  </div>
 
 </form>
