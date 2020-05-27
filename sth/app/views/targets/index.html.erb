@@ -1,6 +1,11 @@
-<h1>Targets</h1>
+<h1 id="main-heading">Targets</h1>
 <% for target in @user.targets %>
-  <h2><%= target.name %></h2>
+  <h2 class="subheading"><a href="/targets/<%= target.id %>"><%= target.name %></a></h2>
   <h3>Time Sown: <%= target.time_sown %></h3>
+  <br>
   <h3>Money Sown: $<%= "%.2f" % target.money_sown %></h3>
 <% end %>
+
+<div class="button">
+  <a href="/targets/new"><button type="button">New Target</button></a>
+</div>
