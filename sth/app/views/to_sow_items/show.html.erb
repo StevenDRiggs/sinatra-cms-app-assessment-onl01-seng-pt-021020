@@ -2,3 +2,11 @@
 
 <h2 class="subheading">Sow to:</h2>
 <h3 class="caption"><a href="/targets/<%= @to_sow_item.target.id %>"><%= @to_sow_item.target.name %></a></h3>
+
+<div class="button">
+  <a href="/to_sow_items/<%= @to_sow_item.id %>/edit"><button type="button">Edit Item to Sow</button></a>
+</div>
+
+<div class="button">
+  <a href="/to_sow_items/<%= @to_sow_item.id %>"><button type="button">Delete Item to Sow</button></a>
+</div>
