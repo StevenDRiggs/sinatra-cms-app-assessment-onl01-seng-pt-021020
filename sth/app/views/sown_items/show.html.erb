@@ -1,4 +1,12 @@
-<h1><%= @sown_item.item %></h1>
+<h1 id="main-heading"><%= @sown_item.item %></h1>
 
-<h2>Sown to:</h2>
-<h3><%= @sown_item.target.name %></h3>
+<h2 class="subheading">Sown to:</h2>
+<h3 class="caption"><a href="/targets/<%= @sown_item.target.id %>"><%= @sown_item.target.name %></a></h3>
+
+<div class="button">
+  <a href="/sown_items/<%= @sown_item.id %>/edit"><button type="button">Edit Sown Item</button></a>
+</div>
+
+<div class="button">
+  <a href="/sown_items/<%= @sown_item.id %>/delete"><button type="button">Delete Sown Item</button></a>
+</div>
