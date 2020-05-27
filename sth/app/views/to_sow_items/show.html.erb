@@ -1,4 +1,4 @@
-<h1><%= @to_sow_item.item %></h1>
+<h1 id="main-heading"><%= @to_sow_item.item %></h1>
 
-<h2>Sow to:</h2>
-<h3><%= @to_sow_item.target.name %></h3>
+<h2 class="subheading">Sow to:</h2>
+<h3 class="caption"><a href="/targets/<%= @to_sow_item.target.id %>"><%= @to_sow_item.target.name %></a></h3>
