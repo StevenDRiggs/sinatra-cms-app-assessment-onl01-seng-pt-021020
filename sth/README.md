@@ -19,11 +19,11 @@ To install STH, follow these steps:
 4. Navigate to the `Sth` folder
 5. Run bundle install`
 
-## Using <project_name>
+## Using STH
 
-To use <project_name>, follow these steps:
+To use STH, follow these steps:
 
-1. In the `Sth` folder, run `shotgun` (you may need to run `bundle exec shotgun` if you have receive an error).
+1. In the `Sth` folder, run `shotgun` (you may need to run `bundle exec shotgun` if you have received an error).
 2. Using your browser, navigate to 'localhost:9393'
 
 ## Contributing to STH
@@ -49,6 +49,5 @@ Thanks to the following people who have contributed to this project:
 If you want to contact me you can reach me at sfriggs21@gmail.com.
 
 ## License
-<!--- If you're not sure which open license to use see https://choosealicense.com/--->
 
 This project uses the following license: [LICENSE.md](https://github.com/StevenDRiggs/sinatra-cms-app-assessment-onl01-seng-pt-021020/blob/master/LICENSE.md).
