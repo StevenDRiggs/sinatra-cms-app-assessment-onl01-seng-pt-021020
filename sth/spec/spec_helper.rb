@@ -29,3 +29,19 @@ def session
 end
 
 Capybara.app = app
+
+BibleReferenceDesire.destroy_all
+BibleReferenceHarvest.destroy_all
+BibleReferenceSeed.destroy_all
+BibleReference.destroy_all
+Desire.destroy_all
+HarvestSource.destroy_all
+Harvest.destroy_all
+ReceivedItem.destroy_all
+SeedTarget.destroy_all
+Seed.destroy_all
+Source.destroy_all
+SownItem.destroy_all
+Target.destroy_all
+ToSowItem.destroy_all
+User.destroy_all
