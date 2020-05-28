@@ -24,4 +24,8 @@ def app
   Rack::Builder.parse_file('config.ru').first
 end
 
+def session
+  last_request.env['rack.session']
+end
+
 Capybara.app = app
