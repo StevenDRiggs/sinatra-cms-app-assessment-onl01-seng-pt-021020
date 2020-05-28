@@ -3,11 +3,13 @@ require 'spec_helper'
 describe ApplicationController do
 
   describe "Homepage" do
+    <<-PASS
     it 'loads the homepage' do
       get '/'
       expect(last_response.status).to eq(200)
       expect(last_response.body).to include("Welcome to the Seed, Time and Harvest Database!")
     end
+    PASS
   end
 
   describe "Signup Page" do
@@ -16,6 +18,7 @@ describe ApplicationController do
       user.delete if user
     end
 
+    <<-PASS
     it 'loads the signup page' do
       get '/signup'
       expect(last_response.status).to eq(200)
@@ -30,8 +33,8 @@ describe ApplicationController do
       post '/signup', params
       expect(last_response.location).to include("/index")
     end
+    PASS
 
-    <<-OUT
     it 'does not let a user sign up without a username' do
       params = {
         :username => "",
@@ -61,7 +64,6 @@ describe ApplicationController do
       post '/signup', params
       expect(last_response.location).to include('/signup')
     end
-    OUT
 
     it 'does not let a logged in user view the signup page' do
       params = {
