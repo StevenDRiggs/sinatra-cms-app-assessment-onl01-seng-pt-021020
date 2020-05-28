@@ -32,10 +32,6 @@ describe ApplicationController do
 
   context "signup page" do
     it "properly displays page" do
-      get '/signup'
-      expect(last_response.body).to match(/<input type="text".* id="username".*>/)
-      expect(last_response.body).to match(/<input type="email".* id="email".*>/)
-      expect(last_response.body).to match(/<input type="password".* id="password".*>/)
     end
   end
 end
