@@ -35,25 +35,29 @@ class TargetsController < ApplicationController
     target.sown_items << user.sown_items.build(item: params[:new_sown_item]) if params[:new_sown_item] != ''
     target.to_sow_items << user.to_sow_items.build(item: params[:new_to_sow_item]) if params[:new_to_sow_item] != ''
 
-    for sown_item in params[:sown_items]
-      which, id = sown_item.split('-')
-      case which
-      when 'sown_item'
-        target.sown_items << SownItem.find_by(user_id: user.id, id: id)
-      when 'to_sow_item'
-        item = !SownItem.find_by(user_id: user.id, item: ToSowItem.find_by(user_id: user.id, id: id).item).nil? ? SownItem.find_by(user_id: user.id, item: ToSowItem.find_by(user_id: user.id, id: id).item) : user.sown_items.build(item: ToSowItem.find_by(user_id: user.id, id: id).item)
-        target.sown_items << item
+    if !(params[:sown_items].nil? || (params[:sown_items].length == 1 && params[:sown_items][0] == ''))
+      for sown_item in params[:sown_items]
+        which, id = sown_item.split('-')
+        case which
+        when 'sown_item'
+          target.sown_items << SownItem.find_by(user_id: user.id, id: id)
+        when 'to_sow_item'
+          item = !SownItem.find_by(user_id: user.id, item: ToSowItem.find_by(user_id: user.id, id: id).item).nil? ? SownItem.find_by(user_id: user.id, item: ToSowItem.find_by(user_id: user.id, id: id).item) : user.sown_items.build(item: ToSowItem.find_by(user_id: user.id, id: id).item)
+          target.sown_items << item
+        end
       end
     end
 
-    for to_sow_item in params[:to_sow_items]
-      which, id = to_sow_item.split('-')
-      case which
-      when 'sown_item'
-        item = !ToSowItem.find_by(user_id: user.id, item: SownItem.find_by(user_id: user.id, id: id).item).nil? ? ToSowItem.find_by(user_id: user.id, item: SownItem.find_by(user_id: user.id, id: id).item) : user.to_sow_items.build(item: SownItem.find_by(user_id: user.id, id: id).item)
-        target.to_sow_items << item
-      when 'to_sow_item'
-        target.to_sow_items << ToSowItem.find_by(user_id: user.id, id: id)
+    if !(params[:to_sow_items].nil? || (params[:to_sow_items].length == 1 && params[:to_sow_items][0] == ''))
+      for to_sow_item in params[:to_sow_items]
+        which, id = to_sow_item.split('-')
+        case which
+        when 'sown_item'
+          item = !ToSowItem.find_by(user_id: user.id, item: SownItem.find_by(user_id: user.id, id: id).item).nil? ? ToSowItem.find_by(user_id: user.id, item: SownItem.find_by(user_id: user.id, id: id).item) : user.to_sow_items.build(item: SownItem.find_by(user_id: user.id, id: id).item)
+          target.to_sow_items << item
+        when 'to_sow_item'
+          target.to_sow_items << ToSowItem.find_by(user_id: user.id, id: id)
+        end
       end
     end
 

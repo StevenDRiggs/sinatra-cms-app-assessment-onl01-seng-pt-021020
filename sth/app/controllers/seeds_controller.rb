@@ -27,8 +27,11 @@ class SeedsController < ApplicationController
   post '/seeds' do
     user = User.find_by_id(session[:rd])
     seed = user.seeds.build
-    for target_id in params[:targets]
-      seed.targets << Target.find_by(user_id: user.id, id: target_id)
+    
+    if !(params[:targets].nil? || (params[:targets].length == 1 && params[:targets][0] == ''))
+      for target_id in params[:targets]
+        seed.targets << Target.find_by(user_id: user.id, id: target_id)
+      end
     end
 
     seed.save
