@@ -63,7 +63,7 @@ class TargetsController < ApplicationController
 
     target.save
 
-    redirect "/targets/#{target.id}"
+    redirect '/seeds/new'
   end
 
   # show

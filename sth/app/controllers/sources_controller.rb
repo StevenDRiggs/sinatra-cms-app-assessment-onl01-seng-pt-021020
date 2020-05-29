@@ -39,9 +39,7 @@ class SourcesController < ApplicationController
 
     source.save
 
-    redirect "/sources/#{source.id}"
-
-    redirect '/sources/new'
+    redirect "/harvests/new"
   end
 
   # show
