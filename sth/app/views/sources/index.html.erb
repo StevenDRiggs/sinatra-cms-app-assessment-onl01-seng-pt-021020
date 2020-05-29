@@ -5,6 +5,10 @@
   <h3>Time Received: <%= source.time_received %></h3>
   <br>
   <h3>Money Received: $<%= "%.2f" % source.money_received %></h3>
+
+  <div class="button">
+    <a href="/sources/<%= source.id %>"><button type="button">View Source</button></a>
+  </div>
 <% end %>
 
 <div class="button">
