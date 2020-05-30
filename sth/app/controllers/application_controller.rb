@@ -97,8 +97,6 @@ class ApplicationController < Sinatra::Base
     else
       @user = User.find_by_id(session[:rd])
 
-      binding.pry
-
       erb :'/index.html'
     end
   end

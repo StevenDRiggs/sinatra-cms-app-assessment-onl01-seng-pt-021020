@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe ApplicationController do
   describe "GET '/'" do
-    before(:context, logged_in: false) do
+    before(:each, logged_in: false) do
       get '/'
       if session[:rd]
         post '/logout'
@@ -23,12 +23,11 @@ describe ApplicationController do
 
         session[:rd] = user.id
 
-        visit '/'
+        visit '/login'
         
         fill_in :username_or_email, with: 'test_user'
         fill_in :password, with: 'password'
         click_button 'login'
-        follow_redirect!
 
         visit '/'
 
