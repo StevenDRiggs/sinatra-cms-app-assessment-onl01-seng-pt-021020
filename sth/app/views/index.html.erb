@@ -16,15 +16,17 @@
       <tr>
         <td><a href="/desires/<%= desire.id %>"><%= desire.name %></a></td>
         <td>
-          <% for bible_reference in desire.bible_references %>
-            <a href="/bible_references/<%= bible_reference.id %>"><%= bible_reference.reference %></a>
-          <% end %>
+          <ul>
+            <% for bible_reference in desire.bible_references %>
+              <li><a href="/bible_references/<%= bible_reference.id %>"><%= bible_reference.reference %></a></li>
+            <% end %>
+          </ul>
         </td>
         <td>
-          <% for seed in desire.seeds %>
+          <% for seed in desire.seeds.uniq %>
             <a href="/seeds/<%= seed.id %>">
               <ul>
-                <% for target in seed.targets %>
+                <% for target in seed.targets.uniq %>
                   <li>
                     <p><b><%= target.name %></b></p>
                     <p><%= target.time_sown %></p>
@@ -39,10 +41,10 @@
           <% end %>
         </td>
         <td>
-          <% for seed in desire.seeds %>
+          <% for seed in desire.seeds.uniq %>
             <a href="/seeds/<%= seed.id %>">
               <ul>
-                <% for target in seed.targets %>
+                <% for target in seed.targets.uniq %>
                   <li>
                     <p><b><%= target.name %></b></p>
                     <p><%= target.time_to_sow %></p>
